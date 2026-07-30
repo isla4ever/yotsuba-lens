@@ -54,6 +54,22 @@ the user's machine and are not encrypted by Design Lens. Profiles can be
 cleared from the AI settings UI. Without a configured key, users can export an
 evidence-only pack.
 
+## Chrome Web Store Limited Use
+
+Design Lens uses captured website content and observed interaction evidence
+only to perform the capture, analysis, storage, export, or optional AI request
+that the user explicitly starts. The developer does not receive, sell, share,
+or use captured data for advertising, credit decisions, or unrelated product
+analytics. The developer does not allow humans to read captured data unless a
+user intentionally includes it in a support or security report.
+
+Without optional AI generation, captured content stays in the browser profile
+or in files the user exports. When the user configures a compatible AI provider
+and explicitly requests generation, only the reduced payload described above
+is sent to that provider. Design Lens does not transfer captured data to any
+other third party and does not use it for purposes unrelated to the extension's
+single purpose.
+
 ## Permissions
 
 | Permission | Why it is requested |

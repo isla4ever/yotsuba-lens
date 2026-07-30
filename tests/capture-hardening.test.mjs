@@ -3,6 +3,7 @@ import test from "node:test";
 import { buildSelector } from "../src/analyzer/core/dom-utils.ts";
 import { sanitizeImplementationResourceUrl } from "../src/analyzer/capture/implementation-trace.ts";
 import { CaptureBudgetGuard } from "../src/smart-capture/budget-guard.ts";
+import { shouldSampleRecordingOnStop } from "../src/smart-capture/page-work-policy.ts";
 import { serializeJsonArtifact } from "../src/storage/artifact-serialization.ts";
 
 test("stable selectors omit transient state classes and preserve the real stable attribute", () => {
@@ -122,6 +123,27 @@ test("capture budget switches to snapshot-only after two mutation-storm windows"
     globalThis.PerformanceObserver = previousPerformanceObserver;
     globalThis.MutationObserver = previousMutationObserver;
   }
+});
+
+test("recording stop skips a second page scan after Smart Capture degrades", () => {
+  const controller = new AbortController();
+  const context = {
+    signal: controller.signal,
+    safetyLevel: "normal",
+    deadline: 10_000
+  };
+
+  assert.equal(shouldSampleRecordingOnStop(context, 1_000), true);
+  context.safetyLevel = "reduced";
+  assert.equal(shouldSampleRecordingOnStop(context, 1_000), true);
+  context.safetyLevel = "snapshot-only";
+  assert.equal(shouldSampleRecordingOnStop(context, 1_000), false);
+  context.safetyLevel = "stopped";
+  assert.equal(shouldSampleRecordingOnStop(context, 1_000), false);
+  context.safetyLevel = "normal";
+  assert.equal(shouldSampleRecordingOnStop(context, 10_000), false);
+  controller.abort();
+  assert.equal(shouldSampleRecordingOnStop(context, 1_000), false);
 });
 
 test("rrweb JSON serialization enforces its byte budget outside the page recorder", () => {

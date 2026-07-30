@@ -3,7 +3,7 @@
 > 把“参考这个网站”变成可追溯、可执行、可验收的 AI 前端上下文。
 
 [![CI](https://github.com/isla4ever/design-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/isla4ever/design-lens/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-0.2.0-2563eb)
+![Version](https://img.shields.io/badge/version-0.3.0-2563eb)
 ![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-4285f4)
 ![Status](https://img.shields.io/badge/status-alpha-f59e0b)
 [![License: MIT](https://img.shields.io/badge/license-MIT-16a34a)](LICENSE)
@@ -187,7 +187,7 @@ Design Lens 默认在本地处理和导出证据。只有用户配置模型 Key 
 ```bash
 npm run dev                 # 标准版开发服务器
 npm run dev:collector       # Collector 开发服务器
-npm run check:all           # TypeScript、100 项测试和两种生产构建
+npm run check:all           # TypeScript、101 项测试和两种生产构建
 npm run check:browser       # 真实 MV3 注入、UI 对齐/溢出、20k/100k DOM 性能与恢复探针
 npm run package:release     # 校验权限/版本并生成 ZIP 与 SHA256SUMS
 ```
@@ -225,6 +225,7 @@ docs/               架构、隐私、产品决策和验证记录
 - [参与贡献](CONTRIBUTING.md)
 - [安全策略](SECURITY.md)
 - [发布检查清单](docs/release-checklist.md)
+- [Chrome Web Store 上架资料](docs/chrome-web-store-listing.md)
 
 提交较大功能前请先创建 Issue。安全问题请通过 [GitHub Private Vulnerability Reporting](https://github.com/isla4ever/design-lens/security/advisories/new) 私下报告。
 

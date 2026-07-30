@@ -3,7 +3,7 @@
 > Turn “use this website as a reference” into traceable, executable, and testable frontend context for AI.
 
 [![CI](https://github.com/isla4ever/design-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/isla4ever/design-lens/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-0.2.0-2563eb)
+![Version](https://img.shields.io/badge/version-0.3.0-2563eb)
 ![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-4285f4)
 ![Status](https://img.shields.io/badge/status-alpha-f59e0b)
 [![License: MIT](https://img.shields.io/badge/license-MIT-16a34a)](LICENSE)
@@ -189,7 +189,7 @@ Local Rebuild packs may contain visible page text, screenshots, and sanitized DO
 ```bash
 npm run dev                 # Standard development server
 npm run dev:collector       # Collector development server
-npm run check:all           # TypeScript, 90 tests, and both production builds
+npm run check:all           # TypeScript, 101 tests, and both production builds
 npm run check:browser       # Real MV3 injection, UI alignment/overflow, and 20k/100k DOM recovery probes
 npm run package:release     # Permission/version validation, ZIPs, and SHA256SUMS
 ```
@@ -227,6 +227,7 @@ docs/               Architecture, privacy, product decisions, and validation rec
 - [Contributing](CONTRIBUTING.md)
 - [Security Policy](SECURITY.md)
 - [Release Checklist](docs/release-checklist.md)
+- [Chrome Web Store Submission](docs/chrome-web-store-listing.md)
 
 Open an issue before starting a large feature. Report security issues privately through [GitHub Private Vulnerability Reporting](https://github.com/isla4ever/design-lens/security/advisories/new).
 

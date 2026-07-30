@@ -45,21 +45,35 @@ new workflow has completed once so GitHub can resolve the required check names.
 After the release commit is merged into protected `main`:
 
 ```bash
-git tag -a v0.2.0 -m "Design Lens v0.2.0"
-git push origin v0.2.0
+git tag -a v0.3.0 -m "Design Lens v0.3.0"
+git push origin v0.3.0
 ```
 
 The tag workflow reruns dependency, code, browser, packaging, and permission
 gates. It creates a draft GitHub release with:
 
-- `design-lens-0.2.0-standard-chrome.zip`
-- `design-lens-0.2.0-collector-chrome.zip`
+- `design-lens-0.3.0-standard-chrome.zip`
+- `design-lens-0.3.0-collector-chrome.zip`
 - `SHA256SUMS`
 
 Before publishing the draft, verify both checksums, load each unpacked build in
 a clean Chrome profile, and confirm only Collector requests `debugger`.
 
-## 5. Recovery
+## 5. Submit The Standard Build To Chrome Web Store
+
+- Upload only `dist/design-lens-0.3.0-standard-chrome.zip`.
+- Use the listing, permission justifications, reviewer steps, and data-use
+  declarations in `docs/chrome-web-store-listing.md`.
+- Upload the store icon, two screenshots, and small promotional tile from
+  `docs/store-assets/` and verify their dimensions in the dashboard preview.
+- Confirm **No remote code**, the public privacy-policy URL, and the Limited Use
+  attestations before submission.
+- Select deferred publishing so approval does not make the release live before
+  the final dashboard review.
+- Never upload the Collector build to Chrome Web Store; distribute it only as a
+  clearly labeled GitHub release artifact.
+
+## 6. Recovery
 
 Do not move or reuse a published version tag. If a candidate fails before
 publication, delete only the draft and create a corrected candidate. If a

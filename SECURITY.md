@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-The latest `0.2.x` release and the current `main` branch receive security fixes
+The latest `0.3.x` release and the current `main` branch receive security fixes
 while Design Lens remains in alpha.
 
 ## Reporting A Vulnerability
