@@ -119,20 +119,39 @@ def make_top_promo():
         draw.text((64, y), line, fill=LIGHT, font=f)
         y += 64
     draw.text((64, 390), "设计参照 · 经授权重建 · 智能捕获 · 缺口提示", fill="#b8c1b9", font=font(22))
-    panel_path = SOURCE / "design-lens-sidepanel-coverage.png"
-    panel = Image.open(panel_path).convert("RGB")
-    current_panel = ASSETS / "screenshot-evidence-workspace-1280x800.png"
-    if not current_panel.exists():
-        current_panel = ROOT / "output" / "playwright" / "extension-ui" / "sidepanel-zh-light.png"
-    if current_panel.exists():
-        panel = Image.open(current_panel).convert("RGB")
-    panel.thumbnail((700, 410), Image.Resampling.LANCZOS)
-    frame = (650, 92, 1340, 468)
-    draw.rounded_rectangle(frame, radius=12, fill="#e9ece4", outline="#cdd2c9", width=2)
-    x = frame[0] + (frame[2] - frame[0] - panel.width) // 2
-    y = frame[1] + (frame[3] - frame[1] - panel.height) // 2
-    draw.rounded_rectangle((x - 2, y - 2, x + panel.width + 2, y + panel.height + 2), radius=8, fill="#ffffff")
-    image.paste(panel, (x, y))
+    frame = (650, 72, 1340, 488)
+    draw.rounded_rectangle(frame, radius=12, fill="#ffffff", outline="#cdd2c9", width=2)
+    draw.rectangle((652, 74, 1338, 110), fill="#e9ece4")
+    for dot_x, color in [(672, "#ef7567"), (690, "#e7bb55"), (708, "#76b85d")]:
+        draw.ellipse((dot_x - 5, 87, dot_x + 5, 97), fill=color)
+    draw.rounded_rectangle((734, 82, 1318, 102), radius=8, fill="#ffffff", outline="#d6ddd2")
+    draw.text((748, 85), "atlas.example/design-system", fill=MUTED, font=font(12))
+
+    page_left, page_top, page_right, page_bottom = 652, 110, 1044, 486
+    draw.rectangle((page_left, page_top, page_right, page_bottom), fill="#f8faf6")
+    draw.text((680, 136), "Atlas Studio", fill=INK, font=font(22, True))
+    draw.text((680, 170), "Product design workspace", fill=MUTED, font=font(13))
+    draw.rounded_rectangle((680, 210, 1016, 286), radius=8, fill="#eef5d4")
+    draw.text((700, 232), "把复杂页面变成清晰证据", fill=INK, font=font(16, True))
+    for index, label in enumerate(["结构", "状态", "动效"]):
+        card_x = 680 + index * 113
+        draw.rounded_rectangle((card_x, 312, card_x + 100, 410), radius=7, fill="#ffffff", outline="#dfe5dc")
+        draw.text((card_x + 12, 328), label, fill=LIME_DARK, font=font(12, True))
+        draw.rectangle((card_x + 12, 360, card_x + 84, 367), fill="#dfe7d7")
+        draw.rectangle((card_x + 12, 380, card_x + 72, 387), fill="#e8ede5")
+
+    draw.rectangle((1044, 110, 1338, 486), fill="#f5f6f0")
+    draw.line((1044, 110, 1044, 486), fill="#cdd2c9", width=2)
+    panel_path = ROOT / "output" / "playwright" / "extension-ui" / "sidepanel-settings-zh-light.png"
+    if not panel_path.exists():
+        panel_path = ROOT / "output" / "playwright" / "extension-ui" / "sidepanel-zh-light.png"
+    if panel_path.exists():
+        panel = Image.open(panel_path).convert("RGB")
+        panel = panel.crop((0, 0, panel.width, min(panel.height, 800)))
+        target_width = 294
+        panel = panel.resize((target_width, round(panel.height * target_width / panel.width)), Image.Resampling.LANCZOS)
+        panel = panel.crop((0, 0, target_width, min(panel.height, 376)))
+        image.paste(panel, (1044, 110))
     image.save(ASSETS / "promo-top-1400x560.png", format="PNG", optimize=True)
 
 
@@ -175,6 +194,7 @@ def normalize_screenshots():
                 break
         if panel is None:
             panel = Image.new("RGB", (360, 800), "#f5f6f0")
+        panel = panel.crop((0, 0, panel.width, min(panel.height, 800)))
         panel.thumbnail((410, 744), Image.Resampling.LANCZOS)
         panel_x = 828 + (410 - panel.width) // 2
         panel_y = 34 + (744 - panel.height) // 2
