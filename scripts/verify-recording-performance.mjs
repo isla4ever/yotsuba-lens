@@ -27,6 +27,13 @@ try {
     document.body.getBoundingClientRect();
   });
   const baselineLongTasks = await measureLongTaskBaseline(page);
+  const baselineInteractionLatencies = await measureInteractionRoundTrips(page, 24, false);
+  await page.evaluate(() => { window.scrollTo(0, 0); });
+  await page.waitForTimeout(100);
+  await page.evaluate(() => {
+    window.__longTasks = [];
+    window.__heartbeatCount = 0;
+  });
   reportStage("fixture-ready");
 
   const startBeganAt = performance.now();
@@ -39,17 +46,7 @@ try {
   if (!startResponse?.ok) throw new Error(startResponse?.error ?? "Recording did not start");
   reportStage("recording-started");
 
-  const interactionLatencies = [];
-  for (let index = 0; index < 24; index += 1) {
-    const beganAt = performance.now();
-    await page.mouse.move(20 + (index % 8) * 70, 40 + (index % 6) * 55);
-    await page.evaluate((step) => {
-      window.scrollTo(0, (step * 170) % Math.max(1, document.documentElement.scrollHeight - innerHeight));
-      document.querySelector("#heartbeat")?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-    }, index);
-    interactionLatencies.push(performance.now() - beganAt);
-    await page.waitForTimeout(35);
-  }
+  const interactionLatencies = await measureInteractionRoundTrips(page, 24, true);
   reportStage("interactions-complete");
 
   const stopBeganAt = performance.now();
@@ -74,6 +71,7 @@ try {
     stopDurationMs,
     maxInteractionLatencyMs: Math.round(Math.max(0, ...interactionLatencies)),
     p95InteractionLatencyMs: Math.round(percentile(interactionLatencies, 0.95)),
+    baselineP95InteractionLatencyMs: Math.round(percentile(baselineInteractionLatencies, 0.95)),
     baselineMaxLongTaskMs: Math.round(Math.max(0, ...baselineLongTasks)),
     maxLongTaskMs: Math.round(Math.max(0, ...browserMetrics.longTasks)),
     longTaskCount: browserMetrics.longTasks.length,
@@ -85,10 +83,15 @@ try {
     consoleErrors
   };
   const isExtremeFixture = stressNodeCount >= 100_000;
-  const interactionBudgetMs = isExtremeFixture ? 600 : 500;
+  const interactionBudgetMs = Math.max(
+    isExtremeFixture ? 600 : 500,
+    result.baselineP95InteractionLatencyMs + (isExtremeFixture ? 250 : 200)
+  );
   const longTaskBudgetMs = Math.max(isExtremeFixture ? 300 : 200, result.baselineMaxLongTaskMs + (isExtremeFixture ? 150 : 100));
   result.interactionBudgetMs = interactionBudgetMs;
   result.longTaskBudgetMs = longTaskBudgetMs;
+
+  console.log(JSON.stringify(result, null, 2));
 
   if (result.heartbeatCount !== 24) throw new Error(`Page lost interactions: expected 24, received ${result.heartbeatCount}`);
   if (result.p95InteractionLatencyMs > interactionBudgetMs) throw new Error(`Page p95 interaction latency exceeded ${interactionBudgetMs}ms: ${result.p95InteractionLatencyMs}ms`);
@@ -96,7 +99,6 @@ try {
   if (result.frameSamples > 12) throw new Error(`Frame sample budget exceeded: ${result.frameSamples}`);
   if (consoleErrors.length) throw new Error(`Browser console errors: ${consoleErrors.join(" | ")}`);
 
-  console.log(JSON.stringify(result, null, 2));
 } finally {
   await browser?.close().catch(() => undefined);
 }
@@ -127,6 +129,21 @@ async function measureLongTaskBaseline(page) {
     window.__longTasks = [];
     return baseline;
   });
+}
+
+async function measureInteractionRoundTrips(page, count, dispatchHeartbeat) {
+  const latencies = [];
+  for (let index = 0; index < count; index += 1) {
+    const beganAt = performance.now();
+    await page.mouse.move(20 + (index % 8) * 70, 40 + (index % 6) * 55);
+    await page.evaluate(({ step, dispatchHeartbeat }) => {
+      window.scrollTo(0, (step * 170) % Math.max(1, document.documentElement.scrollHeight - innerHeight));
+      if (dispatchHeartbeat) document.querySelector("#heartbeat")?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    }, { step: index, dispatchHeartbeat });
+    latencies.push(performance.now() - beganAt);
+    await page.waitForTimeout(35);
+  }
+  return latencies;
 }
 
 async function installExtensionApiMock(page) {

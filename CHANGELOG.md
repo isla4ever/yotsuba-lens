@@ -39,6 +39,8 @@ version tags.
   completion without hiding persistent success or error messages.
 - Skip the second full-page recording sample after Smart Capture has degraded
   to `snapshot-only` or `stopped`, preventing slow finalization on large pages.
+- Calibrate browser-driver interaction latency against the same active fixture
+  while retaining heartbeat, long-task, and frame-sample hard limits.
 
 ### Security
 

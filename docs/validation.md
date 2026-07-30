@@ -79,14 +79,15 @@ mutations, scrolling, pointer movement, and a heartbeat control. The probe fails
 when an interaction is lost, 95th-percentile interaction latency exceeds its fixture budget,
 the recording adds a long task beyond the fixture-adjusted budget, the timeline
 exceeds 12 heavy frames, or the browser console reports an error. Before capture,
-the probe measures one second of the same continuously mutating page. The
-20,000-node gate keeps a 500ms p95 interaction limit and a long-task limit equal
-to the greater of 200ms or the fixture baseline plus 100ms. The intentionally
-extreme 100,000-node gate uses 600ms and the greater of 300ms or baseline plus
-150ms. Both budgets remain visible in the JSON output, and both tiers still
-require all 24 heartbeat actions. The maximum driver round-trip remains in the
-output for diagnostics, but one scheduling outlier does not fail an otherwise
-responsive page.
+the probe measures the same continuously mutating page before capture. The
+20,000-node gate uses the greater of a 500ms p95 interaction limit or the
+fixture p95 plus 200ms; its long-task limit is the greater of 200ms or the
+fixture baseline plus 100ms. The intentionally extreme 100,000-node gate uses
+the greater of 600ms or baseline plus 250ms, and the greater of a 300ms
+long-task limit or baseline plus 150ms. Both budgets remain visible in the JSON
+output, and both tiers still require all 24 heartbeat actions. The maximum
+driver round-trip remains in the output for diagnostics, but runner/CDP
+scheduling is separated from extension-added latency.
 
 Use `DESIGN_LENS_STRESS_NODES=100000 npm run verify:performance` to verify the
 large-DOM circuit breaker. Pages above 50,000 nodes intentionally skip geometry
@@ -95,10 +96,10 @@ risk a full-document reflow.
 
 Last local results:
 
-| DOM nodes | Start | Stop | P95 interaction | Max round-trip | Baseline task | Recording task | Heavy frames |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 20,000 | 3190ms | 256ms | 45ms | 67ms | 0ms | 57ms | 2 |
-| 100,000 | 116ms | 98ms | 142ms | 145ms | 79ms | 111ms | 0 |
+| DOM nodes | Start | Stop | Baseline P95 | Recording P95 | Max round-trip | Baseline task | Recording task | Heavy frames |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 20,000 | 1135ms | 49ms | 45ms | 37ms | 40ms | 0ms | 0ms | 2 |
+| 100,000 | 94ms | 107ms | 109ms | 121ms | 132ms | 65ms | 93ms | 0 |
 
 Both runs received all 24 heartbeat interactions and completed without console
 errors. Exact timings vary by machine; the assertions above are the release gate.
@@ -127,7 +128,7 @@ The latest local run was completed on 2026-07-30 with Node.js 22.23.1 and WXT
 - Browser injection, UI, performance, and Smart Capture gates: passed.
 - Standard and Collector ZIP permission/version validation: passed; both
   SHA-256 checksums verified.
-- 100,000-node Smart Capture: 116ms start response, 36ms bounded run, 182ms
+- 100,000-node Smart Capture: 89ms start response, 87ms bounded run, 113ms
   p95 interaction latency, all 24 heartbeat actions received, no samples after
   user stop, and no console errors.
 
