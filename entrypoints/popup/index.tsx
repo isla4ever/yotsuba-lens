@@ -338,10 +338,10 @@ function Popup() {
   return (
     <main className={theme === "dark" ? "theme-dark" : "theme-light"}>
       <header className="hero">
-        <div className="mark">D</div>
+        <div className="mark" aria-hidden="true" />
         <div className="heading">
           <span>{t.eyebrow}</span>
-          <h1>{isCollectorBuild ? manifest?.name ?? "Design Lens Collector" : t.appName}</h1>
+          <h1>{isCollectorBuild ? manifest?.name ?? "Yotsuba Lens Collector" : t.appName}</h1>
           <p>{capture ? captureHost(capture.page.url) : t.tagline}</p>
         </div>
         <div className="header-actions">

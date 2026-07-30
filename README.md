@@ -1,8 +1,10 @@
-# Design Lens
+# Yotsuba Lens
 
 > 把“参考这个网站”变成可追溯、可执行、可验收的 AI 前端上下文。
 
-[![CI](https://github.com/isla4ever/design-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/isla4ever/design-lens/actions/workflows/ci.yml)
+Yotsuba Lens（四叶草设计透镜）是面向网页设计证据工作的开源 Chrome 扩展：四片叶子分别代表证据、参照、重建与验收。
+
+[![CI](https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml)
 ![Version](https://img.shields.io/badge/version-0.3.0-2563eb)
 ![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-4285f4)
 ![Status](https://img.shields.io/badge/status-alpha-f59e0b)
@@ -10,20 +12,20 @@
 
 **中文** | [English](README.en.md)
 
-Design Lens 是一个 **evidence-first（证据优先）** 的 Chrome 扩展，面向 AI Coding、Vibe Coding 和前端设计还原工作流。它不只截一张图或总结页面，而是把真实网页转译为视觉 Token、布局结构、组件语法、交互时间线、动效证据、实现线索和验收规则。
+Yotsuba Lens 是一个 **evidence-first（证据优先）** 的 Chrome 扩展，面向 AI Coding、Vibe Coding 和前端设计还原工作流。它不只截一张图或总结页面，而是把真实网页转译为视觉 Token、布局结构、组件语法、交互时间线、动效证据、实现线索和验收规则。
 
 ```text
 真实网页 → 智能捕获 → 结构化证据 → 明确缺口 → Prompt / Rebuild 草稿 → 场景验收
 ```
 
-它不是源码下载器，也不会把缺失状态猜成“完整复刻”。Design Lens 的原则是：**有证据才描述，没有证据就明确标记缺口。**
+它不是源码下载器，也不会把缺失状态猜成“完整复刻”。Yotsuba Lens 的原则是：**有证据才描述，没有证据就明确标记缺口。**
 
 > [!IMPORTANT]
 > 当前版本处于 alpha 阶段，仅通过 Chrome 开发者模式安装。请只在你有权分析、参考或重建的页面上使用。
 
 ## 项目亮点
 
-| 亮点 | Design Lens 的做法 |
+| 亮点 | Yotsuba Lens 的做法 |
 | --- | --- |
 | **一次操作完成基础捕获** | 默认只需点击“智能捕获”。前置索引、稳定快照和被动观察共享 15 秒预算；Rebuild 的分段截图与 CDP 整理由独立超时和熔断保护，持续变动或超大页面会安全降级。 |
 | **默认打开完整侧边栏** | 点击扩展图标直接进入 Side Panel；模式、捕获、覆盖、历史和设置集中在同一工作区。需要快速操作时，可从侧边栏打开锚定工具栏的原生插件弹窗，不再创建独立页面窗口。 |
@@ -35,7 +37,7 @@ Design Lens 是一个 **evidence-first（证据优先）** 的 Chrome 扩展，�
 
 ## 不只是截图转 Prompt
 
-| 维度 | 常见截图式流程 | Design Lens |
+| 维度 | 常见截图式流程 | Yotsuba Lens |
 | --- | --- | --- |
 | 输入 | 单张或少量静态截图 | DOM 结构、Token、几何、截图、事件、动效和运行时线索 |
 | 交互状态 | 依赖人工描述或模型猜测 | 真实 hover、focus、scroll、open 和响应式场景证据 |
@@ -50,10 +52,10 @@ Design Lens 是一个 **evidence-first（证据优先）** 的 Chrome 扩展，�
 <table>
   <tr>
     <td width="46%" align="center">
-      <img src="docs/assets/design-lens-popup-smart-capture.png" alt="Design Lens 插件弹窗智能捕获结果" />
+      <img src="docs/assets/design-lens-popup-smart-capture.png" alt="Yotsuba Lens 插件弹窗智能捕获结果" />
     </td>
     <td width="54%" align="center">
-      <img src="docs/assets/design-lens-reference-workspace.png" alt="Design Lens Reference 工作区" />
+      <img src="docs/assets/design-lens-reference-workspace.png" alt="Yotsuba Lens Reference 工作区" />
     </td>
   </tr>
   <tr>
@@ -65,7 +67,7 @@ Design Lens 是一个 **evidence-first（证据优先）** 的 Chrome 扩展，�
 ### 2. Rebuild 覆盖与多路由项目
 
 <p align="center">
-  <img src="docs/assets/design-lens-sidepanel-coverage.png" alt="Design Lens Rebuild 覆盖矩阵、技术线索和多路由项目" width="768" />
+  <img src="docs/assets/design-lens-sidepanel-coverage.png" alt="Yotsuba Lens Rebuild 覆盖矩阵、技术线索和多路由项目" width="768" />
 </p>
 
 Rebuild 不用一个“完成度百分比”掩盖问题。结构、样式、状态、截图、响应式和 Canvas 分开显示；技术线索与 Recorder 默认折叠，只有需要时才展开。同源页面可加入最多 8 条路由并分别验收。
@@ -74,7 +76,7 @@ Rebuild 不用一个“完成度百分比”掩盖问题。结构、样式、状
   <summary><strong>查看 Side Panel 配置界面</strong></summary>
   <br />
   <p align="center">
-    <img src="docs/assets/design-lens-sidepanel-settings.png" alt="Design Lens Side Panel 模式、参照要求和 AI 配置" width="360" />
+    <img src="docs/assets/design-lens-sidepanel-settings.png" alt="Yotsuba Lens Side Panel 模式、参照要求和 AI 配置" width="360" />
   </p>
 </details>
 
@@ -83,10 +85,10 @@ Rebuild 不用一个“完成度百分比”掩盖问题。结构、样式、状
 <table>
   <tr>
     <td width="50%" align="center">
-      <img src="docs/assets/design-lens-guided-workspace.png" alt="Design Lens Side Panel 引导补采任务" />
+      <img src="docs/assets/design-lens-guided-workspace.png" alt="Yotsuba Lens Side Panel 引导补采任务" />
     </td>
     <td width="50%" align="center">
-      <img src="docs/assets/design-lens-guided-capture.png" alt="Design Lens 页面内悬停状态补采" />
+      <img src="docs/assets/design-lens-guided-capture.png" alt="Yotsuba Lens 页面内悬停状态补采" />
     </td>
   </tr>
   <tr>
@@ -101,7 +103,7 @@ Rebuild 不用一个“完成度百分比”掩盖问题。结构、样式、状
   <p align="center">
     <img src="docs/assets/design-lens-recorder-diagnosis.png" alt="Chrome DevTools Recorder 流程导入、证据匹配与缺口诊断" width="360" />
   </p>
-  <p>可导入脱敏后的 Chrome DevTools Recorder JSON。Design Lens 不自动重放流程，而是把步骤映射到已有截图证据，并把未闭环场景归并为最多三个补采任务。</p>
+  <p>可导入脱敏后的 Chrome DevTools Recorder JSON。Yotsuba Lens 不自动重放流程，而是把步骤映射到已有截图证据，并把未闭环场景归并为最多三个补采任务。</p>
 </details>
 
 ## 两种工作模式
@@ -113,7 +115,7 @@ Rebuild 不用一个“完成度百分比”掩盖问题。结构、样式、状
 
 ## 工作流程
 
-1. **打开页面**：进入普通 `http` 或 `https` 页面，点击 Design Lens，默认打开 Side Panel。
+1. **打开页面**：进入普通 `http` 或 `https` 页面，点击 Yotsuba Lens，默认打开 Side Panel。
 2. **选择目标**：Reference 用于原创设计参照；Rebuild 用于授权范围内的实现草稿。
 3. **智能捕获**：自动完成基础证据采集，页面桥接只在此类用户操作后按需注入。
 4. **检查缺口**：在 Side Panel 查看覆盖状态，只对关键缺口执行引导补采。
@@ -170,7 +172,7 @@ npm run verify:rebuild -- \
 
 ## 隐私与权限
 
-Design Lens 默认在本地处理和导出证据。只有用户配置模型 Key 并主动生成 AI 输出时，插件才发送压缩后的证据载荷；该载荷设计上排除原始 DOM、Cookie、本地存储、凭证、截图和未脱敏输入值。
+Yotsuba Lens 默认在本地处理和导出证据。只有用户配置模型 Key 并主动生成 AI 输出时，插件才发送压缩后的证据载荷；该载荷设计上排除原始 DOM、Cookie、本地存储、凭证、截图和未脱敏输入值。
 
 | 权限 | 用途 |
 | --- | --- |
@@ -227,7 +229,7 @@ docs/               架构、隐私、产品决策和验证记录
 - [发布检查清单](docs/release-checklist.md)
 - [Chrome Web Store 上架资料](docs/chrome-web-store-listing.md)
 
-提交较大功能前请先创建 Issue。安全问题请通过 [GitHub Private Vulnerability Reporting](https://github.com/isla4ever/design-lens/security/advisories/new) 私下报告。
+提交较大功能前请先创建 Issue。安全问题请通过 [GitHub Private Vulnerability Reporting](https://github.com/isla4ever/yotsuba-lens/security/advisories/new) 私下报告。
 
 ## License
 

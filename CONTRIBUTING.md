@@ -1,6 +1,6 @@
 # Contributing
 
-Design Lens accepts focused fixes and features that preserve its local-first,
+Yotsuba Lens accepts focused fixes and features that preserve its local-first,
 evidence-based capture model. Open an issue before large architecture or product
 changes so the scope and privacy boundary can be agreed first.
 

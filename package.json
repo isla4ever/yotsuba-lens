@@ -1,5 +1,5 @@
 {
-  "name": "design-lens-extension",
+  "name": "yotsuba-lens-extension",
   "version": "0.3.0",
   "description": "A browser extension that captures design references, interaction patterns, and motion cues from live websites.",
   "type": "module",
@@ -40,13 +40,13 @@
   ],
   "author": "Isla",
   "license": "MIT",
-  "homepage": "https://github.com/isla4ever/design-lens#readme",
+  "homepage": "https://github.com/isla4ever/yotsuba-lens#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/isla4ever/design-lens.git"
+    "url": "git+https://github.com/isla4ever/yotsuba-lens.git"
   },
   "bugs": {
-    "url": "https://github.com/isla4ever/design-lens/issues"
+    "url": "https://github.com/isla4ever/yotsuba-lens/issues"
   },
   "dependencies": {
     "@puppeteer/replay": "^4.0.2",

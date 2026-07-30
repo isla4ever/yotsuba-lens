@@ -55,7 +55,7 @@ export const DEFAULT_LOCALE: Locale = "zh";
 
 export const messages: Record<Locale, I18nMessages> = {
   zh: {
-    appName: "Design Lens",
+    appName: "Yotsuba Lens",
     tagline: "把当前网页转成可复用的前端风格参考。",
     eyebrow: "网页设计采集器",
     primaryAction: "智能捕获",
@@ -102,10 +102,10 @@ export const messages: Record<Locale, I18nMessages> = {
     tokens: "Tokens",
     skill: "Skill",
     tailwind: "Tailwind",
-    emptyCharacter: "打开 Design Lens 并运行扫描来捕捉当前页面。"
+    emptyCharacter: "打开 Yotsuba Lens 并运行扫描来捕捉当前页面。"
   },
   en: {
-    appName: "Design Lens",
+    appName: "Yotsuba Lens",
     tagline: "Turn the current page into reusable frontend style references.",
     eyebrow: "Web design capture",
     primaryAction: "Smart Capture",

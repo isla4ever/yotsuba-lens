@@ -1,6 +1,6 @@
 # Privacy And Permissions
 
-Design Lens is a local-first browser extension. This document describes the
+Yotsuba Lens is a local-first browser extension. This document describes the
 behavior of the source build in this repository; a modified distribution may
 behave differently.
 
@@ -33,7 +33,7 @@ values are masked and DOMSnapshot form-value fields are sanitized, but captures
 can still contain visible page content. Treat exported packs as potentially
 sensitive files.
 
-Design Lens is not designed to read cookies, local-storage values, credentials,
+Yotsuba Lens is not designed to read cookies, local-storage values, credentials,
 request headers, or request bodies. Cross-origin iframe internals and unreadable
 or oversized visual surfaces remain explicit gaps.
 
@@ -42,7 +42,7 @@ or oversized visual surfaces remain explicit gaps.
 AI generation is opt-in. It is not called unless the user configures an
 OpenAI-compatible provider and requests AI output.
 
-Before a request, Design Lens builds a reduced evidence payload. It is designed
+Before a request, Yotsuba Lens builds a reduced evidence payload. It is designed
 to exclude raw DOM, full DOM trees, cookies, browser storage, credentials,
 tracking identifiers, screenshots, and unmasked input values. The selected
 provider still receives the reduced design evidence and the user's build brief;
@@ -50,13 +50,13 @@ its own privacy policy applies.
 
 Provider base URL, model, endpoint mode, and API key are saved only when the
 user chooses to save them. Profiles are stored in `browser.storage.local` on
-the user's machine and are not encrypted by Design Lens. Profiles can be
+the user's machine and are not encrypted by Yotsuba Lens. Profiles can be
 cleared from the AI settings UI. Without a configured key, users can export an
 evidence-only pack.
 
 ## Chrome Web Store Limited Use
 
-Design Lens uses captured website content and observed interaction evidence
+Yotsuba Lens uses captured website content and observed interaction evidence
 only to perform the capture, analysis, storage, export, or optional AI request
 that the user explicitly starts. The developer does not receive, sell, share,
 or use captured data for advertising, credit decisions, or unrelated product
@@ -66,7 +66,7 @@ user intentionally includes it in a support or security report.
 Without optional AI generation, captured content stays in the browser profile
 or in files the user exports. When the user configures a compatible AI provider
 and explicitly requests generation, only the reduced payload described above
-is sent to that provider. Design Lens does not transfer captured data to any
+is sent to that provider. Yotsuba Lens does not transfer captured data to any
 other third party and does not use it for purposes unrelated to the extension's
 single purpose.
 
@@ -90,10 +90,10 @@ success, stop, timeout, and handled failure paths.
 
 ## User Responsibility
 
-Use Design Lens only where you have permission to inspect and reuse the
+Use Yotsuba Lens only where you have permission to inspect and reuse the
 resulting evidence. Do not use it to republish proprietary source code, private
 content, credentials, trademarks, brand assets, fonts, images, or video without
 the required rights.
 
 Report a privacy or security vulnerability through
-[GitHub Private Vulnerability Reporting](https://github.com/isla4ever/design-lens/security/advisories/new).
+[GitHub Private Vulnerability Reporting](https://github.com/isla4ever/yotsuba-lens/security/advisories/new).

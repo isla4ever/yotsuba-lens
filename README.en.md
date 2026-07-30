@@ -1,8 +1,8 @@
-# Design Lens
+# Yotsuba Lens
 
 > Turn “use this website as a reference” into traceable, executable, and testable frontend context for AI.
 
-[![CI](https://github.com/isla4ever/design-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/isla4ever/design-lens/actions/workflows/ci.yml)
+[![CI](https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml)
 ![Version](https://img.shields.io/badge/version-0.3.0-2563eb)
 ![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-4285f4)
 ![Status](https://img.shields.io/badge/status-alpha-f59e0b)
@@ -10,7 +10,7 @@
 
 [中文](README.md) | **English**
 
-Design Lens is an **evidence-first** Chrome extension for AI coding, vibe coding, and frontend reconstruction workflows. Instead of summarizing a screenshot, it translates a live page into visual tokens, layout structure, component grammar, interaction timelines, motion evidence, implementation clues, and acceptance rules.
+Yotsuba Lens is an **evidence-first** Chrome extension for AI coding, vibe coding, and frontend reconstruction workflows. Instead of summarizing a screenshot, it translates a live page into visual tokens, layout structure, component grammar, interaction timelines, motion evidence, implementation clues, and acceptance rules.
 
 ```text
 Live page → Smart Capture → Structured evidence → Explicit gaps → Prompt / Rebuild draft → Scene acceptance
@@ -19,23 +19,23 @@ Live page → Smart Capture → Structured evidence → Explicit gaps → Prompt
 It is not a source downloader, and it never turns missing states into a claim of complete reproduction. The rule is simple: **describe what the evidence supports and keep everything else as an explicit gap.**
 
 > [!IMPORTANT]
-> Design Lens is currently alpha software installed through Chrome Developer Mode. Use it only on pages you are authorized to analyze, reference, or rebuild.
+> Yotsuba Lens is currently alpha software installed through Chrome Developer Mode. Use it only on pages you are authorized to analyze, reference, or rebuild.
 
 ## Highlights
 
-| Highlight | How Design Lens handles it |
+| Highlight | How Yotsuba Lens handles it |
 | --- | --- |
 | **One action for baseline capture** | Smart Capture shares a 15-second budget across preflight indexing, stabilization, and passive observation. Rebuild screenshot and CDP finalization use separate timeouts and circuit breakers, while large or continuously mutating pages degrade safely. |
 | **Full Side Panel by default** | Clicking the extension action opens the Side Panel, where mode, capture, coverage, history, and settings share one workspace. For quick actions, the Side Panel opens the native toolbar-anchored extension popup instead of a separate window. |
 | **Reference and Rebuild are separate modes** | Reference extracts transferable design language. Rebuild preserves real screenshots, scenes, geometry, and acceptance constraints. The product never conflates inspiration with reproduction. |
 | **Capture only what is missing** | Evidence health produces at most three scroll, hover, focus, open, or responsive tasks instead of making users manually record the entire page first. |
 | **Capture-to-acceptance workflow** | Rebuild Packs carry scene manifests and acceptance rules for screenshot, pixel, geometry, motion-checkpoint, and browser-error checks. |
-| **No synthetic page actions** | The extension does not automatically click, type, submit forms, or navigate. Users perform real supplemental actions while Design Lens observes and saves the requested state. |
+| **No synthetic page actions** | The extension does not automatically click, type, submit forms, or navigate. Users perform real supplemental actions while Yotsuba Lens observes and saves the requested state. |
 | **On-demand injection and split permissions** | The page bridge is injected only after a user action. The standard build excludes `debugger`; deeper CDP collection is isolated in the Collector build. |
 
 ## More Than Screenshot-To-Prompt
 
-| Dimension | Typical screenshot workflow | Design Lens |
+| Dimension | Typical screenshot workflow | Yotsuba Lens |
 | --- | --- | --- |
 | Input | One or several static screenshots | DOM structure, tokens, geometry, screenshots, events, motion, and runtime clues |
 | Interaction states | Described manually or guessed by a model | Real hover, focus, scroll, open, and responsive scene evidence |
@@ -52,10 +52,10 @@ It is not a source downloader, and it never turns missing states into a claim of
 <table>
   <tr>
     <td width="46%" align="center">
-      <img src="docs/assets/design-lens-popup-smart-capture.png" alt="Design Lens extension popup Smart Capture result" />
+      <img src="docs/assets/design-lens-popup-smart-capture.png" alt="Yotsuba Lens extension popup Smart Capture result" />
     </td>
     <td width="54%" align="center">
-      <img src="docs/assets/design-lens-reference-workspace.png" alt="Design Lens Reference workspace" />
+      <img src="docs/assets/design-lens-reference-workspace.png" alt="Yotsuba Lens Reference workspace" />
     </td>
   </tr>
   <tr>
@@ -67,7 +67,7 @@ It is not a source downloader, and it never turns missing states into a claim of
 ### 2. Rebuild Coverage And Multi-Route Projects
 
 <p align="center">
-  <img src="docs/assets/design-lens-sidepanel-coverage.png" alt="Design Lens Rebuild coverage, technical clues, and route project" width="768" />
+  <img src="docs/assets/design-lens-sidepanel-coverage.png" alt="Yotsuba Lens Rebuild coverage, technical clues, and route project" width="768" />
 </p>
 
 Rebuild does not hide uncertainty behind a single completion score. Structure, style, state, screenshot, responsive, and Canvas evidence are reported separately; technical signals and Recorder stay collapsed until needed. A project can contain up to eight same-origin routes for per-route verification.
@@ -76,7 +76,7 @@ Rebuild does not hide uncertainty behind a single completion score. Structure, s
   <summary><strong>View Side Panel settings</strong></summary>
   <br />
   <p align="center">
-    <img src="docs/assets/design-lens-sidepanel-settings.png" alt="Design Lens Side Panel mode, reference brief, and AI settings" width="360" />
+    <img src="docs/assets/design-lens-sidepanel-settings.png" alt="Yotsuba Lens Side Panel mode, reference brief, and AI settings" width="360" />
   </p>
 </details>
 
@@ -85,10 +85,10 @@ Rebuild does not hide uncertainty behind a single completion score. Structure, s
 <table>
   <tr>
     <td width="50%" align="center">
-      <img src="docs/assets/design-lens-guided-workspace.png" alt="Design Lens guided supplemental task in the Side Panel" />
+      <img src="docs/assets/design-lens-guided-workspace.png" alt="Yotsuba Lens guided supplemental task in the Side Panel" />
     </td>
     <td width="50%" align="center">
-      <img src="docs/assets/design-lens-guided-capture.png" alt="Design Lens in-page hover evidence capture" />
+      <img src="docs/assets/design-lens-guided-capture.png" alt="Yotsuba Lens in-page hover evidence capture" />
     </td>
   </tr>
   <tr>
@@ -103,7 +103,7 @@ Rebuild does not hide uncertainty behind a single completion score. Structure, s
   <p align="center">
     <img src="docs/assets/design-lens-recorder-diagnosis.png" alt="Chrome DevTools Recorder import, evidence matching, and gap diagnosis" width="360" />
   </p>
-  <p>Design Lens can import sanitized Chrome DevTools Recorder JSON. It does not automatically replay the flow. Steps are matched against existing screenshot evidence, and unresolved scenes are merged into at most three supplemental tasks.</p>
+  <p>Yotsuba Lens can import sanitized Chrome DevTools Recorder JSON. It does not automatically replay the flow. Steps are matched against existing screenshot evidence, and unresolved scenes are merged into at most three supplemental tasks.</p>
 </details>
 
 ## Two Work Modes
@@ -115,7 +115,7 @@ Rebuild does not hide uncertainty behind a single completion score. Structure, s
 
 ## Workflow
 
-1. **Open a page**: visit a normal `http` or `https` page and click Design Lens; the Side Panel opens by default.
+1. **Open a page**: visit a normal `http` or `https` page and click Yotsuba Lens; the Side Panel opens by default.
 2. **Choose the outcome**: use Reference for original design direction or Rebuild for an authorized implementation draft.
 3. **Run Smart Capture**: collect baseline evidence; the page bridge is injected on demand only after this kind of user action.
 4. **Review gaps**: use the Side Panel and complete guided capture only for important missing states.
@@ -172,7 +172,7 @@ See the [AstroWind reconstruction benchmark](docs/astrowind-rebuild-benchmark.md
 
 ## Privacy And Permissions
 
-Design Lens processes and exports evidence locally by default. It sends a reduced evidence payload only when a user configures a model key and explicitly requests AI output. That payload is designed to exclude raw DOM, cookies, local storage, credentials, screenshots, and unmasked input values.
+Yotsuba Lens processes and exports evidence locally by default. It sends a reduced evidence payload only when a user configures a model key and explicitly requests AI output. That payload is designed to exclude raw DOM, cookies, local storage, credentials, screenshots, and unmasked input values.
 
 | Permission | Purpose |
 | --- | --- |
@@ -229,7 +229,7 @@ docs/               Architecture, privacy, product decisions, and validation rec
 - [Release Checklist](docs/release-checklist.md)
 - [Chrome Web Store Submission](docs/chrome-web-store-listing.md)
 
-Open an issue before starting a large feature. Report security issues privately through [GitHub Private Vulnerability Reporting](https://github.com/isla4ever/design-lens/security/advisories/new).
+Open an issue before starting a large feature. Report security issues privately through [GitHub Private Vulnerability Reporting](https://github.com/isla4ever/yotsuba-lens/security/advisories/new).
 
 ## License
 

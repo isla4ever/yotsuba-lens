@@ -43,7 +43,7 @@ jobs:
         name: Prepare Chrome Web Store package
         run: |
           npm run package:store
-          echo "zip=dist/design-lens-$(node -p \"require('./package.json').version\")-standard-chrome.zip" >> "$GITHUB_OUTPUT"
+          echo "zip=dist/yotsuba-lens-$(node -p \"require('./package.json').version\")-standard-chrome.zip" >> "$GITHUB_OUTPUT"
       - name: Verify Chrome Web Store configuration
         run: |
           test -n "$CHROME_EXTENSION_ID"

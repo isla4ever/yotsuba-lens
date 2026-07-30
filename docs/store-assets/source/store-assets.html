@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Design Lens Store Assets</title>
+    <title>Yotsuba Lens Store Assets</title>
     <style>
       * { box-sizing: border-box; }
       html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; }
@@ -17,6 +17,7 @@
       .mark {
         display: grid;
         place-items: center;
+        position: relative;
         width: 48px;
         height: 48px;
         border-radius: 11px;
@@ -24,6 +25,27 @@
         background: #84ad13;
         font-size: 26px;
         font-weight: 850;
+      }
+      .mark::before {
+        position: absolute;
+        top: 11px;
+        left: 11px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: currentColor;
+        box-shadow: 14px 0 currentColor, 0 14px currentColor, 14px 14px currentColor;
+        content: "";
+      }
+      .mark::after {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #84ad13;
+        content: "";
       }
       .eyebrow { margin: 0 0 16px; color: #5f7f08; font-size: 16px; font-weight: 760; text-transform: uppercase; }
       h1 { margin: 0; max-width: 480px; font-size: 56px; line-height: 1.02; font-weight: 780; }
@@ -46,6 +68,7 @@
       .smart { background: #101712; color: #f5f3e9; }
       .smart .brand { position: absolute; top: 48px; left: 58px; }
       .smart .mark { background: #c8ff56; }
+      .smart .mark::after { background: #c8ff56; }
       .smart .copy { position: absolute; left: 58px; top: 188px; width: 470px; }
       .smart .eyebrow { color: #c8ff56; }
       .smart p { color: #b8c1b9; }
@@ -89,9 +112,9 @@
     <script>
       const asset = new URLSearchParams(location.search).get("asset") || "coverage";
       const root = document.querySelector("#root");
-      const brand = '<div class="brand"><span class="mark">D</span><span>Design Lens</span></div>';
+      const brand = '<div class="brand"><span class="mark" aria-hidden="true"></span><span>Yotsuba Lens</span></div>';
       if (asset === "coverage") {
-        root.innerHTML = `<section class="asset coverage"><div class="rail"></div>${brand}<div class="copy"><div class="eyebrow">Evidence-first capture</div><h1>Capture evidence, not guesswork.</h1><p>Inspect structure, states, screenshots, and gaps before asking an AI agent to build.</p><div class="chips"><span class="chip">Reference</span><span class="chip">Authorized Rebuild</span></div></div><img class="product" src="../../assets/design-lens-sidepanel-coverage.png" alt="Design Lens coverage workspace" /></section>`;
+        root.innerHTML = `<section class="asset coverage"><div class="rail"></div>${brand}<div class="copy"><div class="eyebrow">Evidence-first capture</div><h1>Capture evidence, not guesswork.</h1><p>Inspect structure, states, screenshots, and gaps before asking an AI agent to build.</p><div class="chips"><span class="chip">Reference</span><span class="chip">Authorized Rebuild</span></div></div><img class="product" src="../../assets/design-lens-sidepanel-coverage.png" alt="Yotsuba Lens coverage workspace" /></section>`;
       } else if (asset === "smart") {
         root.innerHTML = `<section class="asset smart">${brand}<div class="copy"><div class="eyebrow">One clear workflow</div><h1>Smart Capture stays responsive.</h1><p>Large pages degrade safely. The compact popup starts the job; the Side Panel explains the evidence.</p></div><img class="popup" src="../../assets/design-lens-popup-smart-capture.png" alt="Smart Capture popup" /><div class="caption caption-popup">Compact capture controls</div><img class="panel" src="../../assets/design-lens-reference-workspace.png" alt="Reference workspace" /><div class="caption caption-panel">Default Side Panel workspace</div></section>`;
       } else {

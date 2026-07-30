@@ -3,7 +3,7 @@
 ## Supported Versions
 
 The latest `0.3.x` release and the current `main` branch receive security fixes
-while Design Lens remains in alpha.
+while Yotsuba Lens remains in alpha.
 
 ## Reporting A Vulnerability
 
@@ -11,7 +11,7 @@ Do not open a public issue for vulnerabilities involving captured page data,
 extension permissions, local API keys, exported evidence, or code execution.
 Use GitHub's private security advisory form:
 
-https://github.com/isla4ever/design-lens/security/advisories/new
+https://github.com/isla4ever/yotsuba-lens/security/advisories/new
 
 Include the affected build, reproduction steps, impact, and whether the issue
 requires the standard or Collector build. Remove real credentials and private

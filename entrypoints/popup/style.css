@@ -126,6 +126,7 @@ p {
 }
 
 .mark {
+  position: relative;
   align-items: center;
   background: var(--accent);
   border: 1px solid color-mix(in srgb, var(--accent) 72%, var(--line));
@@ -138,6 +139,9 @@ p {
   justify-content: center;
   width: 36px;
 }
+
+.mark::before { background: currentColor; border-radius: 50%; box-shadow: 10px 0 currentColor, 0 10px currentColor, 10px 10px currentColor; content: ""; height: 10px; left: 8px; position: absolute; top: 7px; width: 10px; }
+.mark::after { background: var(--accent); border-radius: 50%; content: ""; height: 6px; left: 15px; position: absolute; top: 14px; width: 6px; }
 
 .heading {
   min-width: 0;

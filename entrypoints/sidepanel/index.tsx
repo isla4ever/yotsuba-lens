@@ -435,7 +435,7 @@ function SidePanel() {
   return (
     <main className={theme === "dark" ? "workspace theme-dark" : "workspace theme-light"}>
       <header className="workspace-header">
-        <div className="workspace-brand"><div className="workspace-mark">D</div><div><h1>Design Lens</h1><span>{capture ? captureHost(capture.page.url) : locale === "zh" ? "捕获工作区" : "Capture workspace"}</span></div></div>
+        <div className="workspace-brand"><div className="workspace-mark" aria-hidden="true" /><div><h1>Yotsuba Lens</h1><span>{capture ? captureHost(capture.page.url) : locale === "zh" ? "捕获工作区" : "Capture workspace"}</span></div></div>
         <div className="workspace-header-actions">
           <button type="button" aria-label={locale === "zh" ? "打开插件弹窗" : "Open extension popup"} title={locale === "zh" ? "插件弹窗" : "Extension popup"} onClick={() => void openCompactView()}><AppWindow aria-hidden="true" /></button>
           <button type="button" aria-label={locale === "zh" ? "English" : "中文"} onClick={() => void toggleLocale()}><Languages aria-hidden="true" /></button>

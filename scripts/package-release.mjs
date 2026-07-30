@@ -20,16 +20,16 @@ if (process.env.GITHUB_REF_TYPE === "tag" && process.env.GITHUB_REF_NAME !== `v$
 const variants = [
   {
     name: "standard",
-    source: resolve(root, `.output/design-lens-extension-${version}-chrome.zip`),
-    target: `design-lens-${version}-standard-chrome.zip`,
-    expectedName: "Design Lens 设计证据采集",
+    source: resolve(root, `.output/yotsuba-lens-extension-${version}-chrome.zip`),
+    target: `yotsuba-lens-${version}-standard-chrome.zip`,
+    expectedName: "Yotsuba Lens 网页设计证据采集",
     permissions: basePermissions
   },
   {
     name: "collector",
-    source: resolve(root, `.output/collector/design-lens-extension-${version}-chrome.zip`),
-    target: `design-lens-${version}-collector-chrome.zip`,
-    expectedName: "Design Lens Collector",
+    source: resolve(root, `.output/collector/yotsuba-lens-extension-${version}-chrome.zip`),
+    target: `yotsuba-lens-${version}-collector-chrome.zip`,
+    expectedName: "Yotsuba Lens Collector",
     permissions: [...basePermissions, "debugger"]
   }
 ];
@@ -64,7 +64,7 @@ for (const variant of variants) {
 }
 
 await writeFile(resolve(dist, "SHA256SUMS"), `${checksums.join("\n")}\n`, "utf8");
-console.log(`Prepared Design Lens v${version} Chrome Web Store candidate artifacts in ${dist}`);
+console.log(`Prepared Yotsuba Lens v${version} Chrome Web Store candidate artifacts in ${dist}`);
 
 function assertStringSet(label, actual, expected) {
   const normalizedActual = Array.isArray(actual) ? [...actual].sort() : [];

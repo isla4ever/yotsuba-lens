@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Design Lens are documented here. The project follows
+All notable changes to Yotsuba Lens are documented here. The project follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and uses semantic
 versioning.
 
@@ -100,6 +100,6 @@ versioning.
 - Initial Chrome MV3 extension for design tokens, component structure,
   interaction timelines, implementation traces, and AI-ready evidence packs.
 
-[Unreleased]: https://github.com/isla4ever/design-lens/commits/main
-[0.3.0]: https://github.com/isla4ever/design-lens/commit/dcb70d3c86ac4cb2133d16aa17c2f0b47fa5f4b1
-[0.1.0]: https://github.com/isla4ever/design-lens/releases/tag/v0.1.0
+[Unreleased]: https://github.com/isla4ever/yotsuba-lens/commits/main
+[0.3.0]: https://github.com/isla4ever/yotsuba-lens/commit/dcb70d3c86ac4cb2133d16aa17c2f0b47fa5f4b1
+[0.1.0]: https://github.com/isla4ever/yotsuba-lens/releases/tag/v0.1.0

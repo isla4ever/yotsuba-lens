@@ -1,4 +1,4 @@
-# Design Lens Chrome Web Store 中文上架资料
+# Yotsuba Lens Chrome Web Store 中文上架资料
 
 本文档是 Chrome Web Store 标准版的中文上架资料。只上传标准版 ZIP，不上传包含 `debugger` 权限的 Collector 版本。
 
@@ -9,7 +9,7 @@
 软件包中的标题（由新 ZIP 自动带入）：
 
 ```text
-Design Lens 设计证据采集
+Yotsuba Lens 网页设计证据采集
 ```
 
 软件包中的摘要（由新 ZIP 自动带入）：
@@ -21,13 +21,13 @@ Design Lens 设计证据采集
 说明：
 
 ```text
-Design Lens 是一款面向设计师、产品经理和开发者的网页设计证据采集工具。用户主动发起智能捕获后，它会整理当前页面的布局结构、设计令牌、组件模式、交互状态、截图、动效线索和证据缺口。
+Yotsuba Lens 是一款面向设计师、产品经理和开发者的网页设计证据采集工具。用户主动发起智能捕获后，它会整理当前页面的布局结构、设计令牌、组件模式、交互状态、截图、动效线索和证据缺口。
 
 你可以选择“设计参照”，提取可迁移的视觉和交互规律，用于原创设计；也可以在已获得授权时选择“经授权重建”，生成有边界、可验证的实现草案。侧边栏会清楚展示已捕获证据、缺失状态和下一步补充任务。
 
 智能捕获只需一次操作，并会在超大或持续变化的页面上自动降级，避免页面卡顿。采集、存储和导出默认在本地完成，无需账号或 AI 配置即可导出证据包。只有用户主动配置兼容的 AI 服务并请求生成时，才会发送精简后的结构化证据。
 
-Design Lens 不会自动运行在所有网页上，不会自动点击、输入、提交表单或跳转页面，也不会把未采集的状态描述为完整复刻结果。请仅在你有权查看和使用相关页面证据时进行采集。
+Yotsuba Lens 不会自动运行在所有网页上，不会自动点击、输入、提交表单或跳转页面，也不会把未采集的状态描述为完整复刻结果。请仅在你有权查看和使用相关页面证据时进行采集。
 ```
 
 类别：`开发者工具`
@@ -52,19 +52,19 @@ Design Lens 不会自动运行在所有网页上，不会自动点击、输入�
 官方网站：
 
 ```text
-https://github.com/isla4ever/design-lens
+https://github.com/isla4ever/yotsuba-lens
 ```
 
 主页网址：
 
 ```text
-https://github.com/isla4ever/design-lens
+https://github.com/isla4ever/yotsuba-lens
 ```
 
 支持信息页面网址：
 
 ```text
-https://github.com/isla4ever/design-lens/issues
+https://github.com/isla4ever/yotsuba-lens/issues
 ```
 
 成人内容：`否 / 关闭`
@@ -81,7 +81,7 @@ https://github.com/isla4ever/design-lens/issues
 
 ## 截图对应的逐项填写顺序
 
-1. **软件包中的标题**：保留 `Design Lens`。
+1. **软件包中的标题**：保留 `Yotsuba Lens 网页设计证据采集`。
 2. **软件包中的摘要**：保留上传 ZIP 带入的摘要，或粘贴上方中文摘要。
 3. **说明**：粘贴上方完整中文说明。
 4. **类别**：选择 `开发者工具`。
@@ -99,7 +99,7 @@ https://github.com/isla4ever/design-lens/issues
 隐私权政策网址：
 
 ```text
-https://github.com/isla4ever/design-lens/blob/main/docs/privacy.md
+https://github.com/isla4ever/yotsuba-lens/blob/main/docs/privacy.md
 ```
 
 单一用途：
@@ -120,7 +120,7 @@ https://github.com/isla4ever/design-lens/blob/main/docs/privacy.md
 
 ```text
 1. 安装标准版扩展，不需要账号。
-2. 打开普通公开 HTTPS 网页，点击工具栏中的 Design Lens，侧边栏应默认打开。
+2. 打开普通公开 HTTPS 网页，点击工具栏中的 Yotsuba Lens，侧边栏应默认打开。
 3. 保持“设计参照”模式，点击“智能捕获”，等待结果出现在侧边栏。
 4. 打开“覆盖”和“历史”查看证据状态。
 5. 导出证据包；此流程不需要 AI 密钥。
@@ -134,5 +134,5 @@ https://github.com/isla4ever/design-lens/blob/main/docs/privacy.md
 - 地区：`所有地区`
 - 交易者身份：按实际情况填写；当前个人免费开源项目通常为`非交易者`
 - 提交审核时关闭自动发布，选择审核通过后暂存
-- 只上传 `dist/design-lens-0.3.0-standard-chrome.zip`
-- 不上传 `dist/design-lens-0.3.0-collector-chrome.zip`
+- 只上传 `dist/yotsuba-lens-0.3.0-standard-chrome.zip`
+- 不上传 `dist/yotsuba-lens-0.3.0-collector-chrome.zip`
