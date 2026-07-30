@@ -11,7 +11,7 @@ test("collector build alone requests debugger permission", () => {
   const standard = buildExtensionManifest("production");
   const collector = buildExtensionManifest("collector");
   assert.equal(standard.permissions.includes("debugger"), false);
-  assert.equal(standard.name, "Design Lens");
+  assert.equal(standard.name, "Design Lens 设计证据采集");
   assert.equal(standard.action.default_popup, undefined);
   assert.equal(standard.side_panel.default_path, "sidepanel.html");
   assert.equal(collector.permissions.includes("debugger"), true);

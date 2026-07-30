@@ -24,7 +24,7 @@ export default defineConfig({
       if (!manifest.content_scripts?.length) delete manifest.content_scripts;
       if (manifest.action) {
         delete manifest.action.default_popup;
-        manifest.action.default_title = isCollectorBuild ? "Open Design Lens Collector" : "Open Design Lens";
+        manifest.action.default_title = isCollectorBuild ? "Open Design Lens Collector" : "打开 Design Lens 设计证据采集";
       }
     }
   }

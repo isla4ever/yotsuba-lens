@@ -22,7 +22,7 @@ const variants = [
     name: "standard",
     source: resolve(root, `.output/design-lens-extension-${version}-chrome.zip`),
     target: `design-lens-${version}-standard-chrome.zip`,
-    expectedName: "Design Lens",
+    expectedName: "Design Lens 设计证据采集",
     permissions: basePermissions
   },
   {
