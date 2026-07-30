@@ -1,117 +1,138 @@
-# Chrome Web Store Submission - Design Lens 0.3.0
+# Design Lens Chrome Web Store 中文上架资料
 
-This document is the source of truth for the public standard build. Do not
-upload the Collector package to Chrome Web Store because it intentionally adds
-the `debugger` permission for separately authorized development use.
+本文档是 Chrome Web Store 标准版的中文上架资料。只上传标准版 ZIP，不上传包含 `debugger` 权限的 Collector 版本。
 
-## Listing
+## 商品详情
 
-| Field | English | Chinese |
+> 按 Chrome Web Store 后台页面从上到下填写。截图中“软件包中的标题/摘要”已经由上传的 ZIP 带入；重点补填“说明、类别、语言”，然后上传图片资源。
+
+软件包中的标题：
+
+```text
+Design Lens
+```
+
+软件包中的摘要：
+
+```text
+采集网页设计证据、交互状态与缺口，用于设计参照或经授权的重建流程。
+```
+
+说明：
+
+```text
+Design Lens 是一款面向设计师、产品经理和开发者的网页设计证据采集工具。用户主动发起智能捕获后，它会整理当前页面的布局结构、设计令牌、组件模式、交互状态、截图、动效线索和证据缺口。
+
+你可以选择“设计参照”，提取可迁移的视觉和交互规律，用于原创设计；也可以在已获得授权时选择“经授权重建”，生成有边界、可验证的实现草案。侧边栏会清楚展示已捕获证据、缺失状态和下一步补充任务。
+
+智能捕获只需一次操作，并会在超大或持续变化的页面上自动降级，避免页面卡顿。采集、存储和导出默认在本地完成，无需账号或 AI 配置即可导出证据包。只有用户主动配置兼容的 AI 服务并请求生成时，才会发送精简后的结构化证据。
+
+Design Lens 不会自动运行在所有网页上，不会自动点击、输入、提交表单或跳转页面，也不会把未采集的状态描述为完整复刻结果。请仅在你有权查看和使用相关页面证据时进行采集。
+```
+
+类别：`开发者工具`
+
+语言：`中文（简体）`
+
+## 图片资源
+
+| 后台字段 | 文件 | 规格 |
 | --- | --- | --- |
-| Name | Design Lens | Design Lens 网页设计采集器 |
-| Summary | Capture structured design evidence, interaction states, and explicit gaps for reference or authorized rebuild workflows. | 采集网页设计证据、交互状态与缺口，用于设计参照或经授权的重建流程。 |
-| Category | Developer Tools | 开发者工具 |
-| Language | English | 中文（简体） |
+| 商店图标 | `docs/store-assets/icon-128.png` | 128×128，24 位 PNG，无 alpha |
+| 屏幕截图 1 | `docs/store-assets/screenshot-evidence-workspace-1280x800.png` | 1280×800，24 位 PNG，无 alpha |
+| 屏幕截图 2 | `docs/store-assets/screenshot-smart-capture-1280x800.png` | 1280×800，24 位 PNG，无 alpha |
+| 小型宣传图块 | `docs/store-assets/promo-small-440x280.png` | 440×280，24 位 PNG，无 alpha |
+| 顶部宣传图块 | `docs/store-assets/promo-top-1400x560.png` | 1400×560，24 位 PNG，无 alpha |
+| 宣传视频 | 留空 | 当前没有公开视频 |
 
-### Detailed Description - English
+截图不超过 5 张，当前使用 2 张真实插件界面截图。
 
-Design Lens turns a user-initiated inspection of the current page into
-structured design evidence. Choose Reference to extract transferable layout,
-style, component, interaction, and motion patterns for an original design, or
-choose Rebuild for a bounded implementation draft when you are authorized to
-reconstruct the page.
+## 其他字段
 
-Smart Capture collects a baseline in one action and degrades safely on large or
-continuously changing pages. The Side Panel reports what was observed, what is
-missing, and at most three useful follow-up tasks. It can export an evidence
-pack without an account or AI configuration. Optional AI generation runs only
-after you configure a compatible provider and request it.
+官方网站：
 
-Design Lens does not download website source code, run automatically on every
-page, click or submit forms for you, or claim fidelity for uncaptured states.
-All standard capture and export work is local by default.
+```text
+https://github.com/isla4ever/design-lens
+```
 
-### Detailed Description - Chinese
+主页网址：
 
-Design Lens 将用户主动发起的当前页面检查整理为结构化设计证据。选择“设计参照”，可提取可迁移的布局、样式、组件、交互和动效规律，用于原创设计；在已获得授权时，可选择“重建”生成边界明确、可验证的实现草案。
+```text
+https://github.com/isla4ever/design-lens
+```
 
-智能捕获只需一次操作，并会在超大或持续变化的页面上自动降级，避免影响页面使用。侧边栏会明确显示已观察证据、缺失状态以及最多三个必要的补充任务。无需账号或 AI 配置即可导出证据包；只有用户配置兼容的 AI 服务并主动请求时，才会发送精简后的证据。
+支持信息页面网址：
 
-Design Lens 不下载网站源代码，不会在所有页面自动运行，不会代替用户点击或提交表单，也不会把未捕获状态描述为高还原结果。标准版默认在本地完成采集、存储与导出。
+```text
+https://github.com/isla4ever/design-lens/issues
+```
 
-## Single Purpose
+成人内容：`否 / 关闭`
 
-Capture and organize user-requested design evidence from the active web page so
-the user can create an original reference-based design or an explicitly
-authorized, evidence-bounded rebuild draft.
+商品支持：`公开范围 / 开启`
 
-## Permission Justifications
+截图中的对应操作：
 
-| Permission | Reviewer justification |
-| --- | --- |
-| `activeTab` | Accesses only the tab the user is actively inspecting after the user starts Smart Capture, component selection, manual capture, or the shortcut. |
-| `scripting` | Injects the bundled page bridge on demand to inspect the active page. The standard build has no persistent content script. |
-| `storage` | Stores locale, theme, workspace history, capture metadata, optional AI provider settings, and bounded local artifacts in the browser profile. |
-| `tabs` | Finds the active tab and associates user-requested capture results with the correct Side Panel workspace. |
-| `sidePanel` | Provides the extension's default persistent workspace for capture status, history, evidence gaps, exports, and settings. |
-| `<all_urls>` | Lets the user initiate capture on websites they choose. It does not inject code or collect data until the user invokes a capture action. |
+- `官方网站`：选择或新增 GitHub 项目主页，然后填入项目主页地址。
+- `主页网址`：填入项目主页地址；不要填本地文件路径。
+- `支持信息页面网址`：填入 GitHub Issues 地址。
+- `成人内容`：保持关闭。
+- `商品支持`：选择公开范围/开启，并确保支持网址已经填写。
 
-## Remote Code
+## 截图对应的逐项填写顺序
 
-**No.** All executable JavaScript and WebAssembly used by the extension is
-packaged in the submitted ZIP. Optional AI requests exchange data with the
-provider configured by the user; responses are treated as content and are not
-executed as remote code.
+1. **软件包中的标题**：保留 `Design Lens`。
+2. **软件包中的摘要**：保留上传 ZIP 带入的摘要，或粘贴上方中文摘要。
+3. **说明**：粘贴上方完整中文说明。
+4. **类别**：选择 `开发者工具`。
+5. **语言**：选择 `中文（简体）`。
+6. **商店图标**：上传 `docs/store-assets/icon-128.png`。
+7. **全球通用的宣传视频**：留空；当前没有公开视频。
+8. **屏幕截图**：至少上传 1 张，建议按顺序上传上方两张 1280×800 截图，最多不要超过 5 张。
+9. **小型宣传图块**：上传 `docs/store-assets/promo-small-440x280.png`。
+10. **顶部宣传图块**：上传 `docs/store-assets/promo-top-1400x560.png`。
+11. **官方网站、主页网址、支持信息页面网址**：按“其他字段”填写。
+12. **成人内容、商品支持**：按“其他字段”设置。
 
-## Data Use And Limited Use
+## 隐私权与审核
 
-Declare these data types:
+隐私权政策网址：
 
-- **Website content**: visible text excerpts, design tokens, layout metrics,
-  screenshots, and sanitized evidence from pages the user explicitly captures.
-- **User activity**: bounded hover, focus, scroll, open, and timing evidence
-  observed only during a user-started capture session.
-
-The data is used only for the extension's single purpose. It is not sold, used
-for advertising or credit decisions, or transferred for unrelated purposes.
-The developer does not receive captured data. Optional AI transfer occurs only
-when the user configures a provider and explicitly requests generation.
-
-Check all Chrome Web Store Limited Use attestations that match the statements
-above. Privacy policy:
-
+```text
 https://github.com/isla4ever/design-lens/blob/main/docs/privacy.md
+```
 
-## Reviewer Test Instructions
+单一用途：
 
-1. Install the submitted standard ZIP. No account is required.
-2. Open a normal public `https` page and click the Design Lens toolbar icon.
-   The Side Panel should open by default.
-3. Keep **Reference** selected and choose **Smart Capture**. The page bridge is
-   injected only now; the result appears in the Side Panel.
-4. Open **Coverage** and **History** to inspect the evidence and readiness state.
-5. Export the evidence pack. This path does not require an AI key.
-6. Optional: choose **Rebuild**, confirm authorization, and run Smart Capture to
-   see the stricter screenshot/state coverage and explicit missing evidence.
+```text
+采集并整理用户主动发起的网页设计证据，用于设计参照或经授权的重建草案。
+```
 
-Expected behavior: the extension does not navigate, submit forms, or perform
-synthetic clicks. Unsupported browser pages such as `chrome://` are rejected.
+远程代码：`否`
 
-## URLs And Distribution
+数据使用声明：
 
-- Homepage: https://github.com/isla4ever/design-lens
-- Support: https://github.com/isla4ever/design-lens/issues
-- Privacy policy: https://github.com/isla4ever/design-lens/blob/main/docs/privacy.md
-- Distribution: Public, all supported Chrome Web Store regions
-- Publishing: Deferred publishing after review approval
+```text
+网站内容：可见文本片段、设计令牌、布局指标、截图和脱敏后的证据。用户活动：仅在用户主动发起的采集会话中观察到的悬停、聚焦、滚动、打开和时间证据。数据仅用于采集、分析、存储、导出和用户主动请求的 AI 生成，不出售、不用于广告、不用于信用评估，也不用于无关用途。
+```
 
-## Assets
+审核测试说明：
 
-- Store icon: `docs/store-assets/icon-128.png`
-- Screenshot 1: `docs/store-assets/screenshot-evidence-workspace-1280x800.png`
-- Screenshot 2: `docs/store-assets/screenshot-smart-capture-1280x800.png`
-- Small promo tile: `docs/store-assets/promo-small-440x280.png`
+```text
+1. 安装标准版扩展，不需要账号。
+2. 打开普通公开 HTTPS 网页，点击工具栏中的 Design Lens，侧边栏应默认打开。
+3. 保持“设计参照”模式，点击“智能捕获”，等待结果出现在侧边栏。
+4. 打开“覆盖”和“历史”查看证据状态。
+5. 导出证据包；此流程不需要 AI 密钥。
+6. 仅在获得授权时选择“经授权重建”，确认授权后再测试重建证据。
+扩展不会自动导航、提交表单或执行合成点击；chrome:// 等受限页面会被拒绝。
+```
 
-Only upload `dist/design-lens-0.3.0-standard-chrome.zip`. Keep the Collector ZIP
-as a local, explicitly authorized development build; do not submit it to Chrome
-Web Store or publish it as the public extension package.
+## 提交设置
+
+- 分发范围：`公开`
+- 地区：`所有地区`
+- 交易者身份：按实际情况填写；当前个人免费开源项目通常为`非交易者`
+- 提交审核时关闭自动发布，选择审核通过后暂存
+- 只上传 `dist/design-lens-0.3.0-standard-chrome.zip`
+- 不上传 `dist/design-lens-0.3.0-collector-chrome.zip`
