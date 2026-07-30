@@ -11,6 +11,7 @@ import { getStoredLocale } from "../shared/locale-storage";
 import type { ArtifactStorageRequest, ArtifactStorageResponse, CaptureResponse, DeepCaptureRequest, DeepCaptureResponse, GuidedCaptureTask, ScanMode } from "../shared/messages";
 import type { DesignCapture, InteractionTimeline } from "../shared/schema";
 import { runSmartCapture, type SmartCaptureExecutionContext } from "../smart-capture/orchestrator";
+import { shouldSampleRecordingOnStop } from "../smart-capture/page-work-policy";
 import type { SmartCaptureStatus } from "../smart-capture/types";
 import { createGuidedTaskObserver, type GuidedTaskEvidence } from "../smart-capture/guided-task-observer";
 import {
@@ -407,7 +408,7 @@ export function createPageOverlay(actions: OverlayActions) {
       recordedTimeline = timelineRecorder?.stop();
       timelineRecorder = null;
       const rebuildEvidence = recordingMode === "rebuild" ? await finishRebuildRecording(context) : undefined;
-      if (!shouldStopPageWork(context)) await sampleRecording(context);
+      if (shouldSampleRecordingOnStop(context)) await sampleRecording(context);
       const mergedCapture = mergeCaptures(recordedCaptures);
       if (!mergedCapture) {
         const response = shouldStopPageWork(context)

@@ -39,7 +39,7 @@ The recording-level probe captured:
 - 34 AI payload implementation entries.
 
 `npm run check:all` remains the required project gate. The current local run
-passes 100 tests, TypeScript compilation, and both Chrome production builds.
+passes 101 tests, TypeScript compilation, and both Chrome production builds.
 
 ## Extension UI Probe
 
@@ -97,8 +97,8 @@ Last local results:
 
 | DOM nodes | Start | Stop | P95 interaction | Max round-trip | Baseline task | Recording task | Heavy frames |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 20,000 | 193ms | 943ms | 48ms | 58ms | 0ms | 52ms | 2 |
-| 100,000 | 101ms | 82ms | 114ms | 120ms | 68ms | 96ms | 0 |
+| 20,000 | 3190ms | 256ms | 45ms | 67ms | 0ms | 57ms | 2 |
+| 100,000 | 116ms | 98ms | 142ms | 145ms | 79ms | 111ms | 0 |
 
 Both runs received all 24 heartbeat interactions and completed without console
 errors. Exact timings vary by machine; the assertions above are the release gate.
@@ -118,13 +118,16 @@ interaction and long-task budgets as the recording probe.
 
 ## Latest Local Release Candidate Check
 
-The latest local run was completed on 2026-07-24 with Node.js 22.23.1.
+The latest local run was completed on 2026-07-30 with Node.js 22.23.1 and WXT
+0.21.2.
 
 - Dependency audit: `npm run audit:dependencies` passed with 0 vulnerabilities.
-- Automated tests: 100 passed, 0 failed.
+- Automated tests: 101 passed, 0 failed.
 - Standard and Collector production builds: passed.
 - Browser injection, UI, performance, and Smart Capture gates: passed.
-- 100,000-node Smart Capture: 123ms start response, 55ms bounded run, 114ms
+- Standard and Collector ZIP permission/version validation: passed; both
+  SHA-256 checksums verified.
+- 100,000-node Smart Capture: 116ms start response, 36ms bounded run, 182ms
   p95 interaction latency, all 24 heartbeat actions received, no samples after
   user stop, and no console errors.
 

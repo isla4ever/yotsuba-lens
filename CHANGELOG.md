@@ -6,12 +6,30 @@ version tags.
 
 ## Unreleased
 
+## 0.3.0 - 2026-07-30
+
+### Added
+
+- Safety levels (`normal`, `reduced`, `snapshot-only`, and `stopped`), hard
+  capture deadlines, cancellation propagation, and bounded finalization for
+  responsive Smart Capture on large or continuously mutating pages.
+- Per-file and per-project artifact budgets, orphan reclamation, shared-artifact
+  protection, and explicit readiness labels for Reference and Rebuild results.
+- Side Panel coverage, history, AI onboarding, Recorder import diagnosis,
+  same-origin route projects, and guided capture for evidence gaps.
+- Reproducible Bilibili and AstroWind capture/reconstruction benchmarks with
+  explicit scene, geometry, screenshot, and failure evidence.
+- Chrome Web Store icon, listing copy, privacy declarations, screenshots, and
+  promotional artwork for the standard build.
+
 ### Changed
 
 - Open the compact workflow as a native toolbar-anchored extension popup while
   keeping the Side Panel as the default action surface.
 - Rename supplemental recording actions to Manual Capture and show a concise
   AI setup guide before first-time Prompt generation.
+- Keep the Side Panel as the default workspace while the toolbar popup provides
+  the same core mode and capture semantics in a compact form.
 
 ### Fixed
 
@@ -19,11 +37,14 @@ version tags.
   confirmation before removing a capture.
 - Dismiss transient Smart Capture progress notices automatically after capture
   completion without hiding persistent success or error messages.
+- Skip the second full-page recording sample after Smart Capture has degraded
+  to `snapshot-only` or `stopped`, preventing slow finalization on large pages.
 
 ### Security
 
-- Pin patched `adm-zip` and `brace-expansion` transitive development
-  dependencies while upstream WXT ranges catch up.
+- Upgrade WXT to `0.21.2` so its unused vulnerable `web-ext-run` chain is
+  removed, pin patched PostCSS, and retain the existing patched build-tool
+  overrides.
 
 ## 0.2.0 - 2026-07-16
 
@@ -71,6 +92,7 @@ version tags.
 - Initial Chrome MV3 extension for design tokens, component structure,
   interaction timelines, implementation traces, and AI-ready evidence packs.
 
-[Unreleased]: https://github.com/isla4ever/design-lens/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/isla4ever/design-lens/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/isla4ever/design-lens/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/isla4ever/design-lens/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/isla4ever/design-lens/releases/tag/v0.1.0
