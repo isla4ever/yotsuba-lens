@@ -117,7 +117,7 @@ snapshot-only extreme-DOM path. This path skips the stability wait and passive
 window after the bounded 1,000-node candidate index. It uses the same tiered
 interaction and long-task budgets as the recording probe.
 
-## Latest Local Release Candidate Check
+## Latest Local Chrome Web Store Candidate Check
 
 The latest local run was completed on 2026-07-30 with Node.js 22.23.1 and WXT
 0.21.2.

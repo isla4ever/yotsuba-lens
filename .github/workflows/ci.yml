@@ -41,8 +41,8 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run check:browser
 
-  release-package:
-    name: Reproducible release package
+  store-package:
+    name: Chrome Web Store package
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -52,7 +52,7 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - run: npm run package:release
+      - run: npm run package:store
       - uses: actions/upload-artifact@v7
         with:
           name: design-lens-${{ github.sha }}

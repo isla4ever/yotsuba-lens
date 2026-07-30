@@ -112,6 +112,6 @@ synthetic clicks. Unsupported browser pages such as `chrome://` are rejected.
 - Screenshot 2: `docs/store-assets/screenshot-smart-capture-1280x800.png`
 - Small promo tile: `docs/store-assets/promo-small-440x280.png`
 
-Only upload `dist/design-lens-0.3.0-standard-chrome.zip`. Publish the Collector
-ZIP only as a GitHub release artifact with its additional permission boundary
-clearly visible.
+Only upload `dist/design-lens-0.3.0-standard-chrome.zip`. Keep the Collector ZIP
+as a local, explicitly authorized development build; do not submit it to Chrome
+Web Store or publish it as the public extension package.

@@ -26,7 +26,7 @@
     "verify:smart-capture": "node scripts/verify-smart-capture.mjs",
     "verify:smart-capture:extreme": "cross-env DESIGN_LENS_STRESS_NODES=100000 node scripts/verify-smart-capture.mjs",
     "check:browser": "npm run build && npm run verify:injection && npm run verify:ui && npm run verify:performance && npm run verify:performance:extreme && npm run verify:smart-capture && npm run verify:smart-capture:extreme",
-    "package:release": "npm run zip && npm run zip:collector && node scripts/package-release.mjs",
+    "package:store": "npm run zip && npm run zip:collector && node scripts/package-release.mjs",
     "audit:dependencies": "npm audit --package-lock-only --audit-level=high",
     "check": "npm run compile && npm run test && npm run build",
     "check:all": "npm run compile && npm run test && npm run build && npm run build:collector"

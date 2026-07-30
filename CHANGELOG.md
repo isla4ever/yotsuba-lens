@@ -2,9 +2,15 @@
 
 All notable changes to Design Lens are documented here. The project follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and uses semantic
-version tags.
+versioning.
 
 ## Unreleased
+
+### Changed
+
+- Replace tag-triggered GitHub Releases with a manual Chrome Web Store v2
+  submission workflow that uploads only the standard build and defaults to
+  staged publishing after review.
 
 ## 0.3.0 - 2026-07-30
 
@@ -57,8 +63,8 @@ version tags.
 - Side Panel workspace for coverage, history, Recorder plans, and route projects.
 - Task-aware guided capture for real hover, focus, scroll, open, wait, and
   responsive evidence without synthetic page actions.
-- Standard and Collector release packages with manifest permission validation.
-- Pull request CI, browser stress gates, and draft tag releases.
+- Standard and Collector packages with manifest permission validation.
+- Pull request CI, browser stress gates, and reproducible store candidates.
 
 ### Changed
 
@@ -74,7 +80,7 @@ version tags.
   scheduling outliers without weakening page long-task or heartbeat checks.
 - Measure the continuously mutating stress fixture before capture so its own
   long tasks are not misattributed to the extension on slower CI runners.
-- Upgrade official GitHub Actions to v7 so CI and release workflows use the
+- Upgrade official GitHub Actions to v7 so CI and packaging workflows use the
   supported Node runtime without deprecation warnings.
 - Inject the page bridge only after an explicit user action instead of loading
   it on every website.
@@ -94,7 +100,6 @@ version tags.
 - Initial Chrome MV3 extension for design tokens, component structure,
   interaction timelines, implementation traces, and AI-ready evidence packs.
 
-[Unreleased]: https://github.com/isla4ever/design-lens/compare/v0.3.0...HEAD
-[0.3.0]: https://github.com/isla4ever/design-lens/compare/v0.2.0...v0.3.0
-[0.2.0]: https://github.com/isla4ever/design-lens/compare/v0.1.0...v0.2.0
+[Unreleased]: https://github.com/isla4ever/design-lens/commits/main
+[0.3.0]: https://github.com/isla4ever/design-lens/commit/dcb70d3c86ac4cb2133d16aa17c2f0b47fa5f4b1
 [0.1.0]: https://github.com/isla4ever/design-lens/releases/tag/v0.1.0

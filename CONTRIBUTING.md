@@ -28,7 +28,7 @@ npm run audit:dependencies
 npm run check:all
 npx playwright install chromium
 npm run check:browser
-npm run package:release
+npm run package:store
 ```
 
 `check:browser` exercises ordinary and 100,000-node pages. A capture change is

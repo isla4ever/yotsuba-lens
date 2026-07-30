@@ -191,7 +191,7 @@ npm run dev                 # Standard development server
 npm run dev:collector       # Collector development server
 npm run check:all           # TypeScript, 101 tests, and both production builds
 npm run check:browser       # Real MV3 injection, UI alignment/overflow, and 20k/100k DOM recovery probes
-npm run package:release     # Permission/version validation, ZIPs, and SHA256SUMS
+npm run package:store       # Validate and create store candidate ZIPs and SHA256SUMS
 ```
 
 Install Chromium before the first browser gate:

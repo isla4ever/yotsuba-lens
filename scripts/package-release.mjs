@@ -64,7 +64,7 @@ for (const variant of variants) {
 }
 
 await writeFile(resolve(dist, "SHA256SUMS"), `${checksums.join("\n")}\n`, "utf8");
-console.log(`Prepared Design Lens v${version} release artifacts in ${dist}`);
+console.log(`Prepared Design Lens v${version} Chrome Web Store candidate artifacts in ${dist}`);
 
 function assertStringSet(label, actual, expected) {
   const normalizedActual = Array.isArray(actual) ? [...actual].sort() : [];
