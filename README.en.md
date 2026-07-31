@@ -1,121 +1,86 @@
 <p align="center">
-  <img src="docs/store-assets/icon-128.png" alt="Yotsuba Lens four-leaf lens mark" width="112" height="112" />
+  <img src="docs/readme-assets/readme-hero.jpg" alt="Yotsuba Lens turns web structure, states, and motion into evidence for AI coding" width="100%" />
 </p>
 
-# Yotsuba Lens
+<h1 align="center">Yotsuba Lens</h1>
+<p align="center"><strong>Turn “use this website as a reference” into traceable, executable, and testable frontend context for AI.</strong></p>
 
-> Turn “use this website as a reference” into traceable, executable, and testable frontend context for AI.
+<p align="center">
+  <a href="https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml"><img src="https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <img src="https://img.shields.io/badge/version-0.3.0-2563eb" alt="Version 0.3.0" />
+  <img src="https://img.shields.io/badge/Chrome-MV3-4285f4" alt="Chrome MV3" />
+  <img src="https://img.shields.io/badge/status-alpha-f59e0b" alt="Alpha" />
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-16a34a" alt="MIT License" /></a>
+</p>
 
-[![CI](https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-0.3.0-2563eb)
-![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-4285f4)
-![Status](https://img.shields.io/badge/status-alpha-f59e0b)
-[![License: MIT](https://img.shields.io/badge/license-MIT-16a34a)](LICENSE)
+<p align="center"><a href="README.md">中文</a> · <strong>English</strong></p>
 
-[中文](README.md) | **English**
-
-Yotsuba Lens is an **evidence-first** Chrome extension for AI coding, vibe coding, and frontend reconstruction workflows. Instead of summarizing a screenshot, it translates a live page into visual tokens, layout structure, component grammar, interaction timelines, motion evidence, implementation clues, and acceptance rules.
+Yotsuba Lens is an open-source, **evidence-first** Chrome extension for AI coding, vibe coding, and frontend reconstruction. It goes beyond a screenshot by translating a live page into visual tokens, layout structure, component grammar, interaction states, motion evidence, implementation clues, and acceptance rules.
 
 ```text
 Live page → Smart Capture → Structured evidence → Explicit gaps → Prompt / Rebuild draft → Scene acceptance
 ```
 
-It is not a source downloader, and it never turns missing states into a claim of complete reproduction. The rule is simple: **describe what the evidence supports and keep everything else as an explicit gap.**
-
 > [!IMPORTANT]
-> Yotsuba Lens is currently alpha software installed through Chrome Developer Mode. Use it only on pages you are authorized to analyze, reference, or rebuild.
+> Version `0.3.0` has been submitted for Chrome Web Store review and remains available through Chrome Developer Mode. Use it only on pages you are authorized to analyze, reference, or rebuild.
 
-## Highlights
+## Why Yotsuba Lens
 
-| Highlight | How Yotsuba Lens handles it |
+| Goal | Product approach | Result |
+| --- | --- | --- |
+| **Get design context quickly** | One Smart Capture runs page indexing, a stable snapshot, and passive observation; oversized or continuously changing pages degrade within a strict budget | No frozen page and no mandatory full-session recording |
+| **Reference or rebuild** | Reference extracts transferable design language; Rebuild preserves screenshots, scenes, geometry, and acceptance constraints only within an authorized scope | Inspiration and reproduction remain separate intents |
+| **Keep gaps visible** | Structure, style, state, screenshot, responsive, and Canvas evidence are assessed independently; only important supplemental tasks are generated | No misleading single score hiding missing states |
+| **Make results testable** | Evidence, Prompt, and Rebuild Packs preserve provenance, scene manifests, and acceptance rules | Move from “looks similar” to explainable checks |
+
+## Real Workspace
+
+<p align="center">
+  <img src="docs/readme-assets/workspace-showcase.jpg" alt="Yotsuba Lens coverage and capture settings beside a real webpage" width="100%" />
+</p>
+
+Clicking the extension action opens the full Side Panel by default. Overview, coverage, history, and settings share one workspace, while the popup keeps only frequent actions. Capture results show real totals, evidence health, and next tasks rather than a fixed `32` cap.
+
+<details>
+  <summary><strong>View history and delete confirmation</strong></summary>
+  <br />
+  <p align="center">
+    <img src="docs/store-assets/screenshot-history-dark-1280x800.png" alt="Yotsuba Lens history and delete confirmation" width="960" />
+  </p>
+</details>
+
+## From Live Page To Verifiable Output
+
+<p align="center">
+  <img src="docs/readme-assets/evidence-flow.jpg" alt="Yotsuba Lens turns live webpage evidence into Prompt, Evidence, and Acceptance outputs" width="100%" />
+</p>
+
+A prompt is a compiled view of the evidence, not the only source of truth. The rule is simple: **describe what the evidence supports and keep everything else as an explicit gap.**
+
+| Mode | Best for | Output boundary |
+| --- | --- | --- |
+| **Reference** | Borrowing visual, layout, motion, or interaction ideas for an original interface | Extract transferable design grammar without copying the reference brand, content, or assets |
+| **Authorized Rebuild** | Building a verifiable draft for an explicit page, viewport set, and state set | Be accountable only for captured evidence; uncaptured states remain gaps |
+
+## Core Capabilities
+
+| Capability | Implementation boundary |
 | --- | --- |
-| **One action for baseline capture** | Smart Capture shares a 15-second budget across preflight indexing, stabilization, and passive observation. Rebuild screenshot and CDP finalization use separate timeouts and circuit breakers, while large or continuously mutating pages degrade safely. |
-| **Full Side Panel by default** | Clicking the extension action opens the Side Panel, where mode, capture, coverage, history, and settings share one workspace. For quick actions, the Side Panel opens the native toolbar-anchored extension popup instead of a separate window. |
-| **Reference and Rebuild are separate modes** | Reference extracts transferable design language. Rebuild preserves real screenshots, scenes, geometry, and acceptance constraints. The product never conflates inspiration with reproduction. |
-| **Capture only what is missing** | Evidence health produces at most three scroll, hover, focus, open, or responsive tasks instead of making users manually record the entire page first. |
-| **Capture-to-acceptance workflow** | Rebuild Packs carry scene manifests and acceptance rules for screenshot, pixel, geometry, motion-checkpoint, and browser-error checks. |
-| **No synthetic page actions** | The extension does not automatically click, type, submit forms, or navigate. Users perform real supplemental actions while Yotsuba Lens observes and saves the requested state. |
-| **On-demand injection and split permissions** | The page bridge is injected only after a user action. The standard build excludes `debugger`; deeper CDP collection is isolated in the Collector build. |
+| **Smart Capture safety budget** | Baseline work shares a 15-second budget; Rebuild screenshots and CDP finalization use independent timeouts and circuit breakers, with cancellation and degradation for mutation storms or very large DOMs |
+| **Guided supplemental capture** | Merge gaps into at most three scroll, hover, focus, open, or responsive tasks; users perform real actions while the extension only observes and saves the target state |
+| **Side Panel by default** | Mode, capture, coverage, history, configuration, and export stay together; first-use guidance appears before generating AI output |
+| **On-demand injection and split permissions** | The page bridge is injected only after a user action; Standard excludes `debugger`, while deeper CDP collection is isolated in Collector |
+| **Scene-based acceptance** | Rebuild Packs can drive screenshot, pixel, geometry, motion-checkpoint, and browser-error checks without inventing uncaptured behavior |
 
 ## More Than Screenshot-To-Prompt
 
 | Dimension | Typical screenshot workflow | Yotsuba Lens |
 | --- | --- | --- |
-| Input | One or several static screenshots | DOM structure, tokens, geometry, screenshots, events, motion, and runtime clues |
+| Input | One or several static screenshots | DOM, tokens, geometry, screenshots, events, motion, and runtime clues |
 | Interaction states | Described manually or guessed by a model | Real hover, focus, scroll, open, and responsive scene evidence |
 | Missing information | Often filled in as an imagined result | Recorded explicitly as `missing`, `partial`, or `not-applicable` |
 | Output | One generic prompt | Evidence Pack, AI Prompt Pack, or Rebuild Draft Pack |
-| Acceptance | Visual judgment alone | Explainable candidate reports based only on captured scenes |
-
-## Product Preview
-
-> Screenshots below use the Chinese locale. The extension UI supports both Chinese and English.
-
-### 1. Smart Capture And The Reference Workspace
-
-<table>
-  <tr>
-    <td width="46%" align="center">
-      <img src="docs/assets/design-lens-popup-smart-capture.png" alt="Yotsuba Lens extension popup Smart Capture result" />
-    </td>
-    <td width="54%" align="center">
-      <img src="docs/assets/design-lens-reference-workspace.png" alt="Yotsuba Lens Reference workspace" />
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Extension popup</strong><br />Keeps only mode, Smart Capture, component picking, manual capture, and export; detailed briefs live in the Side Panel.</td>
-    <td><strong>Reference workspace</strong><br />Centralizes evidence, export, and generated follow-up tasks without duplicate actions.</td>
-  </tr>
-</table>
-
-### 2. Rebuild Coverage And Multi-Route Projects
-
-<p align="center">
-  <img src="docs/assets/design-lens-sidepanel-coverage.png" alt="Yotsuba Lens Rebuild coverage, technical clues, and route project" width="768" />
-</p>
-
-Rebuild does not hide uncertainty behind a single completion score. Structure, style, state, screenshot, responsive, and Canvas evidence are reported separately; technical signals and Recorder stay collapsed until needed. A project can contain up to eight same-origin routes for per-route verification.
-
-<details>
-  <summary><strong>View Side Panel settings</strong></summary>
-  <br />
-  <p align="center">
-    <img src="docs/assets/design-lens-sidepanel-settings.png" alt="Yotsuba Lens Side Panel mode, reference brief, and AI settings" width="360" />
-  </p>
-</details>
-
-### 3. Guided Capture: The User Acts, The Extension Observes
-
-<table>
-  <tr>
-    <td width="50%" align="center">
-      <img src="docs/assets/design-lens-guided-workspace.png" alt="Yotsuba Lens guided supplemental task in the Side Panel" />
-    </td>
-    <td width="50%" align="center">
-      <img src="docs/assets/design-lens-guided-capture.png" alt="Yotsuba Lens in-page hover evidence capture" />
-    </td>
-  </tr>
-  <tr>
-    <td><strong>One clear task at a time</strong><br />The Side Panel explains the current gap and the next user action.</td>
-    <td><strong>Observe only the target state</strong><br />A real hover, scroll, or open action is saved after it stabilizes, without synthetic clicks.</td>
-  </tr>
-</table>
-
-<details>
-  <summary><strong>View Recorder import and evidence matching</strong></summary>
-  <br />
-  <p align="center">
-    <img src="docs/assets/design-lens-recorder-diagnosis.png" alt="Chrome DevTools Recorder import, evidence matching, and gap diagnosis" width="360" />
-  </p>
-  <p>Yotsuba Lens can import sanitized Chrome DevTools Recorder JSON. It does not automatically replay the flow. Steps are matched against existing screenshot evidence, and unresolved scenes are merged into at most three supplemental tasks.</p>
-</details>
-
-## Two Work Modes
-
-| Mode | Best for | Output boundary |
-| --- | --- | --- |
-| **Reference** | Borrowing visual, layout, motion, or interaction ideas to create an original interface | Extract transferable design grammar without treating the reference brand, content, or assets as the target product |
-| **Rebuild** | Creating a verifiable implementation draft under explicit authorization | Be accountable only for captured screenshots and scenes; uncaptured states remain gaps and are never presented as high fidelity |
+| Acceptance | Visual judgment alone | Explainable candidate reports based on captured scenes |
 
 ## Workflow
 

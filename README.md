@@ -1,121 +1,86 @@
 <p align="center">
-  <img src="docs/store-assets/icon-128.png" alt="Yotsuba Lens 四叶草镜头标志" width="112" height="112" />
+  <img src="docs/readme-assets/readme-hero.jpg" alt="Yotsuba Lens 将网页结构、状态与动效转化为 AI 编码证据" width="100%" />
 </p>
 
-# Yotsuba Lens
+<h1 align="center">Yotsuba Lens</h1>
+<p align="center"><strong>把“参考这个网站”变成可追溯、可执行、可验收的 AI 前端上下文。</strong></p>
 
-> 把“参考这个网站”变成可追溯、可执行、可验收的 AI 前端上下文。
+<p align="center">
+  <a href="https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml"><img src="https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <img src="https://img.shields.io/badge/version-0.3.0-2563eb" alt="Version 0.3.0" />
+  <img src="https://img.shields.io/badge/Chrome-MV3-4285f4" alt="Chrome MV3" />
+  <img src="https://img.shields.io/badge/status-alpha-f59e0b" alt="Alpha" />
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-16a34a" alt="MIT License" /></a>
+</p>
 
-Yotsuba Lens（四叶草设计透镜）是面向网页设计证据工作的开源 Chrome 扩展：四片叶子分别代表证据、参照、重建与验收。
+<p align="center"><strong>中文</strong> · <a href="README.en.md">English</a></p>
 
-[![CI](https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-0.3.0-2563eb)
-![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-4285f4)
-![Status](https://img.shields.io/badge/status-alpha-f59e0b)
-[![License: MIT](https://img.shields.io/badge/license-MIT-16a34a)](LICENSE)
-
-**中文** | [English](README.en.md)
-
-Yotsuba Lens 是一个 **evidence-first（证据优先）** 的 Chrome 扩展，面向 AI Coding、Vibe Coding 和前端设计还原工作流。它不只截一张图或总结页面，而是把真实网页转译为视觉 Token、布局结构、组件语法、交互时间线、动效证据、实现线索和验收规则。
+Yotsuba Lens（四叶草设计透镜）是一个 **evidence-first（证据优先）** 的开源 Chrome 扩展，面向 AI Coding、Vibe Coding 与前端设计还原。它不只截一张图，而是把真实网页转译为视觉 Token、布局结构、组件语法、交互状态、动效证据、实现线索和验收规则。
 
 ```text
 真实网页 → 智能捕获 → 结构化证据 → 明确缺口 → Prompt / Rebuild 草稿 → 场景验收
 ```
 
-它不是源码下载器，也不会把缺失状态猜成“完整复刻”。Yotsuba Lens 的原则是：**有证据才描述，没有证据就明确标记缺口。**
-
 > [!IMPORTANT]
-> 当前版本处于 alpha 阶段，仅通过 Chrome 开发者模式安装。请只在你有权分析、参考或重建的页面上使用。
+> `0.3.0` 已提交 Chrome Web Store 审核，当前仍可通过开发者模式安装。请只在你有权分析、参考或重建的页面上使用。
 
-## 项目亮点
+## 为什么是 Yotsuba Lens
 
-| 亮点 | Yotsuba Lens 的做法 |
+| 目标 | 产品处理方式 | 交付结果 |
+| --- | --- | --- |
+| **快速获得设计上下文** | 一次智能捕获完成页面索引、稳定快照与被动观察，超大或持续变动页面会在预算内安全降级 | 不冻结页面，不依赖全程手动录制 |
+| **既可参照，也可重建** | Reference 提炼可迁移设计语言；Rebuild 只在授权范围内保存截图、场景、几何与验收约束 | 不把“借鉴”和“复刻”混为一谈 |
+| **让缺口可见** | 分别评估结构、样式、状态、截图、响应式与 Canvas 证据，只生成关键补采任务 | 不用虚假的总分掩盖缺失状态 |
+| **让结果可验证** | Evidence、Prompt 与 Rebuild Pack 保留证据来源、场景清单和验收规则 | 从“像不像”升级为可解释检查 |
+
+## 真实工作区
+
+<p align="center">
+  <img src="docs/readme-assets/workspace-showcase.jpg" alt="Yotsuba Lens 在真实网页旁显示覆盖与捕获设置侧边栏" width="100%" />
+</p>
+
+点击扩展图标默认打开完整 Side Panel。概览、覆盖、历史和设置集中在同一工作区；快速弹窗只保留高频动作。捕获完成后可直接查看真实数量、证据健康度和下一步任务，不再固定显示 `32`。
+
+<details>
+  <summary><strong>查看历史记录与删除确认</strong></summary>
+  <br />
+  <p align="center">
+    <img src="docs/store-assets/screenshot-history-dark-1280x800.png" alt="Yotsuba Lens 历史记录与删除二次确认" width="960" />
+  </p>
+</details>
+
+## 从网页现场到可验证产物
+
+<p align="center">
+  <img src="docs/readme-assets/evidence-flow.jpg" alt="Yotsuba Lens 将真实网页证据整理成 Prompt、Evidence 和 Acceptance 产物" width="100%" />
+</p>
+
+Prompt 是证据的编译结果，而不是完整数据的唯一载体。Yotsuba Lens 的原则是：**有证据才描述，没有证据就明确标记缺口。**
+
+| 模式 | 适用目标 | 输出边界 |
+| --- | --- | --- |
+| **设计参照（Reference）** | 从优秀页面借鉴视觉、布局、动效或交互，构建原创界面 | 提取可迁移的设计语法，不复制参考站点的品牌、内容和素材 |
+| **经授权重建（Rebuild）** | 对明确页面、视口和状态建立可验证实现草稿 | 只对已捕获证据负责；未捕获状态始终作为缺口 |
+
+## 核心能力
+
+| 能力 | 实现边界 |
 | --- | --- |
-| **一次操作完成基础捕获** | 默认只需点击“智能捕获”。前置索引、稳定快照和被动观察共享 15 秒预算；Rebuild 的分段截图与 CDP 整理由独立超时和熔断保护，持续变动或超大页面会安全降级。 |
-| **默认打开完整侧边栏** | 点击扩展图标直接进入 Side Panel；模式、捕获、覆盖、历史和设置集中在同一工作区。需要快速操作时，可从侧边栏打开锚定工具栏的原生插件弹窗，不再创建独立页面窗口。 |
-| **Reference 与 Rebuild 双模式** | Reference 提炼可迁移的设计语言；Rebuild 保存真实截图、场景、几何与验收约束。用户根据目标选择，不把“借鉴”和“复刻”混为一谈。 |
-| **只补真正缺失的状态** | 自动评估证据健康度，只生成最多 3 个滚动、悬停、焦点、展开或响应式补采任务，不要求用户从头手动录制整页。 |
-| **从捕获直接走到验收** | Rebuild Pack 自带场景清单和验收规则，可对候选实现执行截图、像素、几何、动画进度和浏览器错误检查。 |
-| **不代替用户操作页面** | 不自动点击、输入、提交表单或跳转未知页面。补采任务由用户完成真实操作，插件只观察目标状态并保存证据。 |
-| **按需注入、权限分层** | 页面桥接只在用户发起操作后注入；标准版不包含 `debugger`，深度 CDP 采集隔离在单独的 Collector 构建。 |
+| **智能捕获与安全预算** | 基础捕获共享 15 秒预算；Rebuild 截图与 CDP 整理由独立超时和熔断保护，持续 mutation 与超大 DOM 可取消、可降级 |
+| **引导式补采** | 自动归并最多 3 个滚动、悬停、焦点、展开或响应式任务；用户执行真实操作，插件只观察并保存目标状态 |
+| **默认侧边栏** | 模式、捕获、覆盖、历史、配置与导出同屏；首次生成 AI 内容前提供配置指引 |
+| **按需注入与权限分层** | 页面桥接只在用户操作后注入；标准版不含 `debugger`，深度 CDP 采集隔离在 Collector 构建 |
+| **场景化验收** | Rebuild Pack 可驱动截图、像素、几何、动画进度与浏览器错误检查，不推测未采集行为 |
 
 ## 不只是截图转 Prompt
 
 | 维度 | 常见截图式流程 | Yotsuba Lens |
 | --- | --- | --- |
-| 输入 | 单张或少量静态截图 | DOM 结构、Token、几何、截图、事件、动效和运行时线索 |
-| 交互状态 | 依赖人工描述或模型猜测 | 真实 hover、focus、scroll、open 和响应式场景证据 |
-| 缺失信息 | 经常被模型补全成想象结果 | 明确记录为 `missing`、`partial` 或 `not-applicable` |
+| 输入 | 单张或少量静态截图 | DOM、Token、几何、截图、事件、动效和运行时线索 |
+| 交互状态 | 依赖人工描述或模型猜测 | 真实 hover、focus、scroll、open 与响应式场景证据 |
+| 缺失信息 | 经常被补全成想象结果 | 明确记录为 `missing`、`partial` 或 `not-applicable` |
 | 输出 | 一段通用 Prompt | Evidence Pack、AI Prompt Pack、Rebuild Draft Pack |
-| 验收 | 靠肉眼判断“像不像” | 基于已捕获场景的可解释候选验证报告 |
-
-## 产品预览
-
-### 1. 智能捕获与 Reference 工作区
-
-<table>
-  <tr>
-    <td width="46%" align="center">
-      <img src="docs/assets/design-lens-popup-smart-capture.png" alt="Yotsuba Lens 插件弹窗智能捕获结果" />
-    </td>
-    <td width="54%" align="center">
-      <img src="docs/assets/design-lens-reference-workspace.png" alt="Yotsuba Lens Reference 工作区" />
-    </td>
-  </tr>
-  <tr>
-    <td><strong>插件弹窗</strong><br />只保留模式、智能捕获、组件选取、手动补采与导出，详细要求统一放在 Side Panel。</td>
-    <td><strong>Reference 工作区</strong><br />集中查看证据、导出入口和自动生成的补充任务，避免重复操作。</td>
-  </tr>
-</table>
-
-### 2. Rebuild 覆盖与多路由项目
-
-<p align="center">
-  <img src="docs/assets/design-lens-sidepanel-coverage.png" alt="Yotsuba Lens Rebuild 覆盖矩阵、技术线索和多路由项目" width="768" />
-</p>
-
-Rebuild 不用一个“完成度百分比”掩盖问题。结构、样式、状态、截图、响应式和 Canvas 分开显示；技术线索与 Recorder 默认折叠，只有需要时才展开。同源页面可加入最多 8 条路由并分别验收。
-
-<details>
-  <summary><strong>查看 Side Panel 配置界面</strong></summary>
-  <br />
-  <p align="center">
-    <img src="docs/assets/design-lens-sidepanel-settings.png" alt="Yotsuba Lens Side Panel 模式、参照要求和 AI 配置" width="360" />
-  </p>
-</details>
-
-### 3. 引导式补采：用户操作，插件观察
-
-<table>
-  <tr>
-    <td width="50%" align="center">
-      <img src="docs/assets/design-lens-guided-workspace.png" alt="Yotsuba Lens Side Panel 引导补采任务" />
-    </td>
-    <td width="50%" align="center">
-      <img src="docs/assets/design-lens-guided-capture.png" alt="Yotsuba Lens 页面内悬停状态补采" />
-    </td>
-  </tr>
-  <tr>
-    <td><strong>只下发一个清晰任务</strong><br />Side Panel 说明当前缺口和下一步动作。</td>
-    <td><strong>只观察目标状态</strong><br />用户完成真实悬停、滚动或展开后自动保存，不执行合成点击。</td>
-  </tr>
-</table>
-
-<details>
-  <summary><strong>查看 Recorder 导入与证据匹配</strong></summary>
-  <br />
-  <p align="center">
-    <img src="docs/assets/design-lens-recorder-diagnosis.png" alt="Chrome DevTools Recorder 流程导入、证据匹配与缺口诊断" width="360" />
-  </p>
-  <p>可导入脱敏后的 Chrome DevTools Recorder JSON。Yotsuba Lens 不自动重放流程，而是把步骤映射到已有截图证据，并把未闭环场景归并为最多三个补采任务。</p>
-</details>
-
-## 两种工作模式
-
-| 模式 | 适用目标 | 输出边界 |
-| --- | --- | --- |
-| **设计参照（Reference）** | 从优秀页面借鉴视觉、布局、动效或交互，构建原创界面 | 提取可迁移的设计语法，不把参考站点的品牌、内容和素材当成目标产品 |
-| **高保真重建（Rebuild）** | 在明确授权下建立可验证的实现草稿 | 只对已有截图和场景证据负责；未捕获状态始终作为缺口，不宣称已经高保真 |
+| 验收 | 靠肉眼判断“像不像” | 基于已捕获场景的可解释候选报告 |
 
 ## 工作流程
 
