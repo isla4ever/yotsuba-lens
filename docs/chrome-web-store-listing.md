@@ -39,13 +39,15 @@ Yotsuba Lens 不会自动运行在所有网页上，不会自动点击、输入�
 | 后台字段 | 文件 | 规格 |
 | --- | --- | --- |
 | 商店图标 | `docs/store-assets/icon-128.png` | 128×128，24 位 PNG，无 alpha |
-| 屏幕截图 1 | `docs/store-assets/screenshot-evidence-workspace-1280x800.png` | 1280×800，24 位 PNG，无 alpha |
-| 屏幕截图 2 | `docs/store-assets/screenshot-smart-capture-1280x800.png` | 1280×800，24 位 PNG，无 alpha |
+| 屏幕截图 1 | `docs/store-assets/screenshot-overview-dark-1280x800.png` | 1280×800，夜间模式概览，24 位 PNG，无 alpha |
+| 屏幕截图 2 | `docs/store-assets/screenshot-coverage-dark-1280x800.png` | 1280×800，夜间模式覆盖，24 位 PNG，无 alpha |
+| 屏幕截图 3 | `docs/store-assets/screenshot-history-dark-1280x800.png` | 1280×800，夜间模式历史，24 位 PNG，无 alpha |
+| 屏幕截图 4 | `docs/store-assets/screenshot-settings-dark-1280x800.png` | 1280×800，夜间模式设置，24 位 PNG，无 alpha |
 | 小型宣传图块 | `docs/store-assets/promo-small-440x280.png` | 440×280，24 位 PNG，无 alpha |
 | 顶部宣传图块 | `docs/store-assets/promo-top-1400x560.png` | 1400×560，24 位 PNG，无 alpha |
 | 宣传视频 | 留空 | 当前没有公开视频 |
 
-截图不超过 5 张，当前使用 2 张真实插件界面截图。
+截图不超过 5 张，当前使用 4 张真实 Chrome 侧边栏截图，依次展示概览、覆盖、历史和设置。
 
 ## 其他字段
 
@@ -88,7 +90,7 @@ https://github.com/isla4ever/yotsuba-lens/issues
 5. **语言**：选择 `中文（简体）`。
 6. **商店图标**：上传 `docs/store-assets/icon-128.png`。
 7. **全球通用的宣传视频**：留空；当前没有公开视频。
-8. **屏幕截图**：至少上传 1 张，建议按顺序上传上方两张 1280×800 截图，最多不要超过 5 张。
+8. **屏幕截图**：至少上传 1 张，按概览、覆盖、历史、设置的顺序上传上方 4 张 1280×800 截图。
 9. **小型宣传图块**：上传 `docs/store-assets/promo-small-440x280.png`。
 10. **顶部宣传图块**：上传 `docs/store-assets/promo-top-1400x560.png`。
 11. **官方网站、主页网址、支持信息页面网址**：按“其他字段”填写。

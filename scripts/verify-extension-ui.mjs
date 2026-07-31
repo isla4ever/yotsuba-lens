@@ -128,7 +128,7 @@ try {
     const capturedAt = new Date().toISOString();
     const capture = {
       scope: "page",
-      page: { url, title: "History alignment fixture", capturedAt },
+      page: { url, title: "isla4ever/yotsuba-lens: Yotsuba Lens：把网页转成可参照、可重建、可验收的设计证据与 AI 上下文", capturedAt },
       viewport: { width: 1440, height: 900, devicePixelRatio: 1 },
       tokens: { cssVariables: [], colors: [], backgrounds: [], spacing: [], radii: [], shadows: [], typography: [] },
       layout: [],
@@ -143,7 +143,7 @@ try {
       id: "ui-history-fixture",
       tabId: 987654,
       url,
-      title: "History alignment fixture",
+      title: "isla4ever/yotsuba-lens: Yotsuba Lens：把网页转成可参照、可重建、可验收的设计证据与 AI 上下文",
       mode: "reference",
       capture,
       updatedAt: capturedAt
@@ -164,7 +164,7 @@ try {
     });
   }, fixtureUrl);
   await worker.evaluate(async () => {
-    await chrome.storage.local.set({ designLensLocale: "zh", designLensTheme: "light", designLensSidePanelView: "history" });
+    await chrome.storage.local.set({ designLensLocale: "zh", designLensTheme: "dark", designLensSidePanelView: "history" });
   });
   await historyPage.reload({ waitUntil: "domcontentloaded" });
   const historyItem = historyPage.locator(".history-item");
@@ -193,6 +193,29 @@ try {
     throw new Error(`History delete icon is not centered: ${JSON.stringify(historyLayout)}`);
   }
   await historyPage.locator(".history-select").click();
+  await historyPage.locator(".result-summary").waitFor();
+  const capturedOverviewLayout = await historyPage.evaluate(() => {
+    const main = document.querySelector("main");
+    const overview = document.querySelector(".overview-layout");
+    const overflowingElements = Array.from(document.querySelectorAll("main *")).flatMap((element) => {
+      const rect = element.getBoundingClientRect();
+      if (rect.width <= 0 || rect.height <= 0 || (rect.left >= -1 && rect.right <= window.innerWidth + 1)) return [];
+      return [{ className: element.className, left: Math.round(rect.left), right: Math.round(rect.right), width: Math.round(rect.width) }];
+    }).slice(0, 8);
+    return {
+      viewportWidth: window.innerWidth,
+      documentWidth: document.documentElement.scrollWidth,
+      mainClientWidth: main?.clientWidth ?? 0,
+      mainScrollWidth: main?.scrollWidth ?? 0,
+      overviewClientWidth: overview?.clientWidth ?? 0,
+      overviewScrollWidth: overview?.scrollWidth ?? 0,
+      overflowingElements
+    };
+  });
+  if (capturedOverviewLayout.documentWidth > capturedOverviewLayout.viewportWidth || capturedOverviewLayout.mainScrollWidth > capturedOverviewLayout.mainClientWidth || capturedOverviewLayout.overviewScrollWidth > capturedOverviewLayout.overviewClientWidth) {
+    throw new Error(`Captured overview has horizontal overflow: ${JSON.stringify(capturedOverviewLayout)}`);
+  }
+  await historyPage.screenshot({ path: join(outputDir, "sidepanel-captured-overview-long-title-dark.png"), fullPage: true, animations: "disabled" });
   const configurationGuide = historyPage.locator(".configuration-guide");
   await configurationGuide.waitFor();
   const guideLayout = await configurationGuide.evaluate((guide) => ({
@@ -222,6 +245,7 @@ try {
   await historyPage.locator(".history-confirm").click();
   await historyItem.waitFor({ state: "detached" });
   results.push({ name: "sidepanel-history-actions", ...historyLayout, confirmation: true, passed: true });
+  results.push({ name: "sidepanel-captured-overview-long-title", ...capturedOverviewLayout, passed: true });
   results.push({ name: "sidepanel-first-use-ai-guide", ...guideLayout, settingsNavigation: true, passed: true });
   await historyPage.close();
 

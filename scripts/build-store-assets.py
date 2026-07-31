@@ -155,7 +155,7 @@ def add_paragraph(doc, text="", bold=False, color=None, size=11, after=6):
 def set_docx_font(run):
     # Keep the East Asian family explicit so Word and macOS Preview select a
     # Chinese-capable face instead of inheriting the Latin body font.
-    family = "Arial Unicode MS"
+    family = "Hiragino Sans GB"
     run.font.name = family
     r_pr = run._element.get_or_add_rPr()
     r_fonts = r_pr.get_or_add_rFonts()
@@ -206,8 +206,10 @@ def make_docx():
 
     add_paragraph(doc, "二、图片资源", bold=True, color="111812", size=15, after=8)
     add_field(doc, "商店图标", "docs/store-assets/icon-128.png", "128×128，24 位 PNG，无透明层。")
-    add_field(doc, "屏幕截图 1", "docs/store-assets/screenshot-evidence-workspace-1280x800.png", "1280×800，24 位 PNG，无透明层。")
-    add_field(doc, "屏幕截图 2", "docs/store-assets/screenshot-smart-capture-1280x800.png", "1280×800，24 位 PNG，无透明层。")
+    add_field(doc, "屏幕截图 1", "docs/store-assets/screenshot-overview-dark-1280x800.png", "1280×800，夜间模式概览，24 位 PNG，无透明层。")
+    add_field(doc, "屏幕截图 2", "docs/store-assets/screenshot-coverage-dark-1280x800.png", "1280×800，夜间模式覆盖，24 位 PNG，无透明层。")
+    add_field(doc, "屏幕截图 3", "docs/store-assets/screenshot-history-dark-1280x800.png", "1280×800，夜间模式历史，24 位 PNG，无透明层。")
+    add_field(doc, "屏幕截图 4", "docs/store-assets/screenshot-settings-dark-1280x800.png", "1280×800，夜间模式设置，24 位 PNG，无透明层。")
     add_field(doc, "小型宣传图块", "docs/store-assets/promo-small-440x280.png", "440×280，24 位 PNG，无透明层。")
     add_field(doc, "顶部宣传图块", "docs/store-assets/promo-top-1400x560.png", "1400×560，24 位 PNG，无透明层。")
     add_field(doc, "宣传视频", "留空", "项目当前没有公开视频，不要填写无关链接。")
@@ -226,7 +228,7 @@ def make_docx():
         "说明：粘贴上方完整中文说明。",
         "类别：选择开发者工具。语言：选择中文（简体）。",
         "商店图标：上传 icon-128.png。宣传视频：留空。",
-        "屏幕截图：建议上传两张 1280×800 截图，最多不要超过 5 张。",
+        "屏幕截图：按概览、覆盖、历史、设置的顺序上传四张 1280×800 截图。",
         "小型宣传图块：上传 promo-small-440x280.png；顶部宣传图块：上传 promo-top-1400x560.png。",
         "官方网站、主页网址、支持信息页面网址：按上方地址填写；成人内容关闭；商品支持选择公开范围并开启。",
     ]:

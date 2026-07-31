@@ -128,9 +128,9 @@ export async function capturePageDesign(doc: Document, win: Window, root: Parent
     tokens: extractTokens(samples),
     layout,
     layoutProfile: buildLayoutProfile(layout, win.innerWidth),
-    components: components.slice(0, 32),
-    motion: dedupeMotion(motion).slice(0, 32),
-    interactions: interactions.slice(0, 32),
+    components,
+    motion: dedupeMotion(motion),
+    interactions,
     evidence: evidence.slice(0, 40),
     implementationTrace: collectImplementationTrace(doc, win)
   } satisfies Omit<DesignCapture, "analysis">;

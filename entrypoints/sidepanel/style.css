@@ -95,10 +95,11 @@ svg { height: 17px; width: 17px; }
 .mode-selector button.active { background: var(--surface-2); border-color: color-mix(in srgb, var(--accent) 58%, var(--line)); color: var(--text); }
 .mode-selector strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-.overview-layout, .coverage-layout, .settings-layout { display: grid; gap: 18px; }
+.overview-layout, .coverage-layout, .settings-layout { display: grid; gap: 18px; min-width: 0; width: 100%; }
+.overview-layout > *, .coverage-layout > *, .settings-layout > * { min-width: 0; }
 .coverage-secondary { display: grid; gap: 0; min-width: 0; }
-.result-summary, .task-section, .workspace-section { border-bottom: 1px solid var(--line); padding-bottom: 16px; }
-.result-summary-head { align-items: start; display: flex; gap: 12px; justify-content: space-between; }
+.result-summary, .task-section, .workspace-section { border-bottom: 1px solid var(--line); min-width: 0; padding-bottom: 16px; }
+.result-summary-head { align-items: start; display: flex; gap: 12px; justify-content: space-between; min-width: 0; }
 .result-summary-head > div { min-width: 0; }
 .result-summary-head span, .section-heading span { color: var(--accent-strong); display: block; font-size: 10px; font-weight: 900; margin-bottom: 4px; }
 .result-summary-head h2, .section-heading h2 { font-size: 16px; line-height: 1.25; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
