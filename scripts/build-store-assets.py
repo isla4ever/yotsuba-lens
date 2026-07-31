@@ -4,6 +4,7 @@ from docx import Document
 from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.section import WD_SECTION
+from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -156,10 +157,19 @@ def set_docx_font(run):
     # Chinese-capable face instead of inheriting the Latin body font.
     family = "Arial Unicode MS"
     run.font.name = family
-    run._element.get_or_add_rPr().get_or_add_rFonts().set(qn("w:ascii"), family)
-    run._element.get_or_add_rPr().get_or_add_rFonts().set(qn("w:hAnsi"), family)
-    run._element.get_or_add_rPr().get_or_add_rFonts().set(qn("w:eastAsia"), family)
-    run._element.get_or_add_rPr().get_or_add_rFonts().set(qn("w:cs"), family)
+    r_pr = run._element.get_or_add_rPr()
+    r_fonts = r_pr.get_or_add_rFonts()
+    r_fonts.set(qn("w:ascii"), family)
+    r_fonts.set(qn("w:hAnsi"), family)
+    r_fonts.set(qn("w:eastAsia"), family)
+    r_fonts.set(qn("w:cs"), family)
+    r_fonts.set(qn("w:hint"), "eastAsia")
+    lang = r_pr.find(qn("w:lang"))
+    if lang is None:
+        lang = OxmlElement("w:lang")
+        r_pr.append(lang)
+    lang.set(qn("w:val"), "zh-CN")
+    lang.set(qn("w:eastAsia"), "zh-CN")
 
 
 def add_field(doc, label, value, note=""):
@@ -228,9 +238,18 @@ def make_docx():
 
     add_paragraph(doc, "四、隐私权与审核", bold=True, color="111812", size=15, after=8)
     add_field(doc, "隐私权政策网址", "https://github.com/isla4ever/yotsuba-lens/blob/main/docs/privacy.md", "必须使用可公开访问的 HTTPS 地址。")
-    add_field(doc, "单一用途", "采集并整理用户主动发起的网页设计证据，用于设计参照或经授权的重建草案。", "按后台提示填写单一用途。")
-    add_field(doc, "远程代码", "否", "所有 JavaScript 和 WebAssembly 都随扩展包发布，不执行远程返回的代码。")
-    add_field(doc, "数据使用", "网站内容：可见文本片段、设计令牌、布局指标、截图和脱敏后的证据。用户活动：仅在用户主动发起的采集会话中观察到的悬停、聚焦、滚动、打开和时间证据。数据仅用于采集、分析、存储、导出和用户主动请求的 AI 生成，不出售、不用于广告、不用于信用评估，也不用于无关用途。", "与 docs/privacy.md 保持一致，并勾选 Limited Use 声明。")
+    add_field(doc, "单一用途", "Yotsuba Lens 的单一用途是：在用户主动操作时采集当前网页的布局、样式、截图和交互状态证据，并将其整理为设计参照或经授权重建所需的本地证据包。", "按后台提示完整填写，不要只写产品名称。")
+    add_field(doc, "activeTab 权限理由", "仅在用户点击扩展按钮、智能捕获或选取组件时临时访问当前活动标签页，以读取当前页面并完成用户明确发起的采集。扩展不会在后台自动访问其他标签页。")
+    add_field(doc, "scripting 权限理由", "当用户主动开始采集时，按需向当前标签页注入随扩展包发布的本地采集脚本，用于读取页面结构、计算样式和交互状态。不会注入或执行任何远程代码。")
+    add_field(doc, "storage 权限理由", "在 Chrome 本地存储中保存界面语言、主题、采集设置、用户配置的 AI 服务资料、捕获历史、证据元数据和重建项目草稿，以便用户恢复工作区并导出证据。数据默认仅保存在本机。")
+    add_field(doc, "tabs 权限理由", "用于识别用户当前活动标签页、读取其 URL 和标题、在标签页切换时刷新侧边栏状态，并在采集期间与当前页面通信和获取当前可见区域截图。不会用于跟踪与采集无关的浏览活动。")
+    add_field(doc, "sidePanel 权限理由", "用于将捕获模式、采集进度、证据覆盖、历史记录和设置展示在 Chrome 原生侧边栏中，使用户在不离开当前网页的情况下操作和检查采集结果。")
+    add_field(doc, "主机权限理由", "用户可能需要在其有权分析的任意 HTTP 或 HTTPS 网页上采集设计证据，因此扩展需要访问用户当前选择的网站。访问只在用户主动发起捕获、选取组件或补采状态时发生；不会自动扫描所有网站，chrome:// 等受限页面会被拒绝。")
+    add_field(doc, "远程代码", "选择：不，我并未使用远程代码", "所有 JavaScript 依赖和采集逻辑均随扩展包发布。可选 AI 接口只交换数据和文本结果，不下载或执行远程代码。")
+    add_field(doc, "远程代码理由（仅在输入框仍显示时填写）", "本扩展不使用远程代码。所有 JavaScript 依赖和采集逻辑均已打包在提交的软件包中，不通过 eval、new Function、远程 script 或远程模块执行代码。可选 AI 接口只交换结构化数据和文本结果，不下载或执行服务端返回的代码。")
+    add_field(doc, "数据类型勾选", "勾选：身份验证信息、网络记录、用户活动、网站内容。不要勾选：个人身份信息、健康信息、财务和付款信息、个人通讯、位置。", "身份验证信息仅指用户自愿保存的可选 AI 服务 API Key；网络记录仅指用户主动捕获页面的 URL、标题和时间；输入值会被遮罩。")
+    add_field(doc, "数据使用", "身份验证信息：仅处理用户自愿配置的可选 AI 服务 API Key，密钥保存在 Chrome 本地存储中，并仅发送给用户选择的 AI 服务商完成其主动请求。网络记录：仅保存用户主动捕获页面的 URL、标题和时间。网站内容：采集可见文本片段、设计令牌、布局指标、资源地址、截图和脱敏证据。用户活动：仅在用户主动发起的采集会话中观察滚动、悬停、聚焦、打开和时间证据，输入值会被遮罩。数据仅用于采集、分析、本地存储、导出和用户主动请求的 AI 生成，不出售、不用于广告、不用于信用评估，也不用于无关用途。", "与 docs/privacy.md 保持一致。")
+    add_field(doc, "政策确认", "勾选全部三项：不向第三方出售或传输用户数据；不将用户数据用于与单一用途无关的目的；不将用户数据用于信用评估或贷款目的。", "三项都是发布前必选。")
     add_field(doc, "审核测试说明", "1. 安装标准版扩展，不需要账号。\n2. 打开普通公开 HTTPS 网页，点击工具栏中的 Yotsuba Lens，侧边栏应默认打开。\n3. 保持“设计参照”模式，点击“智能捕获”，等待结果出现在侧边栏。\n4. 打开“覆盖”和“历史”查看证据状态。\n5. 导出证据包；此流程不需要 AI 密钥。\n6. 仅在获得授权时选择“经授权重建”，确认授权后再测试重建证据。\n扩展不会自动导航、提交表单或执行合成点击；chrome:// 等受限页面会被拒绝。", "完整粘贴到审核测试说明。")
 
     add_paragraph(doc, "五、提交前检查", bold=True, color="111812", size=15, after=8)

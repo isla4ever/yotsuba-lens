@@ -4,6 +4,16 @@ Yotsuba Lens is a local-first browser extension. This document describes the
 behavior of the source build in this repository; a modified distribution may
 behave differently.
 
+## 中文摘要
+
+Yotsuba Lens 仅在用户主动操作时采集当前网页的布局、样式、截图和交互状态证据，
+并将其整理为设计参照或经授权重建所需的本地证据包。Chrome 应用商店披露的用户
+数据类型包括：身份验证信息、网络记录、用户活动和网站内容。其中，身份验证信息
+仅指用户自愿保存的可选 AI 服务 API Key；该密钥保存在 Chrome 本地存储中，且只会
+作为授权凭据发送给用户选择的 AI 服务商。其他捕获数据默认保存在本机，只有用户
+主动请求 AI 生成时，精简后的设计证据才会发送给其选择的服务商。Yotsuba Lens
+不会出售这些数据，也不会将其用于广告、信用评估或与单一用途无关的目的。
+
 ## Activation And Default Behavior
 
 - The extension does not register a content script that runs automatically on
@@ -25,6 +35,11 @@ the Side Panel or clear all extension data through the browser.
 A reference capture can include design tokens, layout metrics, component
 summaries, visible text excerpts, resource clues, interaction samples, motion
 timing, and evidence metadata.
+
+For a page the user explicitly captures, workspace history can store the page
+URL, page title, and capture time so the user can identify routes, reopen local
+evidence, and name exported files. Yotsuba Lens does not build a background
+record of unrelated browsing activity.
 
 An authorized Rebuild capture can additionally include screenshots, masked
 rrweb events, and, in the Collector build, sanitized DOMSnapshot, matched CSS,
@@ -52,7 +67,10 @@ Provider base URL, model, endpoint mode, and API key are saved only when the
 user chooses to save them. Profiles are stored in `browser.storage.local` on
 the user's machine and are not encrypted by Yotsuba Lens. Profiles can be
 cleared from the AI settings UI. Without a configured key, users can export an
-evidence-only pack.
+evidence-only pack. For Chrome Web Store disclosure, the optional provider API
+key is classified as authentication information. It is sent only to the
+provider selected by the user as an authorization credential for an explicit AI
+request.
 
 ## Chrome Web Store Limited Use
 
@@ -74,12 +92,12 @@ single purpose.
 
 | Permission | Why it is requested |
 | --- | --- |
-| `activeTab` | Work with the page the user is actively inspecting. |
-| `scripting` | Inject the page bridge after a user action. |
-| `storage` | Store locale, theme, workspace metadata, and optional AI provider settings locally. |
-| `tabs` | Identify the active tab and exchange capture messages. |
-| `sidePanel` | Provide the persistent coverage, history, route, and settings workspace. |
-| `<all_urls>` | Let users initiate capture on arbitrary websites. This host permission does not cause automatic capture or automatic page injection. |
+| `activeTab` | Temporarily access the page after the user clicks the extension action, starts Smart Capture, or selects a component. |
+| `scripting` | Inject only the local, packaged page bridge after a user action; no remote code is injected or executed. |
+| `storage` | Store locale, theme, workspace metadata, bounded capture history, and optional AI provider settings locally. |
+| `tabs` | Identify the active tab, read its URL and title, refresh the Side Panel after tab changes, exchange capture messages, and capture the current visible area. |
+| `sidePanel` | Keep capture controls, progress, evidence coverage, history, and settings visible without navigating away from the inspected page. |
+| `<all_urls>` | Let users initiate capture on an HTTP or HTTPS website they are authorized to inspect. This host permission does not cause automatic capture or automatic page injection. |
 
 The separately built Collector adds Chrome's `debugger` permission. It is used
 only after explicit Rebuild authorization for bounded DOMSnapshot, CSS,
