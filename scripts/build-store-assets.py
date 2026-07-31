@@ -34,172 +34,47 @@ def font(size, bold=False):
     return ImageFont.load_default()
 
 
-def fit_text(draw, text, max_width, size, bold=False):
-    f = font(size, bold)
-    lines, current = [], ""
-    for char in text:
-        candidate = current + char
-        if draw.textbbox((0, 0), candidate, font=f)[2] <= max_width or not current:
-            current = candidate
-        else:
-            lines.append(current)
-            current = char
-    if current:
-        lines.append(current)
-    return lines, f
+def ai_asset(name):
+    path = ASSETS / "source" / name
+    if not path.exists():
+        raise FileNotFoundError(f"Missing required gpt-image-2 source asset: {path}")
+    return Image.open(path).convert("RGB")
 
 
-def draw_mark(draw, xy, size, background=LIME):
-    x, y = xy
-    draw.rounded_rectangle((x, y, x + size, y + size), radius=size // 5, fill=background)
-    petal = size * 0.25
-    center = (x + size * 0.5, y + size * 0.52)
-    for dx, dy in [(0, -petal * 0.9), (petal * 0.9, 0), (0, petal * 0.9), (-petal * 0.9, 0)]:
-        bbox = (
-            center[0] + dx - petal,
-            center[1] + dy - petal,
-            center[0] + dx + petal,
-            center[1] + dy + petal,
-        )
-        draw.ellipse(bbox, fill=INK)
-    draw.ellipse(
-        (center[0] - petal * 0.36, center[1] - petal * 0.36, center[0] + petal * 0.36, center[1] + petal * 0.36),
-        fill=background,
-    )
-
-
-def draw_brand(draw, x, y, size=48, dark=False):
-    draw_mark(draw, (x, y), size, "#c8ff56" if dark else LIME)
-    f = font(round(size * 0.46), True)
-    draw.text((x + size + 14, y + size * 0.18), "Yotsuba Lens", fill=LIGHT if dark else INK, font=f)
-
-
-def paste_panel(canvas, path, box):
-    panel = Image.open(path).convert("RGB")
-    panel.thumbnail((box[2] - box[0], box[3] - box[1]), Image.Resampling.LANCZOS)
-    x = box[0] + ((box[2] - box[0]) - panel.width) // 2
-    y = box[1] + ((box[3] - box[1]) - panel.height) // 2
-    canvas.paste(panel, (x, y))
-    return (x, y, panel.width, panel.height)
+def cover_crop(image, width, height, horizontal="center", vertical="center"):
+    target_ratio = width / height
+    source_ratio = image.width / image.height
+    if source_ratio > target_ratio:
+        crop_width = round(image.height * target_ratio)
+        left = 0 if horizontal == "left" else (image.width - crop_width) // 2
+        box = (left, 0, left + crop_width, image.height)
+    else:
+        crop_height = round(image.width / target_ratio)
+        top = 0 if vertical == "top" else (image.height - crop_height) // 2
+        box = (0, top, image.width, top + crop_height)
+    return image.crop(box).resize((width, height), Image.Resampling.LANCZOS)
 
 
 def make_icon():
+    source = ai_asset("yotsuba-lens-logo-final-gpt-image-2.png")
+    square_size = min(source.width, source.height)
+    left = (source.width - square_size) // 2
+    top = (source.height - square_size) // 2
+    source = source.crop((left, top, left + square_size, top + square_size))
     for size in [16, 32, 48, 128]:
-        scale = 8
-        canvas = Image.new("RGB", (size * scale, size * scale), DARK)
-        draw = ImageDraw.Draw(canvas)
-        draw_mark(draw, (0, 0), size * scale, "#c8ff56")
-        canvas.resize((size, size), Image.Resampling.LANCZOS).save(PUBLIC_ICON / f"{size}.png", format="PNG", optimize=True)
+        source.resize((size, size), Image.Resampling.LANCZOS).save(PUBLIC_ICON / f"{size}.png", format="PNG", optimize=True)
     Image.open(PUBLIC_ICON / "128.png").save(ASSETS / "icon-128.png", format="PNG", optimize=True)
 
 
 def make_small_promo():
-    ai_base_path = ASSETS / "source" / "yotsuba-lens-ai-small-promo-base.png"
-    if ai_base_path.exists():
-        source = Image.open(ai_base_path).convert("RGB")
-        crop_height = round(source.width * 280 / 440)
-        crop_top = max(0, source.height - crop_height - 72)
-        image = source.crop((0, crop_top, source.width, crop_top + crop_height)).resize((440, 280), Image.Resampling.LANCZOS)
-
-        # Keep the generated clover visible while creating a quiet copy area.
-        shade = Image.new("RGB", (440, 280), DARK)
-        mask = Image.new("L", (440, 280), 0)
-        mask_draw = ImageDraw.Draw(mask)
-        mask_draw.rectangle((0, 0, 225, 280), fill=150)
-        for x in range(225, 315):
-            alpha = round(150 * (315 - x) / 90)
-            mask_draw.line((x, 0, x, 280), fill=alpha)
-        image.paste(shade, (0, 0), mask)
-    else:
-        image = Image.new("RGB", (440, 280), DARK)
-
-    draw = ImageDraw.Draw(image)
-    draw_brand(draw, 28, 28, 44, dark=True)
-    draw.text((28, 118), "让 AI 先看懂设计", fill=LIGHT, font=font(29, True))
-    draw.text((28, 166), "结构 · 状态 · 动效", fill="#c8ff56", font=font(18, True))
-    draw.text((28, 205), "网页设计证据采集器", fill="#b8c1b9", font=font(15))
+    source = ai_asset("yotsuba-lens-promo-small-final-gpt-image-2.png")
+    image = cover_crop(source, 440, 280, horizontal="left")
     image.save(ASSETS / "promo-small-440x280.png", format="PNG", optimize=True)
 
 
-def draw_top_copy(image):
-    draw = ImageDraw.Draw(image)
-    draw.rectangle((0, 0, 18, 560), fill="#c8ff56")
-    draw_brand(draw, 64, 48, 54, dark=True)
-    draw.text((64, 180), "网页设计证据采集器", fill="#c8ff56", font=font(25, True))
-    lines, f = fit_text(draw, "捕获结构、状态与动效\n让 AI 编码更有依据", 560, 52, True)
-    y = 230
-    for line in lines:
-        draw.text((64, y), line, fill=LIGHT, font=f)
-        y += 64
-    draw.text((64, 390), "设计参照 · 经授权重建 · 智能捕获 · 缺口提示", fill="#b8c1b9", font=font(22))
-    return draw
-
-
-def sidepanel_viewport(target_width, target_height):
-    candidates = [
-        ROOT / "output" / "playwright" / "extension-ui" / "sidepanel-settings-zh-light.png",
-        ROOT / "output" / "playwright" / "extension-ui" / "sidepanel-zh-light.png",
-    ]
-    panel_path = next((candidate for candidate in candidates if candidate.exists()), None)
-    if panel_path is None:
-        return None
-    panel = Image.open(panel_path).convert("RGB")
-    panel = panel.crop((0, 0, panel.width, min(panel.height, 800)))
-    panel = panel.resize((target_width, round(panel.height * target_width / panel.width)), Image.Resampling.LANCZOS)
-    return panel.crop((0, 0, target_width, min(panel.height, target_height)))
-
-
 def make_top_promo():
-    ai_base_path = ASSETS / "source" / "yotsuba-lens-ai-marketing-base.png"
-    if ai_base_path.exists():
-        source = Image.open(ai_base_path).convert("RGB")
-        crop_height = min(source.height, round(source.width * 560 / 1400))
-        crop_top = max(0, min(60, source.height - crop_height))
-        image = source.crop((0, crop_top, source.width, crop_top + crop_height)).resize((1400, 560), Image.Resampling.LANCZOS)
-        shade = Image.new("RGB", (1400, 560), DARK)
-        mask = Image.new("L", (1400, 560), 0)
-        mask_draw = ImageDraw.Draw(mask)
-        mask_draw.rectangle((0, 0, 520, 560), fill=208)
-        for x in range(520, 700):
-            alpha = round(208 * (700 - x) / 180)
-            mask_draw.line((x, 0, x, 560), fill=alpha)
-        image.paste(shade, (0, 0), mask)
-        draw = draw_top_copy(image)
-        panel = sidepanel_viewport(292, 452)
-        if panel is not None:
-            draw.rectangle((1098, 106, 1392, 560), fill="#f5f6f0", outline="#cdd2c9", width=2)
-            image.paste(panel, (1100, 108))
-        image.save(ASSETS / "promo-top-1400x560.png", format="PNG", optimize=True)
-        return
-
-    image = Image.new("RGB", (1400, 560), DARK)
-    draw = draw_top_copy(image)
-    frame = (650, 72, 1340, 488)
-    draw.rounded_rectangle(frame, radius=12, fill="#ffffff", outline="#cdd2c9", width=2)
-    draw.rectangle((652, 74, 1338, 110), fill="#e9ece4")
-    for dot_x, color in [(672, "#ef7567"), (690, "#e7bb55"), (708, "#76b85d")]:
-        draw.ellipse((dot_x - 5, 87, dot_x + 5, 97), fill=color)
-    draw.rounded_rectangle((734, 82, 1318, 102), radius=8, fill="#ffffff", outline="#d6ddd2")
-    draw.text((748, 85), "atlas.example/design-system", fill=MUTED, font=font(12))
-
-    page_left, page_top, page_right, page_bottom = 652, 110, 1044, 486
-    draw.rectangle((page_left, page_top, page_right, page_bottom), fill="#f8faf6")
-    draw.text((680, 136), "Atlas Studio", fill=INK, font=font(22, True))
-    draw.text((680, 170), "Product design workspace", fill=MUTED, font=font(13))
-    draw.rounded_rectangle((680, 210, 1016, 286), radius=8, fill="#eef5d4")
-    draw.text((700, 232), "把复杂页面变成清晰证据", fill=INK, font=font(16, True))
-    for index, label in enumerate(["结构", "状态", "动效"]):
-        card_x = 680 + index * 113
-        draw.rounded_rectangle((card_x, 312, card_x + 100, 410), radius=7, fill="#ffffff", outline="#dfe5dc")
-        draw.text((card_x + 12, 328), label, fill=LIME_DARK, font=font(12, True))
-        draw.rectangle((card_x + 12, 360, card_x + 84, 367), fill="#dfe7d7")
-        draw.rectangle((card_x + 12, 380, card_x + 72, 387), fill="#e8ede5")
-
-    draw.rectangle((1044, 110, 1338, 486), fill="#f5f6f0")
-    draw.line((1044, 110, 1044, 486), fill="#cdd2c9", width=2)
-    panel = sidepanel_viewport(294, 376)
-    if panel is not None:
-        image.paste(panel, (1044, 110))
+    source = ai_asset("yotsuba-lens-promo-top-final-gpt-image-2.png")
+    image = cover_crop(source, 1400, 560, vertical="top")
     image.save(ASSETS / "promo-top-1400x560.png", format="PNG", optimize=True)
 
 

@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/store-assets/icon-128.png" alt="Yotsuba Lens four-leaf lens mark" width="112" height="112" />
+</p>
+
 # Yotsuba Lens
 
 > Turn “use this website as a reference” into traceable, executable, and testable frontend context for AI.

@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/store-assets/icon-128.png" alt="Yotsuba Lens 四叶草镜头标志" width="112" height="112" />
+</p>
+
 # Yotsuba Lens
 
 > 把“参考这个网站”变成可追溯、可执行、可验收的 AI 前端上下文。
