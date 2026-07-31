@@ -94,21 +94,34 @@ def make_icon():
 
 
 def make_small_promo():
-    image = Image.new("RGB", (440, 280), BG)
+    ai_base_path = ASSETS / "source" / "yotsuba-lens-ai-small-promo-base.png"
+    if ai_base_path.exists():
+        source = Image.open(ai_base_path).convert("RGB")
+        crop_height = round(source.width * 280 / 440)
+        crop_top = max(0, source.height - crop_height - 72)
+        image = source.crop((0, crop_top, source.width, crop_top + crop_height)).resize((440, 280), Image.Resampling.LANCZOS)
+
+        # Keep the generated clover visible while creating a quiet copy area.
+        shade = Image.new("RGB", (440, 280), DARK)
+        mask = Image.new("L", (440, 280), 0)
+        mask_draw = ImageDraw.Draw(mask)
+        mask_draw.rectangle((0, 0, 225, 280), fill=150)
+        for x in range(225, 315):
+            alpha = round(150 * (315 - x) / 90)
+            mask_draw.line((x, 0, x, 280), fill=alpha)
+        image.paste(shade, (0, 0), mask)
+    else:
+        image = Image.new("RGB", (440, 280), DARK)
+
     draw = ImageDraw.Draw(image)
-    draw.rectangle((420, 0, 440, 280), fill=LIME)
-    draw_brand(draw, 30, 30, 58)
-    lines, f = fit_text(draw, "让 AI 先看懂设计", 330, 34, True)
-    y = 135
-    for line in lines:
-        draw.text((30, y), line, fill=INK, font=f)
-        y += 38
-    draw_mark(draw, (318, 158), 70, background="#d8f783")
+    draw_brand(draw, 28, 28, 44, dark=True)
+    draw.text((28, 118), "让 AI 先看懂设计", fill=LIGHT, font=font(29, True))
+    draw.text((28, 166), "结构 · 状态 · 动效", fill="#c8ff56", font=font(18, True))
+    draw.text((28, 205), "网页设计证据采集器", fill="#b8c1b9", font=font(15))
     image.save(ASSETS / "promo-small-440x280.png", format="PNG", optimize=True)
 
 
-def make_top_promo():
-    image = Image.new("RGB", (1400, 560), DARK)
+def draw_top_copy(image):
     draw = ImageDraw.Draw(image)
     draw.rectangle((0, 0, 18, 560), fill="#c8ff56")
     draw_brand(draw, 64, 48, 54, dark=True)
@@ -119,6 +132,48 @@ def make_top_promo():
         draw.text((64, y), line, fill=LIGHT, font=f)
         y += 64
     draw.text((64, 390), "设计参照 · 经授权重建 · 智能捕获 · 缺口提示", fill="#b8c1b9", font=font(22))
+    return draw
+
+
+def sidepanel_viewport(target_width, target_height):
+    candidates = [
+        ROOT / "output" / "playwright" / "extension-ui" / "sidepanel-settings-zh-light.png",
+        ROOT / "output" / "playwright" / "extension-ui" / "sidepanel-zh-light.png",
+    ]
+    panel_path = next((candidate for candidate in candidates if candidate.exists()), None)
+    if panel_path is None:
+        return None
+    panel = Image.open(panel_path).convert("RGB")
+    panel = panel.crop((0, 0, panel.width, min(panel.height, 800)))
+    panel = panel.resize((target_width, round(panel.height * target_width / panel.width)), Image.Resampling.LANCZOS)
+    return panel.crop((0, 0, target_width, min(panel.height, target_height)))
+
+
+def make_top_promo():
+    ai_base_path = ASSETS / "source" / "yotsuba-lens-ai-marketing-base.png"
+    if ai_base_path.exists():
+        source = Image.open(ai_base_path).convert("RGB")
+        crop_height = min(source.height, round(source.width * 560 / 1400))
+        crop_top = max(0, min(60, source.height - crop_height))
+        image = source.crop((0, crop_top, source.width, crop_top + crop_height)).resize((1400, 560), Image.Resampling.LANCZOS)
+        shade = Image.new("RGB", (1400, 560), DARK)
+        mask = Image.new("L", (1400, 560), 0)
+        mask_draw = ImageDraw.Draw(mask)
+        mask_draw.rectangle((0, 0, 520, 560), fill=208)
+        for x in range(520, 700):
+            alpha = round(208 * (700 - x) / 180)
+            mask_draw.line((x, 0, x, 560), fill=alpha)
+        image.paste(shade, (0, 0), mask)
+        draw = draw_top_copy(image)
+        panel = sidepanel_viewport(292, 452)
+        if panel is not None:
+            draw.rectangle((1098, 106, 1392, 560), fill="#f5f6f0", outline="#cdd2c9", width=2)
+            image.paste(panel, (1100, 108))
+        image.save(ASSETS / "promo-top-1400x560.png", format="PNG", optimize=True)
+        return
+
+    image = Image.new("RGB", (1400, 560), DARK)
+    draw = draw_top_copy(image)
     frame = (650, 72, 1340, 488)
     draw.rounded_rectangle(frame, radius=12, fill="#ffffff", outline="#cdd2c9", width=2)
     draw.rectangle((652, 74, 1338, 110), fill="#e9ece4")
@@ -142,15 +197,8 @@ def make_top_promo():
 
     draw.rectangle((1044, 110, 1338, 486), fill="#f5f6f0")
     draw.line((1044, 110, 1044, 486), fill="#cdd2c9", width=2)
-    panel_path = ROOT / "output" / "playwright" / "extension-ui" / "sidepanel-settings-zh-light.png"
-    if not panel_path.exists():
-        panel_path = ROOT / "output" / "playwright" / "extension-ui" / "sidepanel-zh-light.png"
-    if panel_path.exists():
-        panel = Image.open(panel_path).convert("RGB")
-        panel = panel.crop((0, 0, panel.width, min(panel.height, 800)))
-        target_width = 294
-        panel = panel.resize((target_width, round(panel.height * target_width / panel.width)), Image.Resampling.LANCZOS)
-        panel = panel.crop((0, 0, target_width, min(panel.height, 376)))
+    panel = sidepanel_viewport(294, 376)
+    if panel is not None:
         image.paste(panel, (1044, 110))
     image.save(ASSETS / "promo-top-1400x560.png", format="PNG", optimize=True)
 
