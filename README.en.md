@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/readme-assets/readme-hero.jpg" alt="Yotsuba Lens turns web structure, states, and motion into evidence for AI coding" width="100%" />
+  <img src="docs/store-assets/icon-128.png" alt="Yotsuba Lens four-leaf lens icon" width="128" height="128" />
 </p>
 
 <h1 align="center">Yotsuba Lens</h1>
@@ -14,6 +14,10 @@
 </p>
 
 <p align="center"><a href="README.md">中文</a> · <strong>English</strong></p>
+
+<p align="center">
+  <img src="docs/readme-assets/readme-hero.jpg" alt="Yotsuba Lens turns web structure, states, and motion into evidence for AI coding" width="100%" />
+</p>
 
 Yotsuba Lens is an open-source, **evidence-first** Chrome extension for AI coding, vibe coding, and frontend reconstruction. It goes beyond a screenshot by translating a live page into visual tokens, layout structure, component grammar, interaction states, motion evidence, implementation clues, and acceptance rules.
 

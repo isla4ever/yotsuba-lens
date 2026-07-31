@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/readme-assets/readme-hero.jpg" alt="Yotsuba Lens 将网页结构、状态与动效转化为 AI 编码证据" width="100%" />
+  <img src="docs/store-assets/icon-128.png" alt="Yotsuba Lens 四叶草镜头图标" width="128" height="128" />
 </p>
 
 <h1 align="center">Yotsuba Lens</h1>
@@ -14,6 +14,10 @@
 </p>
 
 <p align="center"><strong>中文</strong> · <a href="README.en.md">English</a></p>
+
+<p align="center">
+  <img src="docs/readme-assets/readme-hero.jpg" alt="Yotsuba Lens 将网页结构、状态与动效转化为 AI 编码证据" width="100%" />
+</p>
 
 Yotsuba Lens（四叶草设计透镜）是一个 **evidence-first（证据优先）** 的开源 Chrome 扩展，面向 AI Coding、Vibe Coding 与前端设计还原。它不只截一张图，而是把真实网页转译为视觉 Token、布局结构、组件语法、交互状态、动效证据、实现线索和验收规则。
 
