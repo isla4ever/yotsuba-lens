@@ -3,135 +3,137 @@
 </p>
 
 <h1 align="center">Yotsuba Style Extractor</h1>
-<p align="center"><strong>Extract colors, layouts, components, interactions, and motion into a prompt you can use.</strong></p>
+<p align="center"><strong>Turn a webpage's colors, layout, components, interactions, and motion into a practical prompt and design reference.</strong></p>
 
 <p align="center">
+  <a href="https://chromewebstore.google.com/detail/yotsuba-lens-%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E8%AF%81%E6%8D%AE%E9%87%87%E9%9B%86/imbmglmdajepbagbflgalkfokofcilag"><img src="https://img.shields.io/badge/Chrome-Install_Now-4285F4?logo=googlechrome&logoColor=white" alt="Install from the Chrome Web Store" /></a>
   <a href="https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml"><img src="https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <img src="https://img.shields.io/badge/version-0.3.1-2563eb" alt="Version 0.3.1" />
   <img src="https://img.shields.io/badge/Chrome-MV3-4285f4" alt="Chrome MV3" />
-  <img src="https://img.shields.io/badge/status-published-16a34a" alt="Published" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-16a34a" alt="MIT License" /></a>
 </p>
 
 <p align="center"><a href="README.md">中文</a> · <strong>English</strong></p>
 
 <p align="center">
-  <img src="docs/readme-assets/readme-hero.jpg" alt="Yotsuba extracts webpage styles and generates a reusable prompt" width="100%" />
+  <a href="https://chromewebstore.google.com/detail/yotsuba-lens-%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E8%AF%81%E6%8D%AE%E9%87%87%E9%9B%86/imbmglmdajepbagbflgalkfokofcilag">
+    <img src="docs/readme-assets/readme-hero.jpg" alt="Yotsuba extracts webpage styles and generates a practical prompt" width="100%" />
+  </a>
 </p>
 
-Found a webpage you like but do not know how to describe its colors, layout, or interactions to a coding tool? Run Smart Capture once. Yotsuba organizes the page style, component structure, interaction states, and motion into a practical prompt and reference pack.
-
-```text
-Open page → Smart Capture → Review styles and gaps → Generate prompt / reference pack → Start building
-```
+Found a webpage you like but struggle to describe its design language to an AI coding tool? Yotsuba reads the visual and interaction details that actually exist on the current page, then organizes them into a structured prompt, a design reference, and verification criteria. It replaces vague “make it look similar” requests with usable implementation context.
 
 > [!IMPORTANT]
-> Version `0.3.0` is live in the Chrome Web Store. This repository is preparing the clearer `0.3.1` naming and description update. Use it only on pages you are authorized to analyze, reference, or reproduce.
+> Version `0.3.0` is live in the Chrome Web Store. The clearer `0.3.1` naming and description update has been submitted for review and is expected to arrive soon. Existing installations will update automatically after approval. Use Yotsuba only on pages you are authorized to analyze, reference, or reproduce.
 
-## What It Helps You Do
+## Get Started
 
-| Your goal | What Yotsuba does | What you get |
+### 1. Install the extension
+
+[**Install Yotsuba from the Chrome Web Store**](https://chromewebstore.google.com/detail/yotsuba-lens-%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E8%AF%81%E6%8D%AE%E9%87%87%E9%9B%86/imbmglmdajepbagbflgalkfokofcilag)
+
+No source checkout or Node.js installation is required. Pin the extension to the Chrome toolbar for quick access.
+
+### 2. Open a webpage
+
+Visit a regular `http` or `https` page and click the extension icon. Yotsuba opens in Chrome's Side Panel by default, keeping the source page visible beside your workspace.
+
+### 3. Capture and generate
+
+Choose **Smart Capture**, review the extracted styles and missing states, then generate a prompt or export the reference pack. Basic page extraction requires no model setup. When you request AI-generated output, the first-use guide helps you add your own compatible model configuration.
+
+```text
+Open page → Smart Capture → Review result → Generate prompt / Export reference
+```
+
+## What You Get
+
+| Use case | What Yotsuba extracts | Result |
 | --- | --- | --- |
-| **Reference a webpage style** | Extract colors, type, spacing, layout, components, and visual effects | A style reference you can adapt to a new project |
-| **Generate a better prompt** | Turn captured page features into structured implementation requirements | A prompt ready for common coding tools |
-| **Reproduce an authorized page** | Preserve key screenshots, dimensions, states, and checks | A bounded rebuild pack instead of a vague “make it similar” request |
-| **Capture hover and open states** | Point out missing states and ask only for the necessary follow-up | No need to record the entire browsing session |
+| **Describe a style to an AI tool** | Colors, type, spacing, radii, shadows, layout, and component patterns | A structured prompt ready for an AI coding tool |
+| **Use a strong website as inspiration** | Transferable visual language, component styles, interaction, and motion clues | A design reference without the source brand or content |
+| **Reproduce an authorized page** | Key screenshots, dimensions, page states, and verification requirements | A bounded rebuild reference that can be extended and checked |
+| **Fill in hidden states** | Hover, focus, open, scroll, and responsive gaps | Up to three necessary follow-up tasks instead of a full recording session |
 
-## Real Workspace
+## Side Panel Workspace
 
 <p align="center">
-  <img src="docs/readme-assets/workspace-showcase.jpg" alt="Yotsuba Lens coverage and capture settings beside a real webpage" width="100%" />
+  <img src="docs/readme-assets/workspace-showcase.jpg" alt="Yotsuba capture results and settings beside a live webpage" width="100%" />
 </p>
 
-Clicking the extension action opens the Side Panel by default. Overview, coverage, history, and settings share one workspace, while the popup keeps only frequent actions. Capture results show extracted content, missing states, and the next useful task.
+Overview, coverage, history, and settings share one Side Panel. The popup keeps only frequent actions. After capture, you can immediately see what was found, which states are missing, and what to do next.
 
 <details>
   <summary><strong>View history and delete confirmation</strong></summary>
   <br />
   <p align="center">
-    <img src="docs/store-assets/screenshot-history-dark-1280x800.png" alt="Yotsuba Lens history and delete confirmation" width="960" />
+    <img src="docs/store-assets/screenshot-history-dark-1280x800.png" alt="Yotsuba history and delete confirmation" width="960" />
   </p>
 </details>
 
-## From Webpage To Prompt And Reference Pack
+## Two Ways To Use It
+
+| Mode | Best for | Boundary |
+| --- | --- | --- |
+| **Reference** | Borrowing colors, layout, components, motion, or interaction ideas for an original interface | Extract transferable design rules without copying the source brand, copy, or assets |
+| **Authorized Rebuild** | Reproducing an explicit page, viewport, and state set within an authorized scope | Be accountable only for captured evidence; uncaptured states remain visible gaps |
 
 <p align="center">
-  <img src="docs/readme-assets/evidence-flow.jpg" alt="Yotsuba Lens turns live webpage evidence into Prompt, Evidence, and Acceptance outputs" width="100%" />
+  <img src="docs/readme-assets/evidence-flow.jpg" alt="Yotsuba turns webpage details into a prompt and reference pack" width="100%" />
 </p>
 
-Generated prompts are grounded in the page features that were actually captured. Missing states remain visible instead of being presented as a complete reproduction.
+Generated output is grounded in captured page details. Missing interaction or responsive states remain marked as gaps rather than being presented as a complete reproduction.
 
-| Mode | Best for | Output boundary |
-| --- | --- | --- |
-| **Reference** | Borrowing visual, layout, motion, or interaction ideas for an original interface | Extract transferable design grammar without copying the reference brand, content, or assets |
-| **Authorized Rebuild** | Building a verifiable draft for an explicit page, viewport set, and state set | Be accountable only for captured evidence; uncaptured states remain gaps |
+## Privacy And Safety
 
-## Core Capabilities
+- Page analysis and exports are processed locally by default.
+- The extension reads the active page only after you start a capture. It does not scan every website in the background.
+- Data is sent to a selected model provider only when you configure a model and explicitly request AI output.
+- AI requests exclude cookies, local storage, credentials, raw DOM, screenshots, and unmasked input values.
+- The standard Chrome Web Store build does not request the `debugger` permission.
 
-| Capability | Implementation boundary |
-| --- | --- |
-| **Smart Capture safety budget** | Baseline work shares a 15-second budget; Rebuild screenshots and CDP finalization use independent timeouts and circuit breakers, with cancellation and degradation for mutation storms or very large DOMs |
-| **Guided supplemental capture** | Merge gaps into at most three scroll, hover, focus, open, or responsive tasks; users perform real actions while the extension only observes and saves the target state |
-| **Side Panel by default** | Mode, capture, coverage, history, configuration, and export stay together; first-use guidance appears before generating AI output |
-| **On-demand injection and split permissions** | The page bridge is injected only after a user action; Standard excludes `debugger`, while deeper CDP collection is isolated in Collector |
-| **Scene-based acceptance** | Rebuild Packs can drive screenshot, pixel, geometry, motion-checkpoint, and browser-error checks without inventing uncaptured behavior |
+See [Privacy And Permissions](docs/privacy.md) for the complete permission and data boundary.
 
-## More Than Screenshot-To-Prompt
+## Open Source And Advanced Usage
 
-| Dimension | Typical screenshot workflow | Yotsuba Lens |
-| --- | --- | --- |
-| Input | One or several static screenshots | DOM, tokens, geometry, screenshots, events, motion, and runtime clues |
-| Interaction states | Described manually or guessed by a model | Real hover, focus, scroll, open, and responsive scene evidence |
-| Missing information | Often filled in as an imagined result | Recorded explicitly as `missing`, `partial`, or `not-applicable` |
-| Output | One generic prompt | Evidence Pack, AI Prompt Pack, or Rebuild Draft Pack |
-| Acceptance | Visual judgment alone | Explainable candidate reports based on captured scenes |
-
-## Workflow
-
-1. **Open a page**: visit a normal `http` or `https` page and click Yotsuba Lens; the Side Panel opens by default.
-2. **Choose the outcome**: use Reference for original design direction or Rebuild for an authorized implementation draft.
-3. **Run Smart Capture**: collect baseline evidence; the page bridge is injected on demand only after this kind of user action.
-4. **Review gaps**: use the Side Panel and complete guided capture only for important missing states.
-5. **Organize the project**: import a Recorder plan or add up to eight same-origin routes to a Rebuild project.
-6. **Export and build**: hand the evidence or prompt pack to an AI coding agent.
-7. **Verify the candidate**: replay only evidenced Rebuild scenes without inventing uncaptured behavior.
-
-## Output Packs
-
-| Pack | Main files | Use it for |
-| --- | --- | --- |
-| **Evidence-only Pack** | `README.md`, `skill.md`, `evidence.json` | Saving, sharing, or handing structured design evidence to any AI tool |
-| **AI Prompt Pack** | Evidence files, `ai-coding-prompt.md`, `ai-implementation-brief.md` | Generating a target-specific coding prompt with an OpenAI-compatible model |
-| **Rebuild Draft Pack** | `capture-project-v2.json`, `scene-manifest.json`, `acceptance.json`, screenshots, and bounded artifacts | Preserving authorized baselines, explicit gaps, and candidate acceptance rules |
-
-## Install
+<details>
+  <summary><strong>Install the standard build from source</strong></summary>
+  <br />
 
 Requirements: Node.js `>=22.13.0`, npm `>=10`, and Chrome or another Chromium browser.
-
-### Standard Build
 
 ```bash
 npm ci
 npm run build
 ```
 
-Open `chrome://extensions`, enable **Developer mode**, choose **Load unpacked**, and select:
+Open `chrome://extensions`, enable **Developer mode**, choose **Load unpacked**, and select `<project-root>/.output/chrome-mv3`.
+</details>
 
-```text
-<project-root>/.output/chrome-mv3
-```
-
-The standard build does not request Chrome's `debugger` permission. Use it for everyday Reference and baseline Rebuild capture.
-
-### Collector Build
+<details>
+  <summary><strong>Collector deep-capture build</strong></summary>
+  <br />
 
 ```bash
 npm run build:collector
 ```
 
-Load `<project-root>/.output/collector/chrome-mv3`. Collector adds `debugger` for authorized DOMSnapshot, matched CSS, geometry, viewport, and animation evidence. Canvas bitmap capture is off by default and bounded by count, pixel-area, and file-size budgets.
+Load `<project-root>/.output/collector/chrome-mv3`. Collector is for authorized deep capture only. It adds the `debugger` permission to collect budgeted DOMSnapshot, matched-style, geometry, viewport, and animation evidence. It is not distributed through the Chrome Web Store.
+</details>
 
-## Rebuild Candidate Acceptance
+<details>
+  <summary><strong>Exports and candidate verification</strong></summary>
+  <br />
+
+Yotsuba can export three types of material:
+
+| Export | Best for |
+| --- | --- |
+| **Design Evidence Pack** | Saving, sharing, or handing structured evidence to any AI tool |
+| **AI Prompt Pack** | Generating project-specific implementation requirements and a coding brief |
+| **Rebuild Draft Pack** | Preserving authorized baselines, page states, explicit gaps, and verification rules |
+
+Verify an authorized candidate page with:
 
 ```bash
 npm run verify:rebuild -- \
@@ -139,68 +141,28 @@ npm run verify:rebuild -- \
   --url http://localhost:3000
 ```
 
-The verifier replays only initial, scroll, hover, focus, and open states supported by `scene-manifest.json`. It produces JSON/HTML reports, candidate screenshots, diffs, and focused repair context for an agent.
+The verifier checks only pages and states supported by captured evidence. See the [AstroWind reconstruction benchmark](docs/astrowind-rebuild-benchmark.md) and [Bilibili homepage capture and reconstruction benchmark](docs/bilibili-rebuild-benchmark.md) for real examples.
+</details>
 
-See the [AstroWind reconstruction benchmark](docs/astrowind-rebuild-benchmark.md) and the [Bilibili homepage capture and reconstruction benchmark](docs/bilibili-rebuild-benchmark.md) for real capture, candidate, and error measurements. Both reports keep failed cases visible; the Bilibili case also exercises recovery on a high-mutation page and stable-node acceptance.
-
-## Privacy And Permissions
-
-Yotsuba Lens processes and exports evidence locally by default. It sends a reduced evidence payload only when a user configures a model key and explicitly requests AI output. That payload is designed to exclude raw DOM, cookies, local storage, credentials, screenshots, and unmasked input values.
-
-| Permission | Purpose |
-| --- | --- |
-| `activeTab`, `scripting` | Inject the page bridge and capture the active page after a user action |
-| `storage` | Store locale, theme, workspace metadata, and optional AI settings locally |
-| `tabs`, `sidePanel` | Identify the active tab and connect it to the persistent workspace |
-| `<all_urls>` | Let users initiate capture across sites; it does not mean the extension runs automatically on every page |
-| `debugger` | Included only in Collector for explicitly authorized, bounded deep collection |
-
-Local Rebuild packs may contain visible page text, screenshots, and sanitized DOMSnapshot data. Treat them as potentially sensitive files. See [Privacy And Permissions](docs/privacy.md) for the complete boundary.
-
-## Development And Quality Gates
+## Development
 
 ```bash
 npm run dev                 # Standard development server
 npm run dev:collector       # Collector development server
-npm run check:all           # TypeScript, 101 tests, and both production builds
-npm run check:browser       # Real MV3 injection, UI alignment/overflow, and 20k/100k DOM recovery probes
-npm run package:store       # Validate and create store candidate ZIPs and SHA256SUMS
+npm run check:all           # Type checks, tests, and both production builds
+npm run check:browser       # MV3 injection, UI overflow, and large-DOM recovery checks
+npm run package:store       # Build and validate Chrome Web Store candidates
 ```
 
-Install Chromium before the first browser gate:
-
-```bash
-npx playwright install chromium
-```
-
-## Project Structure
-
-```text
-entrypoints/        WXT background, content, popup, and side panel entrypoints
-src/analyzer/       Page structure, token, interaction, and motion analysis
-src/capture-v2/     Rebuild projects, CDP Collector, scenes, and acceptance contracts
-src/evidence/       Evidence packs and summaries
-src/generators/     Evidence, prompt, and Skill generators
-src/overlay/        In-page picker and guided supplemental capture controls
-src/smart-capture/  Smart Capture budgets, orchestration, and gap tasks
-src/storage/        IndexedDB workspace and artifact storage
-scripts/            Release, stress-probe, and Rebuild verification tools
-tests/              Behavior tests
-docs/               Architecture, privacy, product decisions, and validation records
-```
-
-## Documentation And Contributing
+Key documentation:
 
 - [Architecture](docs/architecture.md)
 - [Privacy And Permissions](docs/privacy.md)
 - [Validation](docs/validation.md)
-- [AstroWind reconstruction benchmark](docs/astrowind-rebuild-benchmark.md)
-- [Bilibili homepage capture and reconstruction benchmark](docs/bilibili-rebuild-benchmark.md)
 - [Changelog](CHANGELOG.md)
 - [Contributing](CONTRIBUTING.md)
 - [Security Policy](SECURITY.md)
 - [Release Checklist](docs/release-checklist.md)
-- [Chrome Web Store Submission](docs/chrome-web-store-listing.md)
 
 Open an issue before starting a large feature. Report security issues privately through [GitHub Private Vulnerability Reporting](https://github.com/isla4ever/yotsuba-lens/security/advisories/new).
 

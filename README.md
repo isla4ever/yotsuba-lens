@@ -3,135 +3,137 @@
 </p>
 
 <h1 align="center">Yotsuba 网页风格提取器</h1>
-<p align="center"><strong>提取网页配色、布局、组件、交互和动效，生成可直接使用的 Prompt。</strong></p>
+<p align="center"><strong>把网页的配色、布局、组件、交互和动效，整理成可直接使用的 Prompt 与设计参考。</strong></p>
 
 <p align="center">
+  <a href="https://chromewebstore.google.com/detail/yotsuba-lens-%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E8%AF%81%E6%8D%AE%E9%87%87%E9%9B%86/imbmglmdajepbagbflgalkfokofcilag"><img src="https://img.shields.io/badge/Chrome-%E7%AB%8B%E5%8D%B3%E5%AE%89%E8%A3%85-4285F4?logo=googlechrome&logoColor=white" alt="从 Chrome 应用商店安装" /></a>
   <a href="https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml"><img src="https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <img src="https://img.shields.io/badge/version-0.3.1-2563eb" alt="Version 0.3.1" />
   <img src="https://img.shields.io/badge/Chrome-MV3-4285f4" alt="Chrome MV3" />
-  <img src="https://img.shields.io/badge/status-published-16a34a" alt="Published" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-16a34a" alt="MIT License" /></a>
 </p>
 
 <p align="center"><strong>中文</strong> · <a href="README.en.md">English</a></p>
 
 <p align="center">
-  <img src="docs/readme-assets/readme-hero.jpg" alt="Yotsuba 提取网页风格并生成可用 Prompt" width="100%" />
+  <a href="https://chromewebstore.google.com/detail/yotsuba-lens-%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E8%AF%81%E6%8D%AE%E9%87%87%E9%9B%86/imbmglmdajepbagbflgalkfokofcilag">
+    <img src="docs/readme-assets/readme-hero.jpg" alt="Yotsuba 提取网页风格并生成可用 Prompt" width="100%" />
+  </a>
 </p>
 
-看到喜欢的网页，想参考它的配色、布局或交互，但不知道该怎样向编码工具描述？打开网页后运行一次智能捕获，Yotsuba 会整理页面风格、组件结构、交互状态和动效，并生成可直接使用的 Prompt 与参考资料。
-
-```text
-打开网页 → 智能捕获 → 查看风格与缺口 → 生成 Prompt / 参考包 → 开始实现
-```
+看到喜欢的网页，却很难把它的设计语言准确描述给 AI 编码工具？Yotsuba 会读取当前页面中真实存在的视觉与交互特征，整理出结构清晰的 Prompt、设计参考和检查依据，减少“做得像一点”带来的反复沟通。
 
 > [!IMPORTANT]
-> `0.3.0` 已在 Chrome Web Store 发布；当前仓库正在准备名称与介绍更清晰的 `0.3.1` 更新。请只在你有权分析、参考或还原的页面上使用。
+> Chrome 应用商店已发布 `0.3.0`；名称和说明更清晰的 `0.3.1` 已提交审核，预计近日上线。商店审核通过后，已安装用户会自动收到更新。请只分析、参考或还原你有权使用的页面。
 
-## 它能帮你做什么
+## 立即开始
 
-| 你的需求 | Yotsuba 会做什么 | 你能得到什么 |
+### 1. 安装扩展
+
+[**从 Chrome 应用商店安装 Yotsuba**](https://chromewebstore.google.com/detail/yotsuba-lens-%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E8%AF%81%E6%8D%AE%E9%87%87%E9%9B%86/imbmglmdajepbagbflgalkfokofcilag)
+
+无需下载源码，也无需安装 Node.js。安装后建议将扩展固定在 Chrome 工具栏。
+
+### 2. 打开目标网页
+
+进入一个普通的 `http` 或 `https` 页面，点击扩展图标。Yotsuba 默认在浏览器侧边栏打开，不会遮住正在参考的网页。
+
+### 3. 智能捕获并生成结果
+
+点击 **智能捕获**，查看提取到的风格和待补充状态，再生成 Prompt 或导出参考资料。仅提取页面信息无需配置模型；需要 AI 整理时，按照首次使用指引填写自己的兼容模型配置即可。
+
+```text
+打开网页 → 智能捕获 → 检查结果 → 生成 Prompt / 导出参考资料
+```
+
+## 你能得到什么
+
+| 使用场景 | Yotsuba 提取什么 | 最终结果 |
 | --- | --- | --- |
-| **参考一个网页的风格** | 提取配色、字体、间距、布局、组件和视觉效果 | 一份可迁移到新项目的风格参考 |
-| **生成更准确的 Prompt** | 把页面特征整理成结构清晰的实现要求 | 可交给常见编码工具直接使用的 Prompt |
-| **还原已获授权的页面** | 保存关键截图、尺寸、状态与检查要求 | 有明确范围的重建资料包，而不是一句“照着做” |
-| **补齐悬停、展开等状态** | 自动指出缺少的页面状态，只让你补采必要部分 | 不需要从头录制整个浏览过程 |
+| **给 AI 描述网页风格** | 配色、字体、间距、圆角、阴影、布局和组件规律 | 可直接交给 AI 编码工具的结构化 Prompt |
+| **参考优秀网页做新设计** | 可复用的视觉语言、组件样式、交互和动效线索 | 不包含原站品牌和内容的设计参考 |
+| **还原已获授权的页面** | 关键截图、尺寸、页面状态和验证要求 | 范围明确、可以继续补充和检查的重建资料 |
+| **补齐隐藏状态** | 悬停、聚焦、展开、滚动和响应式缺口 | 最多 3 个必要补采任务，无需录制整段操作 |
 
-## 真实工作区
+## 侧边栏工作区
 
 <p align="center">
-  <img src="docs/readme-assets/workspace-showcase.jpg" alt="Yotsuba Lens 在真实网页旁显示覆盖与捕获设置侧边栏" width="100%" />
+  <img src="docs/readme-assets/workspace-showcase.jpg" alt="Yotsuba 在真实网页旁显示捕获结果与设置" width="100%" />
 </p>
 
-点击扩展图标默认打开侧边栏。概览、覆盖、历史和设置集中在同一工作区；快速弹窗只保留高频操作。捕获完成后可以直接查看已提取内容、缺少的状态和下一步任务。
+概览、覆盖、历史和设置集中在同一侧边栏中。快速弹窗只保留高频操作；捕获结束后可以立即查看已识别内容、缺失状态和下一步建议。
 
 <details>
   <summary><strong>查看历史记录与删除确认</strong></summary>
   <br />
   <p align="center">
-    <img src="docs/store-assets/screenshot-history-dark-1280x800.png" alt="Yotsuba Lens 历史记录与删除二次确认" width="960" />
+    <img src="docs/store-assets/screenshot-history-dark-1280x800.png" alt="Yotsuba 历史记录与删除二次确认" width="960" />
   </p>
 </details>
 
-## 从网页到 Prompt 与参考资料
+## 两种使用方式
+
+| 模式 | 适合什么情况 | 输出边界 |
+| --- | --- | --- |
+| **设计参照（Reference）** | 借鉴网页的配色、布局、组件、动效或交互，完成自己的原创页面 | 提炼可迁移的设计规律，不复制原站品牌、文案和素材 |
+| **授权还原（Rebuild）** | 在明确授权范围内，还原指定页面、尺寸和交互状态 | 只对已经捕获的内容负责，未捕获状态会标记为待补充 |
 
 <p align="center">
-  <img src="docs/readme-assets/evidence-flow.jpg" alt="Yotsuba 将网页风格整理成 Prompt 与参考资料" width="100%" />
+  <img src="docs/readme-assets/evidence-flow.jpg" alt="Yotsuba 将网页特征整理成 Prompt 与参考资料" width="100%" />
 </p>
 
-生成的 Prompt 会引用实际提取到的页面特征；没有捕获到的状态会明确标记，不会凭空补全成“完整复刻”。
+生成内容以实际捕获结果为依据。没有采集到的交互或响应式状态会明确标记，不会被包装成“完整复刻”。
 
-| 模式 | 适用目标 | 输出边界 |
-| --- | --- | --- |
-| **设计参照（Reference）** | 参考网页的配色、布局、组件、动效或交互，设计自己的页面 | 提取可复用的风格规律，不复制原站品牌、文案和素材 |
-| **经授权重建（Rebuild）** | 对明确页面、尺寸和状态建立还原资料 | 只覆盖已经捕获的内容，缺少的状态会继续显示为待补充 |
+## 隐私与安全
 
-## 核心能力
+- 页面分析与资料导出默认在本地完成。
+- 扩展只在用户主动点击捕获后读取当前页面，不会在后台自动扫描所有网站。
+- 只有配置模型并主动生成 AI 内容时，才会向所选模型服务发送压缩后的必要信息。
+- AI 请求不会包含 Cookie、本地存储、账号凭证、原始 DOM、截图或未脱敏的输入内容。
+- Chrome 商店标准版不申请 `debugger` 权限。
 
-| 能力 | 实现边界 |
-| --- | --- |
-| **智能捕获与安全预算** | 基础捕获共享 15 秒预算；Rebuild 截图与 CDP 整理由独立超时和熔断保护，持续 mutation 与超大 DOM 可取消、可降级 |
-| **引导式补采** | 自动归并最多 3 个滚动、悬停、焦点、展开或响应式任务；用户执行真实操作，插件只观察并保存目标状态 |
-| **默认侧边栏** | 模式、捕获、覆盖、历史、配置与导出同屏；首次生成 AI 内容前提供配置指引 |
-| **按需注入与权限分层** | 页面桥接只在用户操作后注入；标准版不含 `debugger`，深度 CDP 采集隔离在 Collector 构建 |
-| **场景化验收** | Rebuild Pack 可驱动截图、像素、几何、动画进度与浏览器错误检查，不推测未采集行为 |
+权限用途和数据边界详见 [隐私与权限说明](docs/privacy.md)。
 
-## 不只是截图转 Prompt
+## 开源与高级用法
 
-| 维度 | 常见截图式流程 | Yotsuba Lens |
-| --- | --- | --- |
-| 输入 | 单张或少量静态截图 | DOM、Token、几何、截图、事件、动效和运行时线索 |
-| 交互状态 | 依赖人工描述或模型猜测 | 真实 hover、focus、scroll、open 与响应式场景证据 |
-| 缺失信息 | 经常被补全成想象结果 | 明确记录为 `missing`、`partial` 或 `not-applicable` |
-| 输出 | 一段通用 Prompt | Evidence Pack、AI Prompt Pack、Rebuild Draft Pack |
-| 验收 | 靠肉眼判断“像不像” | 基于已捕获场景的可解释候选报告 |
-
-## 工作流程
-
-1. **打开页面**：进入普通 `http` 或 `https` 页面，点击 Yotsuba Lens，默认打开 Side Panel。
-2. **选择目标**：Reference 用于原创设计参照；Rebuild 用于授权范围内的实现草稿。
-3. **智能捕获**：自动完成基础证据采集，页面桥接只在此类用户操作后按需注入。
-4. **检查缺口**：在 Side Panel 查看覆盖状态，只对关键缺口执行引导补采。
-5. **整理项目**：可导入 Recorder 计划，或将最多 8 条同源路由加入 Rebuild 项目。
-6. **导出与构建**：把证据包或 Prompt Pack 交给 AI Coding Agent。
-7. **候选验收**：使用 Rebuild 验证器检查已有场景，不推测未捕获行为。
-
-## 输出资料包
-
-| 资料包 | 主要文件 | 用途 |
-| --- | --- | --- |
-| **Evidence-only Pack** | `README.md`、`skill.md`、`evidence.json` | 保存、分享或交给任意 AI 工具的结构化设计证据 |
-| **AI Prompt Pack** | Evidence 文件、`ai-coding-prompt.md`、`ai-implementation-brief.md` | 使用 OpenAI 兼容模型生成面向目标项目的编码 Prompt |
-| **Rebuild Draft Pack** | `capture-project-v2.json`、`scene-manifest.json`、`acceptance.json`、截图与受限 artifact | 保存授权重建基线、显式缺口和候选实现验收规则 |
-
-## 安装
+<details>
+  <summary><strong>从源码安装标准版</strong></summary>
+  <br />
 
 环境要求：Node.js `>=22.13.0`、npm `>=10`、Chrome 或其他 Chromium 浏览器。
-
-### 标准版
 
 ```bash
 npm ci
 npm run build
 ```
 
-打开 `chrome://extensions`，开启 **开发者模式**，点击 **加载已解压的扩展程序**，选择：
+打开 `chrome://extensions`，开启 **开发者模式**，点击 **加载已解压的扩展程序**，选择 `<project-root>/.output/chrome-mv3`。
+</details>
 
-```text
-<project-root>/.output/chrome-mv3
-```
-
-标准版不申请 Chrome `debugger` 权限，适合日常 Reference 和基础 Rebuild 捕获。
-
-### Collector 版
+<details>
+  <summary><strong>Collector 深度采集版</strong></summary>
+  <br />
 
 ```bash
 npm run build:collector
 ```
 
-加载 `<project-root>/.output/collector/chrome-mv3`。Collector 会额外申请 `debugger`，用于经授权的 DOMSnapshot、matched CSS、几何、视口和动画证据。Canvas 位图默认关闭，并受数量、像素和文件大小预算限制。
+加载 `<project-root>/.output/collector/chrome-mv3`。Collector 仅用于经授权的深度采集，会额外申请 `debugger` 权限，以获取受预算限制的 DOMSnapshot、匹配样式、几何、视口与动画证据。它不会随 Chrome 商店标准版发布。
+</details>
 
-## Rebuild 候选验收
+<details>
+  <summary><strong>导出资料与候选页面验证</strong></summary>
+  <br />
+
+Yotsuba 可导出三类资料：
+
+| 资料 | 适合用途 |
+| --- | --- |
+| **设计证据包** | 保存、分享或交给任意 AI 工具继续分析 |
+| **AI Prompt 包** | 为目标项目生成可直接执行的编码要求和实现说明 |
+| **Rebuild 草稿包** | 保存授权还原基线、页面状态、明确缺口和验证规则 |
+
+验证授权还原的候选页面：
 
 ```bash
 npm run verify:rebuild -- \
@@ -139,68 +141,28 @@ npm run verify:rebuild -- \
   --url http://localhost:3000
 ```
 
-验证器只重放 `scene-manifest.json` 中已有证据的 initial、scroll、hover、focus 和 open 状态。输出包括 JSON/HTML 报告、候选截图、差异图和供 Agent 局部修复使用的上下文。
+验证器只检查资料包中已有证据的页面与状态，不推测未捕获行为。真实案例见 [AstroWind 自动重建实战](docs/astrowind-rebuild-benchmark.md) 和 [Bilibili 首页智能捕获与重建实战](docs/bilibili-rebuild-benchmark.md)。
+</details>
 
-真实长页的捕获、候选实现和误差数据见 [AstroWind 自动重建实战](docs/astrowind-rebuild-benchmark.md) 与 [Bilibili 首页智能捕获与重建实战](docs/bilibili-rebuild-benchmark.md)。两个案例都保留失败项，并据此给出下一阶段优先级；Bilibili 案例还覆盖了高 mutation 页面下的恢复性与稳定节点验收。
-
-## 隐私与权限
-
-Yotsuba Lens 默认在本地处理和导出证据。只有用户配置模型 Key 并主动生成 AI 输出时，插件才发送压缩后的证据载荷；该载荷设计上排除原始 DOM、Cookie、本地存储、凭证、截图和未脱敏输入值。
-
-| 权限 | 用途 |
-| --- | --- |
-| `activeTab`、`scripting` | 用户发起操作后，向当前页面按需注入桥接并执行采集 |
-| `storage` | 在浏览器本地保存语言、主题、工作区元数据和可选 AI 配置 |
-| `tabs`、`sidePanel` | 识别当前标签页并连接持久工作区 |
-| `<all_urls>` | 允许用户在不同站点上发起捕获；不代表扩展会自动在所有页面运行 |
-| `debugger` | 仅 Collector 构建包含，用于明确授权后的受限深度采集 |
-
-本地 Rebuild 包可能包含页面可见文本、截图和脱敏后的 DOMSnapshot，应按敏感文件处理。完整边界见 [隐私与权限说明](docs/privacy.md)。
-
-## 开发与质量门禁
+## 开发
 
 ```bash
 npm run dev                 # 标准版开发服务器
 npm run dev:collector       # Collector 开发服务器
-npm run check:all           # TypeScript、101 项测试和两种生产构建
-npm run check:browser       # 真实 MV3 注入、UI 对齐/溢出、20k/100k DOM 性能与恢复探针
-npm run package:store       # 校验权限/版本并生成商店候选 ZIP 与 SHA256SUMS
+npm run check:all           # 类型检查、测试与两种生产构建
+npm run check:browser       # MV3 注入、UI 溢出、大型 DOM 性能与恢复检查
+npm run package:store       # 生成并校验 Chrome 商店候选包
 ```
 
-浏览器门禁首次运行前执行：
-
-```bash
-npx playwright install chromium
-```
-
-## 项目结构
-
-```text
-entrypoints/        WXT background、content、popup 与 side panel 入口
-src/analyzer/       页面结构、Token、交互与动效分析
-src/capture-v2/     Rebuild 项目、CDP Collector、场景与验收契约
-src/evidence/       证据包与摘要
-src/generators/     Evidence、Prompt 与 Skill 生成器
-src/overlay/        页面内选取和引导补采控制器
-src/smart-capture/  智能捕获预算、编排和缺口任务
-src/storage/        IndexedDB 工作区与 artifact 存储
-scripts/            发布、压力探针和 Rebuild 验证工具
-tests/              行为测试
-docs/               架构、隐私、产品决策和验证记录
-```
-
-## 文档与贡献
+主要文档：
 
 - [架构说明](docs/architecture.md)
 - [隐私与权限](docs/privacy.md)
 - [验证记录](docs/validation.md)
-- [AstroWind 自动重建实战](docs/astrowind-rebuild-benchmark.md)
-- [Bilibili 首页智能捕获与重建实战](docs/bilibili-rebuild-benchmark.md)
 - [变更记录](CHANGELOG.md)
 - [参与贡献](CONTRIBUTING.md)
 - [安全策略](SECURITY.md)
 - [发布检查清单](docs/release-checklist.md)
-- [Chrome Web Store 上架资料](docs/chrome-web-store-listing.md)
 
 提交较大功能前请先创建 Issue。安全问题请通过 [GitHub Private Vulnerability Reporting](https://github.com/isla4ever/yotsuba-lens/security/advisories/new) 私下报告。
 
