@@ -1,41 +1,41 @@
 <p align="center">
-  <img src="docs/store-assets/icon-128.png" alt="Yotsuba Lens 四叶草镜头图标" width="128" height="128" />
+  <img src="docs/store-assets/icon-128.png" alt="Yotsuba 网页风格提取器图标" width="128" height="128" />
 </p>
 
-<h1 align="center">Yotsuba Lens</h1>
-<p align="center"><strong>把“参考这个网站”变成可追溯、可执行、可验收的 AI 前端上下文。</strong></p>
+<h1 align="center">Yotsuba 网页风格提取器</h1>
+<p align="center"><strong>提取网页配色、布局、组件、交互和动效，生成可直接使用的 Prompt。</strong></p>
 
 <p align="center">
   <a href="https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml"><img src="https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
-  <img src="https://img.shields.io/badge/version-0.3.0-2563eb" alt="Version 0.3.0" />
+  <img src="https://img.shields.io/badge/version-0.3.1-2563eb" alt="Version 0.3.1" />
   <img src="https://img.shields.io/badge/Chrome-MV3-4285f4" alt="Chrome MV3" />
-  <img src="https://img.shields.io/badge/status-alpha-f59e0b" alt="Alpha" />
+  <img src="https://img.shields.io/badge/status-published-16a34a" alt="Published" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-16a34a" alt="MIT License" /></a>
 </p>
 
 <p align="center"><strong>中文</strong> · <a href="README.en.md">English</a></p>
 
 <p align="center">
-  <img src="docs/readme-assets/readme-hero.jpg" alt="Yotsuba Lens 将网页结构、状态与动效转化为 AI 编码证据" width="100%" />
+  <img src="docs/readme-assets/readme-hero.jpg" alt="Yotsuba 提取网页风格并生成可用 Prompt" width="100%" />
 </p>
 
-Yotsuba Lens（四叶草设计透镜）是一个 **evidence-first（证据优先）** 的开源 Chrome 扩展，面向 AI Coding、Vibe Coding 与前端设计还原。它不只截一张图，而是把真实网页转译为视觉 Token、布局结构、组件语法、交互状态、动效证据、实现线索和验收规则。
+看到喜欢的网页，想参考它的配色、布局或交互，但不知道该怎样向编码工具描述？打开网页后运行一次智能捕获，Yotsuba 会整理页面风格、组件结构、交互状态和动效，并生成可直接使用的 Prompt 与参考资料。
 
 ```text
-真实网页 → 智能捕获 → 结构化证据 → 明确缺口 → Prompt / Rebuild 草稿 → 场景验收
+打开网页 → 智能捕获 → 查看风格与缺口 → 生成 Prompt / 参考包 → 开始实现
 ```
 
 > [!IMPORTANT]
-> `0.3.0` 已提交 Chrome Web Store 审核，当前仍可通过开发者模式安装。请只在你有权分析、参考或重建的页面上使用。
+> `0.3.0` 已在 Chrome Web Store 发布；当前仓库正在准备名称与介绍更清晰的 `0.3.1` 更新。请只在你有权分析、参考或还原的页面上使用。
 
-## 为什么是 Yotsuba Lens
+## 它能帮你做什么
 
-| 目标 | 产品处理方式 | 交付结果 |
+| 你的需求 | Yotsuba 会做什么 | 你能得到什么 |
 | --- | --- | --- |
-| **快速获得设计上下文** | 一次智能捕获完成页面索引、稳定快照与被动观察，超大或持续变动页面会在预算内安全降级 | 不冻结页面，不依赖全程手动录制 |
-| **既可参照，也可重建** | Reference 提炼可迁移设计语言；Rebuild 只在授权范围内保存截图、场景、几何与验收约束 | 不把“借鉴”和“复刻”混为一谈 |
-| **让缺口可见** | 分别评估结构、样式、状态、截图、响应式与 Canvas 证据，只生成关键补采任务 | 不用虚假的总分掩盖缺失状态 |
-| **让结果可验证** | Evidence、Prompt 与 Rebuild Pack 保留证据来源、场景清单和验收规则 | 从“像不像”升级为可解释检查 |
+| **参考一个网页的风格** | 提取配色、字体、间距、布局、组件和视觉效果 | 一份可迁移到新项目的风格参考 |
+| **生成更准确的 Prompt** | 把页面特征整理成结构清晰的实现要求 | 可交给常见编码工具直接使用的 Prompt |
+| **还原已获授权的页面** | 保存关键截图、尺寸、状态与检查要求 | 有明确范围的重建资料包，而不是一句“照着做” |
+| **补齐悬停、展开等状态** | 自动指出缺少的页面状态，只让你补采必要部分 | 不需要从头录制整个浏览过程 |
 
 ## 真实工作区
 
@@ -43,7 +43,7 @@ Yotsuba Lens（四叶草设计透镜）是一个 **evidence-first（证据优先
   <img src="docs/readme-assets/workspace-showcase.jpg" alt="Yotsuba Lens 在真实网页旁显示覆盖与捕获设置侧边栏" width="100%" />
 </p>
 
-点击扩展图标默认打开完整 Side Panel。概览、覆盖、历史和设置集中在同一工作区；快速弹窗只保留高频动作。捕获完成后可直接查看真实数量、证据健康度和下一步任务，不再固定显示 `32`。
+点击扩展图标默认打开侧边栏。概览、覆盖、历史和设置集中在同一工作区；快速弹窗只保留高频操作。捕获完成后可以直接查看已提取内容、缺少的状态和下一步任务。
 
 <details>
   <summary><strong>查看历史记录与删除确认</strong></summary>
@@ -53,18 +53,18 @@ Yotsuba Lens（四叶草设计透镜）是一个 **evidence-first（证据优先
   </p>
 </details>
 
-## 从网页现场到可验证产物
+## 从网页到 Prompt 与参考资料
 
 <p align="center">
-  <img src="docs/readme-assets/evidence-flow.jpg" alt="Yotsuba Lens 将真实网页证据整理成 Prompt、Evidence 和 Acceptance 产物" width="100%" />
+  <img src="docs/readme-assets/evidence-flow.jpg" alt="Yotsuba 将网页风格整理成 Prompt 与参考资料" width="100%" />
 </p>
 
-Prompt 是证据的编译结果，而不是完整数据的唯一载体。Yotsuba Lens 的原则是：**有证据才描述，没有证据就明确标记缺口。**
+生成的 Prompt 会引用实际提取到的页面特征；没有捕获到的状态会明确标记，不会凭空补全成“完整复刻”。
 
 | 模式 | 适用目标 | 输出边界 |
 | --- | --- | --- |
-| **设计参照（Reference）** | 从优秀页面借鉴视觉、布局、动效或交互，构建原创界面 | 提取可迁移的设计语法，不复制参考站点的品牌、内容和素材 |
-| **经授权重建（Rebuild）** | 对明确页面、视口和状态建立可验证实现草稿 | 只对已捕获证据负责；未捕获状态始终作为缺口 |
+| **设计参照（Reference）** | 参考网页的配色、布局、组件、动效或交互，设计自己的页面 | 提取可复用的风格规律，不复制原站品牌、文案和素材 |
+| **经授权重建（Rebuild）** | 对明确页面、尺寸和状态建立还原资料 | 只覆盖已经捕获的内容，缺少的状态会继续显示为待补充 |
 
 ## 核心能力
 

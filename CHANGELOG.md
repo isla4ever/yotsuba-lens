@@ -6,11 +6,18 @@ versioning.
 
 ## Unreleased
 
+## 0.3.1 - 2026-08-03
+
 ### Changed
 
 - Replace tag-triggered GitHub Releases with a manual Chrome Web Store v2
   submission workflow that uploads only the standard build and defaults to
   staged publishing after review.
+- Rename the public extension to `Yotsuba 网页风格提取器` and rewrite the
+  package summary around the concrete workflow: extract webpage styles and
+  generate a reusable Prompt.
+- Simplify the visible product copy, Chrome Web Store description, and README
+  so users can understand the extension without internal evidence terminology.
 
 ## 0.3.0 - 2026-07-30
 

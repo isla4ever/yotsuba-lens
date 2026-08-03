@@ -60,7 +60,7 @@ svg { height: 17px; width: 17px; }
 .workspace-brand { align-items: center; display: flex; gap: 9px; min-width: 0; }
 .workspace-brand > div:last-child { min-width: 0; }
 .workspace-mark { align-items: center; background: #101712 url("/icon/128.png") center / cover no-repeat; border: 1px solid color-mix(in srgb, #101712 72%, var(--line)); border-radius: 6px; display: flex; height: 36px; justify-content: center; position: relative; width: 36px; }
-.workspace-brand h1 { font-size: 15px; line-height: 1.1; margin: 0; }
+.workspace-brand h1 { font-size: 15px; line-height: 1.1; margin: 0; max-width: 190px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .workspace-brand span { color: var(--muted); display: block; font-size: 10px; margin-top: 3px; max-width: 190px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .workspace-header-actions { display: flex; gap: 6px; }
 .workspace-header-actions button { align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; color: var(--text); display: flex; height: 34px; justify-content: center; min-height: 34px; padding: 0; width: 34px; }
@@ -296,6 +296,7 @@ svg { height: 17px; width: 17px; }
   .workspace-tabs button { font-size: 9px; gap: 4px; }
   .workspace-tabs svg { height: 14px; width: 14px; }
   .workspace-brand span { max-width: 150px; }
+  .workspace-brand h1 { font-size: 13px; max-width: 150px; }
   .intent-row, .ai-field-grid { grid-template-columns: 1fr; }
   .recorder-import-head { align-items: start; }
   .recorder-import-head span { max-width: 170px; }

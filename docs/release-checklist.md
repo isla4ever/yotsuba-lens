@@ -49,7 +49,7 @@ Dashboard. The API cannot create the initial item.
 - Register the publisher account, enable two-step verification, pay the one-time
   developer registration fee, and verify the contact email.
 - Choose **Add new item** and upload only
-  `dist/yotsuba-lens-0.3.0-standard-chrome.zip`.
+  `dist/yotsuba-lens-0.3.1-standard-chrome.zip`.
 - Complete Store Listing, Privacy, Distribution, and Test Instructions using
   `docs/chrome-web-store-listing.md`.
 - Submit for review with automatic publishing disabled. The approved submission

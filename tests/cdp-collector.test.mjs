@@ -11,7 +11,9 @@ test("collector build alone requests debugger permission", () => {
   const standard = buildExtensionManifest("production");
   const collector = buildExtensionManifest("collector");
   assert.equal(standard.permissions.includes("debugger"), false);
-  assert.equal(standard.name, "Yotsuba Lens 网页设计证据采集");
+  assert.equal(standard.name, "Yotsuba 网页风格提取器");
+  assert.equal(standard.description, "提取当前网页的配色、布局、组件、交互和动效，生成可直接使用的 Prompt，帮助你参考或还原网页风格。");
+  assert.equal(standard.version, "0.3.1");
   assert.equal(standard.action.default_popup, undefined);
   assert.equal(standard.side_panel.default_path, "sidepanel.html");
   assert.equal(collector.permissions.includes("debugger"), true);

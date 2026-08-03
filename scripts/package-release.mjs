@@ -22,7 +22,7 @@ const variants = [
     name: "standard",
     source: resolve(root, `.output/yotsuba-lens-extension-${version}-chrome.zip`),
     target: `yotsuba-lens-${version}-standard-chrome.zip`,
-    expectedName: "Yotsuba Lens 网页设计证据采集",
+    expectedName: "Yotsuba 网页风格提取器",
     permissions: basePermissions
   },
   {

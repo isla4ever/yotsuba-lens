@@ -8,7 +8,7 @@ import { addCaptureToRouteProject, getStoredRebuildRouteProject, removeRouteFrom
 import { compileImportedRecorderFlow, MAX_RECORDER_FLOW_BYTES } from "../../src/capture-v2/core/imported-recorder-flow";
 import { createDefaultAiSettingsState, getActiveAiProfile, getAiSettingsState, setAiSettingsState, upsertAiProfile, type AiProviderProfile, type AiSettingsState } from "../../src/shared/ai-settings";
 import { DEFAULT_DESIGN_BRIEF, getStoredDesignBrief, normalizeDesignBrief, setStoredDesignBrief, type DesignBrief } from "../../src/shared/design-brief";
-import { DEFAULT_LOCALE, type Locale } from "../../src/shared/i18n";
+import { DEFAULT_LOCALE, messages, type Locale } from "../../src/shared/i18n";
 import { getStoredLocale, setStoredLocale } from "../../src/shared/locale-storage";
 import type { CaptureResponse, GuidedCaptureTask, WorkspaceResponse } from "../../src/shared/messages";
 import { openCompactActionPopup } from "../../src/shared/compact-popup";
@@ -42,6 +42,7 @@ function SidePanel() {
   const [isRecording, setIsRecording] = useState(false);
   const [isBusy, setIsBusy] = useState(false);
   const [notice, setNotice] = useState("");
+  const t = messages[locale];
 
   const selectedRecord = useMemo(() => records.find((record) => record.id === selectedId) ?? null, [records, selectedId]);
   const capture = selectedRecord?.capture ?? null;
@@ -435,7 +436,7 @@ function SidePanel() {
   return (
     <main className={theme === "dark" ? "workspace theme-dark" : "workspace theme-light"}>
       <header className="workspace-header">
-        <div className="workspace-brand"><div className="workspace-mark" aria-hidden="true" /><div><h1>Yotsuba Lens</h1><span>{capture ? captureHost(capture.page.url) : locale === "zh" ? "捕获工作区" : "Capture workspace"}</span></div></div>
+        <div className="workspace-brand"><div className="workspace-mark" aria-hidden="true" /><div><h1>{t.appName}</h1><span>{capture ? captureHost(capture.page.url) : locale === "zh" ? "网页风格提取" : "Web style extraction"}</span></div></div>
         <div className="workspace-header-actions">
           <button type="button" aria-label={locale === "zh" ? "打开插件弹窗" : "Open extension popup"} title={locale === "zh" ? "插件弹窗" : "Extension popup"} onClick={() => void openCompactView()}><AppWindow aria-hidden="true" /></button>
           <button type="button" aria-label={locale === "zh" ? "English" : "中文"} onClick={() => void toggleLocale()}><Languages aria-hidden="true" /></button>

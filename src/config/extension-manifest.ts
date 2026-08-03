@@ -1,11 +1,11 @@
 export function buildExtensionManifest(mode: string) {
   const isCollector = mode === "collector";
   return {
-    name: isCollector ? "Yotsuba Lens Collector" : "Yotsuba Lens 网页设计证据采集",
+    name: isCollector ? "Yotsuba Lens Collector" : "Yotsuba 网页风格提取器",
     description: isCollector
       ? "Capture authorized rebuild evidence with optional Chrome DevTools Protocol inspection."
-      : "采集网页设计证据、交互状态与缺口，支持设计参照与经授权重建。",
-    version: "0.3.0",
+      : "提取当前网页的配色、布局、组件、交互和动效，生成可直接使用的 Prompt，帮助你参考或还原网页风格。",
+    version: "0.3.1",
     icons: {
       16: "icon/16.png",
       32: "icon/32.png",
@@ -15,7 +15,7 @@ export function buildExtensionManifest(mode: string) {
     permissions: ["activeTab", "scripting", "storage", "tabs", "sidePanel", ...(isCollector ? ["debugger"] : [])],
     host_permissions: ["<all_urls>"],
     action: {
-      default_title: isCollector ? "Open Yotsuba Lens Collector" : "打开 Yotsuba Lens 网页设计证据采集",
+      default_title: isCollector ? "Open Yotsuba Lens Collector" : "打开 Yotsuba 网页风格提取器",
       default_icon: {
         16: "icon/16.png",
         32: "icon/32.png"
@@ -30,7 +30,7 @@ export function buildExtensionManifest(mode: string) {
           default: "Alt+Shift+D",
           mac: "Alt+Shift+D"
         },
-        description: "Capture the selected element with Design Lens"
+        description: "提取所选区域的网页风格"
       }
     }
   };

@@ -1,7 +1,7 @@
 {
   "name": "yotsuba-lens-extension",
-  "version": "0.3.0",
-  "description": "A browser extension that captures design references, interaction patterns, and motion cues from live websites.",
+  "version": "0.3.1",
+  "description": "Extract webpage colors, layouts, components, interactions, and motion into reusable style references and prompts.",
   "type": "module",
   "engines": {
     "node": ">=22.13.0",

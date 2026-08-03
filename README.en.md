@@ -1,41 +1,41 @@
 <p align="center">
-  <img src="docs/store-assets/icon-128.png" alt="Yotsuba Lens four-leaf lens icon" width="128" height="128" />
+  <img src="docs/store-assets/icon-128.png" alt="Yotsuba Style Extractor icon" width="128" height="128" />
 </p>
 
-<h1 align="center">Yotsuba Lens</h1>
-<p align="center"><strong>Turn “use this website as a reference” into traceable, executable, and testable frontend context for AI.</strong></p>
+<h1 align="center">Yotsuba Style Extractor</h1>
+<p align="center"><strong>Extract colors, layouts, components, interactions, and motion into a prompt you can use.</strong></p>
 
 <p align="center">
   <a href="https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml"><img src="https://github.com/isla4ever/yotsuba-lens/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
-  <img src="https://img.shields.io/badge/version-0.3.0-2563eb" alt="Version 0.3.0" />
+  <img src="https://img.shields.io/badge/version-0.3.1-2563eb" alt="Version 0.3.1" />
   <img src="https://img.shields.io/badge/Chrome-MV3-4285f4" alt="Chrome MV3" />
-  <img src="https://img.shields.io/badge/status-alpha-f59e0b" alt="Alpha" />
+  <img src="https://img.shields.io/badge/status-published-16a34a" alt="Published" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-16a34a" alt="MIT License" /></a>
 </p>
 
 <p align="center"><a href="README.md">中文</a> · <strong>English</strong></p>
 
 <p align="center">
-  <img src="docs/readme-assets/readme-hero.jpg" alt="Yotsuba Lens turns web structure, states, and motion into evidence for AI coding" width="100%" />
+  <img src="docs/readme-assets/readme-hero.jpg" alt="Yotsuba extracts webpage styles and generates a reusable prompt" width="100%" />
 </p>
 
-Yotsuba Lens is an open-source, **evidence-first** Chrome extension for AI coding, vibe coding, and frontend reconstruction. It goes beyond a screenshot by translating a live page into visual tokens, layout structure, component grammar, interaction states, motion evidence, implementation clues, and acceptance rules.
+Found a webpage you like but do not know how to describe its colors, layout, or interactions to a coding tool? Run Smart Capture once. Yotsuba organizes the page style, component structure, interaction states, and motion into a practical prompt and reference pack.
 
 ```text
-Live page → Smart Capture → Structured evidence → Explicit gaps → Prompt / Rebuild draft → Scene acceptance
+Open page → Smart Capture → Review styles and gaps → Generate prompt / reference pack → Start building
 ```
 
 > [!IMPORTANT]
-> Version `0.3.0` has been submitted for Chrome Web Store review and remains available through Chrome Developer Mode. Use it only on pages you are authorized to analyze, reference, or rebuild.
+> Version `0.3.0` is live in the Chrome Web Store. This repository is preparing the clearer `0.3.1` naming and description update. Use it only on pages you are authorized to analyze, reference, or reproduce.
 
-## Why Yotsuba Lens
+## What It Helps You Do
 
-| Goal | Product approach | Result |
+| Your goal | What Yotsuba does | What you get |
 | --- | --- | --- |
-| **Get design context quickly** | One Smart Capture runs page indexing, a stable snapshot, and passive observation; oversized or continuously changing pages degrade within a strict budget | No frozen page and no mandatory full-session recording |
-| **Reference or rebuild** | Reference extracts transferable design language; Rebuild preserves screenshots, scenes, geometry, and acceptance constraints only within an authorized scope | Inspiration and reproduction remain separate intents |
-| **Keep gaps visible** | Structure, style, state, screenshot, responsive, and Canvas evidence are assessed independently; only important supplemental tasks are generated | No misleading single score hiding missing states |
-| **Make results testable** | Evidence, Prompt, and Rebuild Packs preserve provenance, scene manifests, and acceptance rules | Move from “looks similar” to explainable checks |
+| **Reference a webpage style** | Extract colors, type, spacing, layout, components, and visual effects | A style reference you can adapt to a new project |
+| **Generate a better prompt** | Turn captured page features into structured implementation requirements | A prompt ready for common coding tools |
+| **Reproduce an authorized page** | Preserve key screenshots, dimensions, states, and checks | A bounded rebuild pack instead of a vague “make it similar” request |
+| **Capture hover and open states** | Point out missing states and ask only for the necessary follow-up | No need to record the entire browsing session |
 
 ## Real Workspace
 
@@ -43,7 +43,7 @@ Live page → Smart Capture → Structured evidence → Explicit gaps → Prompt
   <img src="docs/readme-assets/workspace-showcase.jpg" alt="Yotsuba Lens coverage and capture settings beside a real webpage" width="100%" />
 </p>
 
-Clicking the extension action opens the full Side Panel by default. Overview, coverage, history, and settings share one workspace, while the popup keeps only frequent actions. Capture results show real totals, evidence health, and next tasks rather than a fixed `32` cap.
+Clicking the extension action opens the Side Panel by default. Overview, coverage, history, and settings share one workspace, while the popup keeps only frequent actions. Capture results show extracted content, missing states, and the next useful task.
 
 <details>
   <summary><strong>View history and delete confirmation</strong></summary>
@@ -53,13 +53,13 @@ Clicking the extension action opens the full Side Panel by default. Overview, co
   </p>
 </details>
 
-## From Live Page To Verifiable Output
+## From Webpage To Prompt And Reference Pack
 
 <p align="center">
   <img src="docs/readme-assets/evidence-flow.jpg" alt="Yotsuba Lens turns live webpage evidence into Prompt, Evidence, and Acceptance outputs" width="100%" />
 </p>
 
-A prompt is a compiled view of the evidence, not the only source of truth. The rule is simple: **describe what the evidence supports and keep everything else as an explicit gap.**
+Generated prompts are grounded in the page features that were actually captured. Missing states remain visible instead of being presented as a complete reproduction.
 
 | Mode | Best for | Output boundary |
 | --- | --- | --- |
